@@ -1,4 +1,7 @@
 # DDWU-TaskFlow
+
+꼭 읽고 시작해주세요!!!!!!!!!!!!!!!!
+
 1) git 활용법: <master-develop-feature 형상관리법 채택> ---- Git_Tutorial.pdf 참고 
 
               - 현재 상태 : 팀장 develop branch 생성 완료한 상태. (p.35 ~ p.62)
