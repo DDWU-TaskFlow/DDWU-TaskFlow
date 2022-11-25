@@ -2,7 +2,7 @@
 
 꼭 읽고 시작해주세요!!!!!!!!!!!!!!!!
 
-1) git 활용법: <master-develop-feature 형상관리법 채택> ---- Git_Tutorial.pdf 참고 
+1) git 활용법: <main-develop-feature 형상관리법 채택> ---- Git_Tutorial.pdf 참고 
 
               - 현재 상태 : 팀장 develop branch 생성 완료한 상태. (p.35 ~ p.62)
               - 여러분들은 작업 시작 전 이 페이지를 꼭꼭 읽으셔야 함 _ eclipse에서 git 사용 -> **(p.63 ~ p.73) 
