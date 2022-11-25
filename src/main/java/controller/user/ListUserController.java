@@ -4,6 +4,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
+import controller.member.UserSessionUtils;
 import model.User;
 import model.service.UserManager;
 
