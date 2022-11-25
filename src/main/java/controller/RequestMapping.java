@@ -7,6 +7,16 @@ import org.slf4j.LoggerFactory;
 
 import controller.user.*;
 import controller.comm.*;
+import controller.member.EnterMemberController;
+import controller.member.ListTeamMemberController;
+import controller.member.LogoutController;
+import controller.member.RegisterUserController;
+import controller.project.CreateProjectController;
+import controller.project.DeleteProjectController;
+import controller.project.ListProjectController;
+import controller.project.OutProjectController;
+import controller.project.UpdateProjectController;
+import controller.project.ViewProjectController;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -17,16 +27,23 @@ public class RequestMapping {
     public void initMapping() {
     	// 각 uri에 대응되는 controller 객체를 생성 및 저장
         mappings.put("/", new ForwardController("index.jsp"));
-        mappings.put("/user/login/form", new ForwardController("/user/loginForm.jsp"));
-        mappings.put("/user/login", new LoginController());
-        mappings.put("/user/logout", new LogoutController());
-        mappings.put("/user/list", new ListUserController());
-        mappings.put("/user/view", new ViewUserController());
         
-        // 회원 가입 폼 요청과 가입 요청 처리 병합 (폼에 커뮤니티 선택 메뉴 추가를 위함)
-//      mappings.put("/user/register/form", new ForwardController("/user/registerForm.jsp"));
-//      mappings.put("/user/register", new RegisterUserController());
-        mappings.put("/user/register", new RegisterUserController());
+        // member
+        mappings.put("/member/login/form", new ForwardController("/user/loginForm.jsp")); 
+        mappings.put("/member/login", new LoginController());
+        mappings.put("/member/logout", new LogoutController());
+        mappings.put("/member/join", new RegisterUserController());	// get, post
+        mappings.put("/member/team", new ListTeamMemberController());
+        mappings.put("/member/entrance", new EnterMemberController());
+        
+        // project
+        mappings.put("/project/create/form", new CreateProjectController());
+        mappings.put("/project/create", new CreateProjectController());
+        mappings.put("/project/update", new UpdateProjectController());
+        mappings.put("/project/delete", new DeleteProjectController());
+        mappings.put("/project/setting/out", new OutProjectController());
+        mappings.put("/project/list", new ListProjectController());
+        mappings.put("/project/view", new ViewProjectController());
 
         // 사용자 정보 수정 폼 요청과 수정 요청 처리 병합
 //      mappings.put("/user/update/form", new UpdateUserFormController());

@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
+import controller.member.UserSessionUtils;
 import model.service.UserManager;
 import model.service.UserNotFoundException;
 import model.User;
