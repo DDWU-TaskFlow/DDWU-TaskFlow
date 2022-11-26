@@ -95,7 +95,7 @@ h4.card-title {
 			<div class="d-flex"
 				style="width: 50px; height: 50px; margin-left: 120px; float: left;">
 				<button type="button"
-					onclick="location.href='./project/createProject.jsp';"
+					onclick="location.href='project/createProject.jsp';"
 					style="border: 1px solid #FFFFFF; border-radius: 2em; cursor: pointer; cursor: hand; background-color: #ebebeb; color: rgb(0, 0, 0); width: 50px; height: 50px;">+</button>
 			</div>
 			<a href="../member/member_update.jsp" style="float: right;">
@@ -135,7 +135,7 @@ h4.card-title {
 								d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
       </svg>
 						<h4 class="card-title">
-							<a class="card-title" href="./project/project.jsp">单海橇 评敲</a>
+							<a class="card-title" href="../project/project.jsp">单海橇 评敲</a>
 						</h4>
 						<p></p>
 						<p class="card-text" text-align="right">20%</p>

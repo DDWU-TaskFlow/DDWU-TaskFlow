@@ -34,6 +34,7 @@ public class DispatcherServlet extends HttpServlet {
     	// URL 중 servletPath에 대응되는 controller를 구함
         Controller controller = rm.findController(servletPath);
         try {
+
         	// controller를 통해 request 처리 후, 이동할 uri를 반환 받음
             String uri = controller.execute(request, response);
             
@@ -50,6 +51,7 @@ public class DispatcherServlet extends HttpServlet {
             	String targetUri = "/WEB-INF" + uri;
             	RequestDispatcher rd = request.getRequestDispatcher(targetUri);
                 rd.forward(request, response);		// forward to the view page
+
             }                   
         } catch (Exception e) {
             logger.error("Exception : {}", e);
