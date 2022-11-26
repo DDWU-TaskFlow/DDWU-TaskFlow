@@ -119,11 +119,14 @@ h4.card-title {
 				${project}
 			</c:forEach>
 		</p>
+		
 
 		<!-- 프로젝트 -->
 		<div class="container align-items-center" style="max-width: 1130px;">
 
 			<div class="row justify-content-center">
+
+<c:forEach var="project" items="${projectList}">
 
 				<!-- 데베프 팀플 프로젝트 -->
 				<div class="card border-dark mb-3"
@@ -131,11 +134,11 @@ h4.card-title {
 					<div class="card-body">
 						<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35"
 							fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-        <path
-								d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
-      </svg>
+        					<path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
+      					</svg>
 						<h4 class="card-title">
-							<a class="card-title" href="../project/project.jsp">데베프 팀플</a>
+						
+							<a class="card-title" href="../project/project.jsp">${project.name}</a>
 						</h4>
 						<p></p>
 						<p class="card-text" text-align="right">20%</p>
@@ -150,7 +153,8 @@ h4.card-title {
 				</div>
 
 				<div style="width: 25px;"></div>
-
+				
+</c:forEach>
 
 				<!-- 생활지도 및 상담 프로젝트 -->
 				<div class="card border-dark mb-3"
@@ -158,9 +162,8 @@ h4.card-title {
 					<div class="card-body">
 						<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35"
 							fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-        <path
-								d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
-      </svg>
+        					<path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
+      					</svg>
 						<h4 class="card-title">
 							<a class="card-title" href="./project/project.jsp">생활지도 및 상담</a>
 						</h4>
@@ -184,8 +187,7 @@ h4.card-title {
 					<div class="card-body">
 						<div style="height: 35px;"></div>
 						<h4 class="card-title">
-							<a class="card-title" href="./project/project.jsp">백준 Class 2
-								다 풀기</a>
+							<a class="card-title" href="./project/project.jsp">백준 Class 2 다 풀기</a>
 						</h4>
 						<p></p>
 						<p class="card-text" text-align="right">30%</p>
@@ -208,9 +210,8 @@ h4.card-title {
 					<div class="card-body">
 						<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35"
 							fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-            <path
-								d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
-          </svg>
+            				<path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
+         				</svg>
 						<h4 class="card-title">
 							<a class="card-title" href="./project/project.jsp">동아리 프로젝트</a>
 						</h4>
@@ -233,8 +234,7 @@ h4.card-title {
 					<div class="card-body">
 						<div style="height: 35px;"></div>
 						<h4 class="card-title">
-							<a class="card-title" href="./project/project.jsp">sqld 자격증
-								공부</a>
+							<a class="card-title" href="./project/project.jsp">sqld 자격증 공부</a>
 						</h4>
 						<p></p>
 						<p class="card-text" text-align="right">0%</p>
