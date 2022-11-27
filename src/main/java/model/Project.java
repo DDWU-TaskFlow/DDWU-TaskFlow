@@ -1,8 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Project {
+@SuppressWarnings("serial")
+public class Project implements Serializable {
     private int project_id;
     private String name;
     private int type;

@@ -1,9 +1,9 @@
-package model.dao;
+package model.dao.jdbc;
 
 import java.sql.SQLException;
 
 import model.Member;
-import model.dao.JDBCUtil;
+import model.dao.jdbc.JDBCUtil;
 
 public class MemberDao {
     

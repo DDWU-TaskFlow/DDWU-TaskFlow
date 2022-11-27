@@ -1,4 +1,4 @@
-package model.dao;
+package model.dao.jdbc;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Task;
-import model.dao.JDBCUtil;
+import model.dao.jdbc.JDBCUtil;
 
 public class TaskDao {
 	

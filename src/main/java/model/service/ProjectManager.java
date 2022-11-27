@@ -3,7 +3,7 @@ package model.service;
 import java.util.List;
 
 import model.Project;
-import model.dao.ProjectDao;
+import model.dao.jdbc.ProjectDao;
 
 public class ProjectManager {
 	private static ProjectManager projectManager = new ProjectManager();

@@ -1,4 +1,4 @@
-package model.dao;
+package model.dao.jdbc;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Progress;
-import model.dao.JDBCUtil;
+import model.dao.jdbc.JDBCUtil;
 
 public class HistoryDao {
     private JDBCUtil jdbcUtil = null;    // JDBCUtil 객체를 참조하기 위한 변수

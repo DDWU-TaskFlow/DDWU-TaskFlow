@@ -26,8 +26,15 @@
 		<jackson-databind.version>2.12.5</jackson-databind.version>
 		<junit.version>4.13.2</junit.version>
 		<oracle-jdbc-driver.version>21.3.0.0</oracle-jdbc-driver.version>
+		<mybatis.version>3.5.7</mybatis.version>
 	</properties>
 	<dependencies>
+		<!-- MyBatis -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>${mybatis.version}</version>
+		</dependency>
 		<!-- Servlet & JSP API -->
 		<dependency>
 			<groupId>javax.servlet</groupId>

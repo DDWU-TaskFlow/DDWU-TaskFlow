@@ -1,11 +1,11 @@
-package model.dao;
+package model.dao.jdbc;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
 import model.Thread;
-import model.dao.JDBCUtil;
+import model.dao.jdbc.JDBCUtil;
 
 public class ThreadDao {
 	

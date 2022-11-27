@@ -1,4 +1,4 @@
-package model.dao;
+package model.dao.jdbc;
 
 //import java.sql.Connection;
 //import java.sql.DriverManager;
@@ -10,7 +10,7 @@ import java.util.List;
 
 import model.Project;
 import model.Member;
-import model.dao.JDBCUtil;
+import model.dao.jdbc.JDBCUtil;
 
 public class ProjectDao {
 
