@@ -28,4 +28,12 @@ public class ProjectManager {
 		return projectDAO.getProjectList();
 	}
 	
+	public Project getProject() {
+		//TEST
+		System.out.println("ProjectManager의 getProject() 호출됨");
+		
+		// Project 객체를 반환해야 함
+		return null;
+	}
+	
 }
