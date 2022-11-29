@@ -14,9 +14,9 @@ public class ViewProjectController implements Controller{
     	Project project = null;
     	ProjectManager manager = ProjectManager.getInstance();
 		int projectId = Integer.parseInt(request.getParameter("projectId"));
-//		project = manager.getProject(projectId);		// 프로젝트 정보 검색	
+		project = manager.getProject(projectId);		// 프로젝트 정보 검색	
 		
-		request.setAttribute("project", projectId);	// 프로젝트 정보 저장, 일단 ID 저장			
+		request.setAttribute("project", project);		// 프로젝트 정보 저장, 일단 ID 저장			
 		return "/project/projectView.jsp";				// 프로젝트 보기 화면으로 이동
 	}
 

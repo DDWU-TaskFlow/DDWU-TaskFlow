@@ -135,6 +135,8 @@ h4.card-title {
 							<a class="card-title" href="<c:url value='/project/view'>
 						      							<c:param name='projectId' value='${project.project_id}'/>
 						   								</c:url>">
+						   								
+						   								
 						   	${project.name}</a>
 						</h4>
 						<p></p>
@@ -153,7 +155,7 @@ h4.card-title {
 				
 </c:forEach>
 
-				<!-- 생활지도 및 상담 프로젝트 -->
+<!-- 				생활지도 및 상담 프로젝트
 				<div class="card border-dark mb-3"
 					style="width: 350px; height: 200px;">
 					<div class="card-body">
@@ -178,7 +180,7 @@ h4.card-title {
 
 				<div style="width: 25px;"></div>
 
-				<!-- 백준 Class 2 다 풀기 프로젝트 -->
+				백준 Class 2 다 풀기 프로젝트
 				<div class="card border-dark mb-3"
 					style="width: 350px; height: 200px;">
 					<div class="card-body">
@@ -201,7 +203,7 @@ h4.card-title {
 				<div style="width: 25px;"></div>
 
 
-				<!-- 동아리 프로젝트 프로젝트-->
+				동아리 프로젝트 프로젝트
 				<div class="card border-dark mb-3"
 					style="width: 350px; height: 200px;">
 					<div class="card-body">
@@ -225,7 +227,7 @@ h4.card-title {
 
 				<div style="width: 25px;"></div>
 
-				<!-- sqld 자격증 공부 프로젝트 -->
+				sqld 자격증 공부 프로젝트
 				<div class="card border-dark mb-3"
 					style="width: 350px; height: 200px;">
 					<div class="card-body">
@@ -244,7 +246,7 @@ h4.card-title {
 					</div>
 				</div>
 
-				<div style="width: 25px;"></div>
+				<div style="width: 25px;"></div> -->
 
 
 			</div>

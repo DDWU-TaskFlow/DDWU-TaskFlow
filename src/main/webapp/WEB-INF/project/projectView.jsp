@@ -65,7 +65,7 @@
     <div class="container-fluid justify-content-between" style="margin-top: 10px;">
       <p style="text-shadow: 1px 1px 5px #000; margin-left: 10%;">
         <a class="navbar-brand fs-2" href="../index.jsp">Task Flow</a><br/>
-        <a class="fs-5 ms-1" href="#" onclick="location.reload()" style="color: rgba(255, 255, 255, 0.863); text-decoration: none;">µ¥º£ÇÁ ÆÀÇÃ</a>
+        <a class="fs-5 ms-1" href="#" onclick="location.reload()" style="color: rgba(255, 255, 255, 0.863); text-decoration: none;">${project.name}</a>
       </p>
       <a href="settings.jsp" style="float: right;">
         <div class="d-flex justify-content-center align-items-center border border-secondary rounded-circle" style="width: 40px; height: 40px; margin-top: -10px; margin-right: 100px; float: right;">
