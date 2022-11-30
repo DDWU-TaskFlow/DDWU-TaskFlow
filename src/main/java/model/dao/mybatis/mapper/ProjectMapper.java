@@ -1,8 +1,6 @@
 package model.dao.mybatis.mapper;
 
 import java.util.List;
-import java.util.Map;
-
 import model.Member;
 import model.Participation;
 import model.Project;

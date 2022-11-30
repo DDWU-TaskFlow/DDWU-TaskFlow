@@ -14,8 +14,7 @@ public class ListProjectController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ProjectManager manager = ProjectManager.getInstance();
-		List<Project> projectList = manager.getProjectList();
-		
+		List<Project> projectList = manager.findProjectsInMember(1);
 		// request 객체에 projectList 저장
 		request.setAttribute("projectList", projectList);
 		return "/member/projectList.jsp";
