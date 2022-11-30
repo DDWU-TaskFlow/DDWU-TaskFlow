@@ -84,11 +84,8 @@ h4.card-title {
 		<section class="container py-5" style="height: 250px;">
 			<div class="container-fluid text-center"
 				style="margin-top: 10px; width: 400px; height: 100px;">
-				<a href="index.jsp"
-					style="color: rgb(192, 86, 224); display: block;">
-					<p
-						style="font-size: 70px; text-shadow: 1px 1px 5px rgb(197, 135, 226); font-weight: bold;">Task
-						Flow</p>
+				<a href="index.jsp" style="color: rgb(192, 86, 224); display: block;">
+					<p style="font-size: 70px; text-shadow: 1px 1px 5px rgb(197, 135, 226); font-weight: bold;">Task Flow</p>
 				</a>
 			</div>
 			<!-- +버튼 생성 -->
@@ -99,27 +96,24 @@ h4.card-title {
 					style="border: 1px solid #FFFFFF; border-radius: 2em; cursor: pointer; cursor: hand; background-color: #ebebeb; color: rgb(0, 0, 0); width: 50px; height: 50px;">+</button>
 			</div>
 			<a href="../member/member_update.jsp" style="float: right;">
-				<div
-					class="d-flex justify-content-center align-items-center border border-secondary rounded-circle"
-					style="width: 40px; height: 40px; margin-right: 150px; float: right;">
+				<div class="d-flex justify-content-center align-items-center border border-secondary rounded-circle"
+					 style="width: 40px; height: 40px; margin-right: 150px; float: right;">
 					<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-						fill="currentColor" class="bi bi-person-circle"
-						viewBox="0 0 16 16">
-          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-						<path fill-rule="evenodd"
-							d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-        </svg>
+						fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+          				<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+						<path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+       		 		</svg>
 				</div>
 			</a>
 		</section>
 
-		<!-- 테스트용 코드 -->
+	<%-- 	<!-- 테스트용 코드 -->
 		<p>
 			<c:forEach var="project" items="${projectList}">
 				${project}
 			</c:forEach>
 		</p>
-		
+		 --%>
 
 		<!-- 프로젝트 -->
 		<div class="container align-items-center" style="max-width: 1130px;">
@@ -138,7 +132,12 @@ h4.card-title {
       					</svg>
 						<h4 class="card-title">
 						
-							<a class="card-title" href="../project/project.jsp">${project.name}</a>
+							<a class="card-title" href="<c:url value='/project/view'>
+						      							<c:param name='projectId' value='${project.project_id}'/>
+						   								</c:url>">
+						   								
+						   								
+						   	${project.name}</a>
 						</h4>
 						<p></p>
 						<p class="card-text" text-align="right">20%</p>
@@ -156,7 +155,7 @@ h4.card-title {
 				
 </c:forEach>
 
-				<!-- 생활지도 및 상담 프로젝트 -->
+<!-- 				생활지도 및 상담 프로젝트
 				<div class="card border-dark mb-3"
 					style="width: 350px; height: 200px;">
 					<div class="card-body">
@@ -181,7 +180,7 @@ h4.card-title {
 
 				<div style="width: 25px;"></div>
 
-				<!-- 백준 Class 2 다 풀기 프로젝트 -->
+				백준 Class 2 다 풀기 프로젝트
 				<div class="card border-dark mb-3"
 					style="width: 350px; height: 200px;">
 					<div class="card-body">
@@ -204,7 +203,7 @@ h4.card-title {
 				<div style="width: 25px;"></div>
 
 
-				<!-- 동아리 프로젝트 프로젝트-->
+				동아리 프로젝트 프로젝트
 				<div class="card border-dark mb-3"
 					style="width: 350px; height: 200px;">
 					<div class="card-body">
@@ -228,7 +227,7 @@ h4.card-title {
 
 				<div style="width: 25px;"></div>
 
-				<!-- sqld 자격증 공부 프로젝트 -->
+				sqld 자격증 공부 프로젝트
 				<div class="card border-dark mb-3"
 					style="width: 350px; height: 200px;">
 					<div class="card-body">
@@ -247,7 +246,7 @@ h4.card-title {
 					</div>
 				</div>
 
-				<div style="width: 25px;"></div>
+				<div style="width: 25px;"></div> -->
 
 
 			</div>
