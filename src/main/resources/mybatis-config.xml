@@ -7,8 +7,9 @@
     	<setting name="cacheEnabled" value="false"/>
   	</settings>
   	<typeAliases>
-		<typeAlias type="model.Community" alias="Community" />
-		<typeAlias type="model.User" alias="User" />
+		<typeAlias type="model.Project" alias="Project" />
+		<typeAlias type="model.Member" alias="Member" />
+		<typeAlias type="model.Participation" alias="Participation" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">

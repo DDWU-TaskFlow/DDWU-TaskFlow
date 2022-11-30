@@ -1,14 +1,18 @@
 package model;
 
-public class Member {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Member implements Serializable{
     private int member_id;
     private String password;
     private String name;
     private String email;
     private String phone;
     private String birth;
+    private String user_name;
     
-    public Member() {
+	public Member() {
         member_id = -1;
         password = "0000"; 
         name = "성춘향";
@@ -27,7 +31,19 @@ public class Member {
         this.birth = birth;
     }
     
-    public int getMember_id() {
+    public Member(int member_id, String password, String name, String email, String phone, String birth,
+			String user_name) {
+		super();
+		this.member_id = member_id;
+		this.password = password;
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.birth = birth;
+		this.user_name = user_name;
+	}
+
+	public int getMember_id() {
         return member_id;
     }
     public void setMember_id(int member_id) {
@@ -63,11 +79,18 @@ public class Member {
     public void setBirth(String birth) {
         this.birth = birth;
     }
-    
-    @Override
-    public String toString() {
-        return "MemberDTO [member_id=" + member_id + ", password=" + password + ", name=" + name + ", email=" + email
-                + ", phone=" + phone + ", birth=" + birth + ", toString()=" + super.toString() + "]";
-    }  
+    public String getUser_name() {
+		return user_name;
+	}
+
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+
+	@Override
+	public String toString() {
+		return "Member [member_id=" + member_id + ", password=" + password + ", name=" + name + ", email=" + email
+				+ ", phone=" + phone + ", birth=" + birth + ", user_name=" + user_name + "]";
+	}    
     
 }

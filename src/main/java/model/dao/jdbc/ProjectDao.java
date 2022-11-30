@@ -10,6 +10,7 @@ import java.util.List;
 
 import model.Project;
 import model.Member;
+import model.Participation;
 import model.dao.jdbc.JDBCUtil;
 
 public class ProjectDao {
@@ -44,6 +45,10 @@ public class ProjectDao {
         }       
         return result;      // insert 에 의해 반영된 레코드 수 반환 
     }
+
+//    public int updateProject(Project pro) {
+//    	
+//    }
     
     public int participateInProject(Project pro, Member mem) {
         int result = 0;
@@ -88,6 +93,10 @@ public class ProjectDao {
         return 0;
     }
     
+//    public Participation outProject() {
+//    	
+//    }
+    
     public List<Project> getProjectList() {
         String allQuery = "SELECT PROJECT_ID, NAME, TYPE, CREATIONDATE, CREATEDLINK, NOTICE FROM PROJECT";
         jdbcUtil.setSqlAndParameters(allQuery, null);
@@ -118,7 +127,7 @@ public class ProjectDao {
     public Project findProject(int project_id) {
     	String sql = "SELECT * FROM PROJECT WHERE PROJECT_ID = ?";
         Object[] param = new Object[] {project_id};
-        jdbcUtil.setSqlAndParameters(sql, new Object[] {project_id}); 
+        jdbcUtil.setSqlAndParameters(sql, param); 
         
         Project project = null;
         
@@ -142,63 +151,71 @@ public class ProjectDao {
 		return project;
     }
     
-    
-    
-    /*public List<MemberDTO> findMembersInProject(int projectId) throws SQLException {
-        //        String query = "SELECT member_id, password, name, email, phone, brith "
-        //                + "FROM MEMBER, PARTICIPATION USING (member_id) "
-        //                + "WHERE projectId = ? ";
-
-        //        String query = "SELECT member_id, password, name, email, phone, brith "
-        //                + " from participation mp"
-        //                + " inner join member m on mp.member_id=m.member_id"
-        //                + " where mp.project_id=" + rs.getInt("project_id");
-
-        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@dblab.dongduk.ac.kr:1521:orcl", "dbpr0202", "1017");
-        List<MemberDTO> memberList = null;
-        PreparedStatement stmt = con.prepareStatement(
-                "select p.no, p.title, p.sdt, p.edt, m.name owner_name"
-                    + " from pms_project p inner join pms_member m on p.owner=m.no"
-                    + " order by p.no desc");
+    public List<Project> findProjectsInMember(int member_id) {
+    	String query = "SELECT PROJECT.project_id AS project_id, PROJECT.name AS name, PROJECT.type AS type, PROJECT.creationDate AS creationDate, PROJECT.createdlink AS createdLink, PROJECT.notice AS notice "
+    			+ "FROM MEMBER LEFT JOIN PARTICIPATION ON MEMBER.member_id = PARTICIPATION.member_id JOIN PROJECT ON PROJECT.project_id = PARTICIPATION.project_id "
+    			+ "WHERE MEMBER.member_id = ?";
+    	
+        Object[] param = new Object[] {member_id};
+        jdbcUtil.setSqlAndParameters(query, param);
         
-        try (ResultSet rs = stmt.executeQuery()) {
-            if (rs.next()) {
-                StringBuilder members = new StringBuilder();
-
-                while (rs.next()) {
-                    try (PreparedStatement stmt2 = con.prepareStatement(
-                            "SELECT member_id, password, name, email, phone, brith "
-                                    + " from participation mp"
-                                    + " inner join member m on mp.member_id=m.member_id"
-                                    + " where mp.project_id=" + rs.getInt("project_id"));
-                            ResultSet memberRs = stmt2.executeQuery()) {
-                        while (memberRs.next()) { 
-                            MemberDTO dto = new MemberDTO();
-
-                            dto.setMember_id(rs.getInt("member_id"));
-                            dto.setPassword(rs.getString("password"));
-                            dto.setName(rs.getString("name"));
-                            dto.setEmail(rs.getString("email"));
-                            dto.setPhone(rs.getString("phone"));
-                            dto.setBirth(rs.getString("birth"));
-
-                            memberList.add(dto); 
-                        }
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    } finally {
-                        jdbcUtil.close(); 
-                    }       
-                    return memberList;         
-                }
+        try {
+            ResultSet rs = jdbcUtil.executeQuery();      // query문 실행
+            List<Project> list = new ArrayList<Project>(); 
+            
+            while(rs.next()) {
+            	Project dto = new Project();
+            	dto.setName(rs.getString("name"));
+            	dto.setType(rs.getInt("type"));
+            	dto.setCreationDate(rs.getDate("creationDate"));
+            	dto.setCreatedLink(rs.getString("createdLink"));
+            	dto.setNotice(rs.getString("notice"));
+                list.add(dto);
             }
-        } catch (Exception e) {
-            System.out.println("프로젝트 조회 중 오류 발생!");
-            e.printStackTrace();
+            return list;          
+        } catch (Exception ex) {
+            jdbcUtil.rollback();
+            ex.printStackTrace();       
         } finally {
-            jdbcUtil.close(); 
-        }       
-        return memberList;  
-    }*/
+            jdbcUtil.commit();
+            jdbcUtil.close();     
+        }
+        return null;
+    }
+    
+    public List<Member> findMembersInProject(int projectId) throws SQLException {
+        String query = "SELECT MEMBER.member_id AS member_id, MEMBER.password AS password, MEMBER.name AS name, MEMBER.email AS email, MEMBER.phone AS phone, MEMBER.birth AS birth "
+                + "FROM MEMBER LEFT JOIN PARTICIPATION ON MEMBER.member_id = PARTICIPATION.member_id JOIN PROJECT ON PROJECT.project_id = PARTICIPATION.project_id "
+                + "WHERE PROJECT.project_id = ?";
+        Object[] param = new Object[] {projectId};
+        jdbcUtil.setSqlAndParameters(query, param);
+        
+        try {
+            ResultSet rs = jdbcUtil.executeQuery();      // query문 실행
+            List<Member> list = new ArrayList<Member>(); 
+            
+            while(rs.next()) {
+                Member dto = new Member();
+                
+                dto.setMember_id(rs.getInt("member_id"));
+                dto.setPassword(rs.getString("password"));
+                dto.setName(rs.getString("name"));
+                dto.setEmail(rs.getString("email"));
+                dto.setPhone(rs.getString("phone"));
+                dto.setBirth(rs.getString("birth"));
+
+                list.add(dto);
+            }
+            return list;          
+        } catch (Exception ex) {
+            jdbcUtil.rollback();
+            ex.printStackTrace();       
+        } finally {
+            jdbcUtil.commit();
+            jdbcUtil.close();     
+        }
+        return null;
+    }
+    
 }
 
