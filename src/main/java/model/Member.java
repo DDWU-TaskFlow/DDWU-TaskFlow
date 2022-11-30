@@ -1,6 +1,9 @@
 package model;
 
-public class Member {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Member implements Serializable{
     private int member_id;
     private String userName;
     private String password;
@@ -8,8 +11,9 @@ public class Member {
     private String email;
     private String phone;
     private String birth;
+    private String user_name;
     
-    public Member() {
+	public Member() {
         member_id = -1;
         userName = "song02";
         password = "0000"; 
@@ -18,6 +22,7 @@ public class Member {
         phone = "010-0000-0000";
         birth = "";
     }
+
 
 	public Member(int member_id, String userName, String password, String name, String email, String phone,
 			String birth) {
@@ -29,7 +34,9 @@ public class Member {
 		this.email = email;
 		this.phone = phone;
 		this.birth = birth;
+		this.user_name = user_name;
 	}
+
 
 	public int getMember_id() {
 		return member_id;
@@ -85,13 +92,16 @@ public class Member {
 
 	public void setBirth(String birth) {
 		this.birth = birth;
+
 	}
 
 	@Override
 	public String toString() {
+
 		return "Member [member_id=" + member_id + ", userName=" + userName + ", password=" + password + ", name=" + name
 				+ ", email=" + email + ", phone=" + phone + ", birth=" + birth + "]";
 	}
  
+
     
 }

@@ -31,7 +31,16 @@ public class Project implements Serializable {
         this.notice = notice;
     }
     
-    public int getProject_id() {
+    public Project(String name, int type, Date creationDate, String createdLink, String notice) {
+		super();
+		this.name = name;
+		this.type = type;
+		this.creationDate = creationDate;
+		this.createdLink = createdLink;
+		this.notice = notice;
+	}
+
+	public int getProject_id() {
         return project_id;
     }
     public void setProject_id(int project_id) {
