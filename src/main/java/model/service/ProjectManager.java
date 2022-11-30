@@ -37,6 +37,7 @@ public class ProjectManager {
 		System.out.println("ProjectManager의 findProjectsInMember() 호출됨");
 		return projectDAO.findProjectsInMember(member_id);
 	}
+	
 	public List<Member> findMembersInProject(int project_id){
 		//TEST
 		System.out.println("ProjectManager의 findMembersInProject() 호출됨");
