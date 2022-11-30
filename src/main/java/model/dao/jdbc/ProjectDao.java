@@ -115,6 +115,35 @@ public class ProjectDao {
         return null;    
     }
     
+    public Project findProject(int project_id) {
+    	String sql = "SELECT * FROM PROJECT WHERE PROJECT_ID = ?";
+        Object[] param = new Object[] {project_id};
+        jdbcUtil.setSqlAndParameters(sql, new Object[] {project_id}); 
+        
+        Project project = null;
+        
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+			if (rs.next()) {						// 학생 정보 발견
+				project = new Project(		// Community 객체를 생성하여 커뮤니티 정보를 저장
+					project_id,
+					rs.getString("name"),
+					rs.getInt("type"),
+					rs.getDate("creationdate"),
+					rs.getString("createdlink"),
+					rs.getString("notice"));
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		
+		return project;
+    }
+    
+    
+    
     /*public List<MemberDTO> findMembersInProject(int projectId) throws SQLException {
         //        String query = "SELECT member_id, password, name, email, phone, brith "
         //                + "FROM MEMBER, PARTICIPATION USING (member_id) "
