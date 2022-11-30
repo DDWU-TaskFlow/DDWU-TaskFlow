@@ -77,7 +77,7 @@
                         <!-- Member Id 확인(읽기 전용) -->
                         <div class="col-12">
                             <label for="member_id" class="form-label">Member Id <span class="text-muted">(Read Only)</span></label>
-                            <input type="text" class="form-control" id="email" value="bamansaecho" readonly="readonly">
+                            <input type="text" class="form-control" id="email" value="${member.userName}" readonly="readonly">
                         </div>
 
                         <!-- New Password -->
@@ -97,27 +97,27 @@
                             <label for="name" class="form-label">Name</label>
                             <div class="input-group has-validation">
                                 <span class="input-group-text">#</span>
-                                <input type="text" class="form-control" id="name" placeholder="Your name">
+                                <input type="text" class="form-control" id="name" value="${member.name }" placeholder="Your name">
                             </div>
                         </div>
     
                         <!-- Email -->
                         <div class="col-12">
                             <label for="email" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="email" placeholder="jisoo95@naver.com">
+                            <input type="text" class="form-control" id="email" value="${member.email }" placeholder="jisoo95@naver.com">
                         </div>
     
                         <!-- Phone-->
                         <div class="col-12">
                             <label for="phone" class="form-label">Phone</label>
-                            <input type="text" class="form-control" id="phone" placeholder="010-0000-0000">
+                            <input type="text" class="form-control" id="phone" value="${member.phone }" placeholder="010-0000-0000">
                         </div>
     
                         <!-- Birthday -->
                         <div class="col-12">
                             <label for="address2" class="form-label">Birthday</label>
                             <form>
-                                <p><input type="date"></p>
+                                <p><input type="date" value="${member.birth }"></p>
                             </form>
                         </div>
                     </div>

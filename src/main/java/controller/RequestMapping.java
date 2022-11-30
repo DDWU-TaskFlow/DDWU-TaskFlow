@@ -9,6 +9,7 @@ import controller.member.EnterMemberController;
 import controller.member.ListTeamMemberController;
 import controller.member.LoginController;
 import controller.member.LogoutController;
+import controller.member.MyPageController;
 import controller.member.RegisterUserController;
 import controller.project.CreateProjectController;
 import controller.project.DeleteProjectController;
@@ -34,6 +35,7 @@ public class RequestMapping {
         mappings.put("/member/join", new RegisterUserController());	// get, post
         mappings.put("/member/team", new ListTeamMemberController());
         mappings.put("/member/entrance", new EnterMemberController());
+        mappings.put("/member/mypage", new MyPageController());
         
         // project
         mappings.put("/project/create/form", new CreateProjectController());

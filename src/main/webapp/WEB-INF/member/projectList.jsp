@@ -95,7 +95,7 @@ h4.card-title {
 					onclick="location.href='project/createProject.jsp';"
 					style="border: 1px solid #FFFFFF; border-radius: 2em; cursor: pointer; cursor: hand; background-color: #ebebeb; color: rgb(0, 0, 0); width: 50px; height: 50px;">+</button>
 			</div>
-			<a href="../member/member_update.jsp" style="float: right;">
+			<a href="/taskflow/member/mypage" style="float: right;">
 				<div class="d-flex justify-content-center align-items-center border border-secondary rounded-circle"
 					 style="width: 40px; height: 40px; margin-right: 150px; float: right;">
 					<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
