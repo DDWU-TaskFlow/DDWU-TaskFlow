@@ -92,7 +92,7 @@ h4.card-title {
 			<div class="d-flex"
 				style="width: 50px; height: 50px; margin-left: 120px; float: left;">
 				<button type="button"
-					onclick="location.href='project/createProject.jsp';"
+					onclick="location.href='/taskflow/project/create';"
 					style="border: 1px solid #FFFFFF; border-radius: 2em; cursor: pointer; cursor: hand; background-color: #ebebeb; color: rgb(0, 0, 0); width: 50px; height: 50px;">+</button>
 			</div>
 			<a href="/taskflow/member/mypage" style="float: right;">
