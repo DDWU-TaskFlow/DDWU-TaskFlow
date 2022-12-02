@@ -1,29 +1,30 @@
 package model;
 
+import java.sql.Date;
+
 public class Progress {
-	private int progressId;
+	private int progress_id;
 	private int progress;
-	private int taskId;
-	private String recordeDate;
+	private int task_id;
+	private Date recordeDate;
 	
 	public Progress() {
 		super();
 	}
-
-	public Progress(int project_id, int progress, int taskId, String recordeDate) {
+	public Progress(int progress_id, int progress, int taskId, Date recordeDate) {
 		super();
-		this.progressId = project_id;
+		this.progress_id = progress_id;
 		this.progress = progress;
-		this.taskId = taskId;
+		this.task_id = taskId;
 		this.recordeDate = recordeDate;
 	}
 	
 	public int getProgressId() {
-		return progressId;
+		return progress_id;
 	}
 
 	public void setProgressId(int progressId) {
-		this.progressId = progressId;
+		this.progress_id = progressId;
 	}
 
 	public int getProgress() {
@@ -35,25 +36,24 @@ public class Progress {
 	}
 
 	public int getTaskId() {
-		return taskId;
+		return task_id;
 	}
 
 	public void setTaskId(int taskId) {
-		this.taskId = taskId;
+		this.task_id = taskId;
 	}
 
-	public String getRecordeDate() {
+	public Date getRecordeDate() {
 		return recordeDate;
 	}
 
-	public void setRecordeDate(String recordeDate) {
+	public void setRecordeDate(Date recordeDate) {
 		this.recordeDate = recordeDate;
 	}
 
 	@Override
 	public String toString() {
-		return "Progress [project_id=" + progressId + ", progress=" + progress + ", task_id=" + taskId
+		return "Progress [progress_id=" + progress_id + ", progress=" + progress + ", task_id=" + task_id
 				+ ", recordeDate=" + recordeDate + "]";
-	}
-	
+	}	
 }

@@ -6,39 +6,24 @@ import java.sql.Date;
 @SuppressWarnings("serial")
 public class Project implements Serializable {
     private int project_id;
+    private int leader_id;
     private String name;
     private int type;
     private Date creationDate;
     private String createdLink;
     private String notice;
+    private String color;
     
     public Project() {
         project_id = -1;
         name = "홍길동";
+        leader_id = 0;
         type = 0;
         creationDate = new Date(0);
         createdLink = "";
         notice = "";
+        color = "";
     }
-    
-    public Project(int project_id, String name, int type, Date creationDate, String createdLink, String notice) {
-        super();
-        this.project_id = project_id;
-        this.name = name;
-        this.type = type;
-        this.creationDate = creationDate;
-        this.createdLink = createdLink;
-        this.notice = notice;
-    }
-    
-    public Project(String name, int type, Date creationDate, String createdLink, String notice) {
-		super();
-		this.name = name;
-		this.type = type;
-		this.creationDate = creationDate;
-		this.createdLink = createdLink;
-		this.notice = notice;
-	}
 
 	public int getProject_id() {
         return project_id;
@@ -52,7 +37,13 @@ public class Project implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-    public int getType() {
+    public int getLeader_id() {
+		return leader_id;
+	}
+	public void setLeader_id(int leader_id) {
+		this.leader_id = leader_id;
+	}
+	public int getType() {
         return type;
     }
     public void setType(int type) {
@@ -76,12 +67,17 @@ public class Project implements Serializable {
     public void setNotice(String notice) {
         this.notice = notice;
     }
-    
-    @Override
-    public String toString() {
-        return "ProjectDTO [project_id=" + project_id + ", name=" + name + ", type=" + type + ", creationDate="
-                + creationDate + ", createdLink=" + createdLink + ", notice=" + notice + ", toString()="
-                + super.toString() + "]";
-    }   
-    
+    public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	@Override
+	public String toString() {
+		return "Project [project_id=" + project_id + ", leader_id=" + leader_id + ", name=" + name + ", type=" + type
+				+ ", creationDate=" + creationDate + ", createdLink=" + createdLink + ", notice=" + notice + ", color="
+				+ color + "]";
+	}
 }

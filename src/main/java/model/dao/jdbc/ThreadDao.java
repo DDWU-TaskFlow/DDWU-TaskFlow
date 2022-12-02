@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Thread;
+import model.Comments;
 import model.dao.jdbc.JDBCUtil;
 
 public class ThreadDao {
@@ -17,7 +17,7 @@ public class ThreadDao {
 		
 	}
 	
-	public int insertThread(Thread thread) {
+	public int insertThread(Comments thread) {
 		String insertQuery = "INSERT INTO THREAD (thread_number, writtendate, content, task_id, member_id) "
 				+ "VALUES (SEQUENCE_THREAD.nextval, to_date(SYSDATE, 'YYYY-MM-DD HH24:mi:SS'), ?, ?, ?)";
 
@@ -39,7 +39,7 @@ public class ThreadDao {
 		return result;
 	}
 	
-	public int updateThread(Thread thread) {
+	public int updateThread(Comments thread) {
 		String updateQuery = "UPDATE THREAD SET writtendate = to_date(SYSDATE, 'YYYY-MM-DD HH24:mi:SS') , content = ? "
 					+ "WHERE thread_number = ? ";
 
@@ -83,12 +83,12 @@ public class ThreadDao {
 		return result;
 	}
 	
-	public List<Thread> getThreadList(int taskId) {
+	public List<Comments> getThreadList(int taskId) {
 		String query = "SELECT thread_number, writtendate, content, task_id, THREAD.member_id "
 				+ "FROM THREAD JOIN TASK USING (task_id) "
 				+ "WHERE task_id = ? ";
 	
-		List<Thread> threadList = new ArrayList<Thread>();
+		List<Comments> threadList = new ArrayList<Comments>();
 		Object[] params = new Object[] { taskId };
 		jdbcUtil.setSqlAndParameters(query, params);
 		
@@ -101,7 +101,7 @@ public class ThreadDao {
 				String content = rs.getString("content");
 				int memberId = rs.getInt("member_id");
 
-				threadList.add(new Thread(threadNumber, writtenDate, content, taskId, memberId));
+				threadList.add(new Comments(threadNumber, writtenDate, content, taskId, memberId));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
