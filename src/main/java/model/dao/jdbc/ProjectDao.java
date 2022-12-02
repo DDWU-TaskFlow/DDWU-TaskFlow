@@ -41,21 +41,36 @@ public class ProjectDao {
         }       
         return result;      // insert 에 의해 반영된 레코드 수 반환 
     }
-
-//    public int updateProject(Project pro) {
-//    	
-//    }
     
-    public int participateInProject(Project pro, Member mem) {
+    public int getProjectID(Project pro) {
+        String query = "SELECT PROJECT_ID "
+        		+ "FROM PROJECT "
+        		+ "WHERE LEADER_ID = ? AND NAME = ?";
+        Object[] param = new Object[] { pro.getLeader_id(), pro.getName()};        
+        jdbcUtil.setSqlAndParameters(query, param);
+                
+        try { 
+            ResultSet rs = jdbcUtil.executeQuery();     // query 문 실행               
+            rs.next(); 
+            return rs.getInt("PROJECT_ID");      
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            jdbcUtil.close(); 
+        }       
+        return -1;    
+    }
+    
+    public int participateInProject(int pro_id, int mem_id) {
         int result = 0;
         String insertQuery = "INSERT INTO PARTICIPATION (PROJECT_ID, MEMBER_ID) " +
                 "VALUES (?, ?) ";
-        Object[] param = new Object[] {pro.getProject_id(), mem.getMember_id()};
+        Object[] param = new Object[] {pro_id, mem_id};
                 
         jdbcUtil.setSqlAndParameters(insertQuery, param);
         try {               
             result = jdbcUtil.executeUpdate();      // insert 문 실행
-            System.out.println(pro.getProject_id() + " 번의 프로젝트 정보가 삽입되었습니다.");
+            System.out.println(pro_id + " 번의 프로젝트 정보가 삽입되었습니다.");
         } catch (SQLException ex) {
             System.out.println("입력오류 발생!!!");
             if (ex.getErrorCode() == 1)

@@ -14,6 +14,7 @@ public class ProjectManager {
 	private ProjectManager() {
 		try {
 			projectDAO = new ProjectDao();
+			System.out.println("projectDAO 생성 완료");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -23,14 +24,22 @@ public class ProjectManager {
 		return projectManager;
 	}
 	
-	/*public Project insertProject(Project pro) {
-		return projectDAO.insertProject(pro);
+	public int insertProject(Project pro) {
+		if(projectDAO.insertProject(pro) != 1) {
+			System.out.println("project 생성 실패");
+			return 0;
+		} else {
+			projectDAO.participateInProject(projectDAO.getProjectID(pro), pro.getLeader_id());
+			return 1;
+		}
 	}
 	
-	public int updateProject(Project pro) {
-		return projectDAO.updateProject(pro);
-	}
-	*/
+	
+//	
+//	public int updateProject(Project pro) {
+//		return projectDAO.updateProject(pro);
+//	}
+//	
 	
 	public List<Project> findProjectsInMember(int member_id) {
 		//TEST
@@ -43,13 +52,13 @@ public class ProjectManager {
 		System.out.println("ProjectManager의 findProjectsInMember() 호출됨");
 		return projectDAO.findProjectsInMember(user_name);
 	}
+
+//	public List<Member> findMembersInProject(int project_id){
+//		//TEST
+//		System.out.println("ProjectManager의 findMembersInProject() 호출됨");
+//		return projectDAO.findMembersInProject(project_id);
+//	}
 	
-	/*public List<Member> findMembersInProject(int project_id){
-		//TEST
-		System.out.println("ProjectManager의 findMembersInProject() 호출됨");
-		return projectDAO.findMembersInProject(project_id);
-	}
-	*/
 	public Project getProject(int project_id) {
 		//TEST
 		System.out.println("ProjectManager의 getProject() 호출됨");
@@ -58,7 +67,6 @@ public class ProjectManager {
 		return projectDAO.findProject(project_id);
 	}
 	
-
 	/*public Participation participateInProject(Participation part) {
 		return projectDAO.participateInProject(part);
 	}*/
