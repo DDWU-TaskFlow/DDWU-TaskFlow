@@ -2,6 +2,7 @@
 	pageEncoding="EUC-KR"%>
 <%@page import="java.util.*"%>
 <%@page import="model.*"%>
+<%@page import="controller.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!doctype html>
@@ -73,9 +74,13 @@ h4.card-title {
 }
 </style>
 
+<script type="text/javascript">
+<% String strID = (String)session.getAttribute("user_name");%>
+var strName="<%=strID%>";
+alert(strName+"님!! 환영합니다.");
+</script>
+
 </head>
-
-
 <body>
 
 	<main>

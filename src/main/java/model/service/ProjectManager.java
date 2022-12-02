@@ -5,7 +5,7 @@ import java.util.List;
 import model.Member;
 import model.Participation;
 import model.Project;
-import model.dao.mybatis.ProjectDao;
+import model.dao.jdbc.ProjectDao;
 
 public class ProjectManager {
 	private static ProjectManager projectManager = new ProjectManager();
@@ -23,14 +23,14 @@ public class ProjectManager {
 		return projectManager;
 	}
 	
-	public Project insertProject(Project pro) {
+	/*public Project insertProject(Project pro) {
 		return projectDAO.insertProject(pro);
 	}
 	
 	public int updateProject(Project pro) {
 		return projectDAO.updateProject(pro);
 	}
-	
+	*/
 	
 	public List<Project> findProjectsInMember(int member_id) {
 		//TEST
@@ -38,12 +38,18 @@ public class ProjectManager {
 		return projectDAO.findProjectsInMember(member_id);
 	}
 	
-	public List<Member> findMembersInProject(int project_id){
+	public List<Project> findProjectsInMember(String user_name) {
+		//TEST
+		System.out.println("ProjectManager의 findProjectsInMember() 호출됨");
+		return projectDAO.findProjectsInMember(user_name);
+	}
+	
+	/*public List<Member> findMembersInProject(int project_id){
 		//TEST
 		System.out.println("ProjectManager의 findMembersInProject() 호출됨");
 		return projectDAO.findMembersInProject(project_id);
 	}
-	
+	*/
 	public Project getProject(int project_id) {
 		//TEST
 		System.out.println("ProjectManager의 getProject() 호출됨");
@@ -53,17 +59,17 @@ public class ProjectManager {
 	}
 	
 
-	public Participation participateInProject(Participation part) {
+	/*public Participation participateInProject(Participation part) {
 		return projectDAO.participateInProject(part);
-	}
+	}*/
 	 
 	public int deleteProject(int project_id) {
 		return projectDAO.deleteProject(project_id);	
 	}
 	
-	public int outProject(Participation part) {
+	/*public int outProject(Participation part) {
 		return projectDAO.outProject(part);
-	}
+	}*/
 	 
 	public Project findProject(int project_id) {
 		return projectDAO.findProject(project_id);

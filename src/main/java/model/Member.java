@@ -101,6 +101,18 @@ public class Member implements Serializable{
 
 	}
 
+	//비밀번호 검사
+	public boolean matchPassword(String password) {
+		if (password == null) {
+			return false;
+		}
+		return this.password.equals(password);
+	}
+	
+	public boolean isSameUser(String user_name) {
+        return this.user_name.equals(user_name);
+    }
+	
 	@Override
 	public String toString() {
 		return "Member [member_id=" + member_id + ", user_name=" + user_name + ", password=" + password + ", name="

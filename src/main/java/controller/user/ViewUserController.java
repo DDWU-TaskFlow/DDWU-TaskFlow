@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
 import controller.member.UserSessionUtils;
 import model.service.UserManager;
-import model.service.UserNotFoundException;
+import model.service.MemberNotFoundException;
 import model.User;
 
 public class ViewUserController implements Controller {
@@ -23,7 +23,7 @@ public class ViewUserController implements Controller {
     	User user = null;
 		try {
 			user = manager.findUser(userId);	// 사용자 정보 검색
-		} catch (UserNotFoundException e) {				
+		} catch (MemberNotFoundException e) {				
 	        return "redirect:/user/list";
 		}	
 		

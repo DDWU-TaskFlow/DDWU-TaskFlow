@@ -1,5 +1,5 @@
 package controller.user;
-
+/*
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,13 +18,13 @@ public class ListUserController implements Controller {
             return "redirect:/user/login/form";		// login form 요청으로 redirect
         }
     	
-    	/*
+    	
     	String currentPageStr = request.getParameter("currentPage");	
 		int currentPage = 1;
 		if (currentPageStr != null && !currentPageStr.equals("")) {
 			currentPage = Integer.parseInt(currentPageStr);
 		}		
-    	*/
+    	
     	
 		UserManager manager = UserManager.getInstance();
 		List<User> userList = manager.findUserList();
@@ -38,4 +38,4 @@ public class ListUserController implements Controller {
 		// 사용자 리스트 화면으로 이동(forwarding)
 		return "/user/list.jsp";        
     }
-}
+}*/
