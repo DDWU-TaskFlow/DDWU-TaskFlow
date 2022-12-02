@@ -1,38 +1,45 @@
 package model;
 
+import java.sql.Date;
+
 public class Task {
 	private int task_id;
-	private int taskProgress;
+	private int task_progress;
 	private int project_id;
 	private int member_id;
 	private String name;
-	private String deadline;
+	private String content;
+	private Date deadline;
 	
 	public Task() {
-		this(0, 0, 0, 0, "", "");
+		this(0, 0, 0, 0, "", "", new Date(0));
 	}
-	public Task(int task_id, int taskProgress, int project_id, int member_id, String name, String deadline) {
+	
+	public Task(int task_id, int task_progress, int project_id, int member_id, String name, String content,
+			Date deadline) {
 		super();
 		this.task_id = task_id;
-		this.taskProgress = taskProgress;
+		this.task_progress = task_progress;
 		this.project_id = project_id;
 		this.member_id = member_id;
 		this.name = name;
+		this.content = content;
 		this.deadline = deadline;
 	}
-	
 	public int getTask_id() {
 		return task_id;
 	}
 	public void setTask_id(int task_id) {
 		this.task_id = task_id;
 	}
-	public int getTaskProgress() {
-		return taskProgress;
+	
+	public int getTask_progress() {
+		return task_progress;
 	}
-	public void setTaskProgress(int taskProgress) {
-		this.taskProgress = taskProgress;
+	public void setTask_progress(int task_progress) {
+		this.task_progress = task_progress;
 	}
+
 	public int getProject_id() {
 		return project_id;
 	}
@@ -51,21 +58,23 @@ public class Task {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getDeadline() {
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public Date getDeadline() {
 		return deadline;
 	}
-	public void setDeadline(String deadline) {
+	public void setDeadline(Date deadline) {
 		this.deadline = deadline;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "TaskDTO [task_id=" + task_id 
-				+ ", taskProgress=" + taskProgress 
-				+ ", project_id=" + project_id
-				+ ", member_id=" + member_id 
-				+ ", name=" + name 
-				+ ", deadline=" + deadline + "]";
+		return "Task [task_id=" + task_id + ", task_progress=" + task_progress + ", project_id=" + project_id
+				+ ", member_id=" + member_id + ", name=" + name + ", content=" + content + ", deadline=" + deadline
+				+ "]";
 	}
-	
 }

@@ -1,8 +1,4 @@
 package model.dao.jdbc;
-
-//import java.sql.Connection;
-//import java.sql.DriverManager;
-//import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -23,9 +19,9 @@ public class ProjectDao {
     
     public int insertProject(Project pro) {
         int result = 0;
-        String insertQuery = "INSERT INTO PROJECT (PROJECT_ID, NAME, TYPE, CREATIONDATE, CREATEDLINK, NOTICE) " +
-                "VALUES (SEQUENCE_PROJECT.nextval, ?, ?, to_date(SYSDATE, 'YYYY-MM-DD HH24:mi:SS'), ?, ?) ";
-        Object[] param = new Object[] { pro.getName(), pro.getType(), pro.getCreatedLink(), pro.getNotice() };        
+        String insertQuery = "INSERT INTO PROJECT (PROJECT_ID, LEADER_ID, NAME, TYPE, CREATIONDATE, CREATEDLINK, NOTICE, COLOR) " +
+                "VALUES (SEQUENCE_PROJECT.nextval, ?, ?, ?, to_date(SYSDATE, 'YYYY-MM-DD HH24:mi:SS'), ?, ?, ?) ";
+        Object[] param = new Object[] { pro.getLeader_id(), pro.getName(), pro.getType(), pro.getCreatedLink(), pro.getNotice(), pro.getColor()};        
         
         jdbcUtil.setSqlAndParameters(insertQuery, param);
         
@@ -98,7 +94,7 @@ public class ProjectDao {
 //    }
     
     public List<Project> getProjectList() {
-        String allQuery = "SELECT PROJECT_ID, NAME, TYPE, CREATIONDATE, CREATEDLINK, NOTICE FROM PROJECT";
+        String allQuery = "SELECT PROJECT_ID, LEADER_ID, NAME, TYPE, CREATIONDATE, CREATEDLINK, NOTICE, COLOR FROM PROJECT";
         jdbcUtil.setSqlAndParameters(allQuery, null);
                 
         try { 
@@ -108,11 +104,13 @@ public class ProjectDao {
             while (rs.next()) { 
                 Project dto = new Project();     
                 dto.setProject_id(rs.getInt("PROJECT_ID"));
+                dto.setLeader_id(rs.getInt("LEADER_ID"));
                 dto.setName(rs.getString("NAME"));
                 dto.setType(rs.getInt("TYPE"));
                 dto.setCreationDate(rs.getDate("CREATIONDATE"));
                 dto.setCreatedLink(rs.getString("CREATEDLINK"));
                 dto.setNotice(rs.getString("NOTICE"));
+                dto.setColor(rs.getString("COLOR"));
                 list.add(dto);      
             }
             return list;       
@@ -134,13 +132,15 @@ public class ProjectDao {
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
 			if (rs.next()) {						// 학생 정보 발견
-				project = new Project(		// Community 객체를 생성하여 커뮤니티 정보를 저장
+				project = new Project(		// Project 객체를 생성하여 project 정보를 저장
 					project_id,
+					rs.getInt("leader_id"),
 					rs.getString("name"),
 					rs.getInt("type"),
 					rs.getDate("creationdate"),
 					rs.getString("createdlink"),
-					rs.getString("notice"));
+					rs.getString("notice"),
+					rs.getString("color"));
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -152,9 +152,10 @@ public class ProjectDao {
     }
     
     public List<Project> findProjectsInMember(int member_id) {
-    	String query = "SELECT PROJECT.project_id AS project_id, PROJECT.name AS name, PROJECT.type AS type, PROJECT.creationDate AS creationDate, PROJECT.createdlink AS createdLink, PROJECT.notice AS notice "
-    			+ "FROM MEMBER LEFT JOIN PARTICIPATION ON MEMBER.member_id = PARTICIPATION.member_id JOIN PROJECT ON PROJECT.project_id = PARTICIPATION.project_id "
-    			+ "WHERE MEMBER.member_id = ?";
+    	String query = 
+    			"SELECT PROJECT.project_id AS project_id, PROJECT.leader_id AS leader_id, PROJECT.name AS name, PROJECT.type AS type, PROJECT.creationDate AS creationDate, PROJECT.createdlink AS createdLink, PROJECT.notice AS notice, PROJECT.color AS color "
+    		+ "FROM MEMBER LEFT JOIN PARTICIPATION ON MEMBER.member_id = PARTICIPATION.member_id JOIN PROJECT ON PROJECT.project_id = PARTICIPATION.project_id "
+    		+ "WHERE MEMBER.member_id = ?";
     	
         Object[] param = new Object[] {member_id};
         jdbcUtil.setSqlAndParameters(query, param);
@@ -165,11 +166,14 @@ public class ProjectDao {
             
             while(rs.next()) {
             	Project dto = new Project();
+            	dto.setProject_id(rs.getInt("project_id"));
+            	dto.setLeader_id(rs.getInt("leader_id"));
             	dto.setName(rs.getString("name"));
             	dto.setType(rs.getInt("type"));
             	dto.setCreationDate(rs.getDate("creationDate"));
             	dto.setCreatedLink(rs.getString("createdLink"));
             	dto.setNotice(rs.getString("notice"));
+            	dto.setColor(rs.getString("color"));
                 list.add(dto);
             }
             return list;          
@@ -184,7 +188,7 @@ public class ProjectDao {
     }
     
     public List<Member> findMembersInProject(int projectId) throws SQLException {
-        String query = "SELECT MEMBER.member_id AS member_id, MEMBER.password AS password, MEMBER.name AS name, MEMBER.email AS email, MEMBER.phone AS phone, MEMBER.birth AS birth "
+        String query = "SELECT MEMBER.member_id AS member_id, MEMBER.user_name AS user_name, MEMBER.password AS password, MEMBER.name AS name, MEMBER.email AS email, MEMBER.phone AS phone, MEMBER.birth AS birth "
                 + "FROM MEMBER LEFT JOIN PARTICIPATION ON MEMBER.member_id = PARTICIPATION.member_id JOIN PROJECT ON PROJECT.project_id = PARTICIPATION.project_id "
                 + "WHERE PROJECT.project_id = ?";
         Object[] param = new Object[] {projectId};
@@ -196,14 +200,13 @@ public class ProjectDao {
             
             while(rs.next()) {
                 Member dto = new Member();
-                
                 dto.setMember_id(rs.getInt("member_id"));
+                dto.setUser_name(rs.getString("user_name"));
                 dto.setPassword(rs.getString("password"));
                 dto.setName(rs.getString("name"));
                 dto.setEmail(rs.getString("email"));
                 dto.setPhone(rs.getString("phone"));
                 dto.setBirth(rs.getString("birth"));
-
                 list.add(dto);
             }
             return list;          
