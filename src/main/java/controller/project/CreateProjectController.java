@@ -23,11 +23,13 @@ public class CreateProjectController implements Controller{
 		// POST request
 		Project project = new Project(
 				-1,
+				0,
 				request.getParameter("name"),
 				0,
 				new Date(0),
 				"",
-				request.getParameter("notice")
+				request.getParameter("notice"),
+				""
 				)
 				;
 		
