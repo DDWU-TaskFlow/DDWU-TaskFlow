@@ -22,8 +22,7 @@ public class CreateProjectController implements Controller{
 		
 		// POST request
 		Project project = new Project(
-				-1,
-				0,
+				10000,
 				request.getParameter("name"),
 				0,
 				new Date(0),
@@ -34,13 +33,13 @@ public class CreateProjectController implements Controller{
 				;
 		
 		
-//		ProjectManager.getInstance().insertProject(project);
+		ProjectManager.getInstance().insertProject(project);
 		System.out.println(project + "생성 완료");
 		
 		// 생성된 id 가져오기 -> 우선 id 임의 생성으로 대체
 		
 		// 생성된 아이디로 participation 테이블에 등록
-		Participation participation = new Participation(117, 1);
+//		Participation participation = new Participation(117, 1);
 //		ProjectManager.getInstance().participateInProject(participation);
 		
 		return "redirect:/project/list";

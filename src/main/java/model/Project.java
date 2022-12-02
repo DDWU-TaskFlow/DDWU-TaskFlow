@@ -15,7 +15,6 @@ public class Project implements Serializable {
     private String color;
     
     public Project() {
-        project_id = -1;
         name = "홍길동";
         leader_id = 0;
         type = 0;

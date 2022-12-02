@@ -17,9 +17,6 @@ public class ProjectDaoTest {
 		// findProject(id)
 		System.out.println(projectDao.findProject(100));
 
-		// findProjectsInMember(member_id)
-
-		System.out.println("ㅇ"+projectDao.findProjectsInMember(2));
 
 		// findMembersInProject
 		try {
@@ -41,6 +38,5 @@ public class ProjectDaoTest {
 		}
 
 
-		System.out.println("ㅇ"+projectDao.findMembersInProject(100));
 	}
 }

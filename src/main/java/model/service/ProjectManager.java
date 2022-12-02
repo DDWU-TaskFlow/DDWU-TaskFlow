@@ -25,9 +25,17 @@ public class ProjectManager {
 		return projectManager;
 	}
 	
-//	public Project insertProject(Project pro) {
-//		return projectDAO.insertProject(pro);
-//	}
+	public int insertProject(Project pro) {
+		if(projectDAO.insertProject(pro) != 1) {
+			System.out.println("project 생성 실패");
+			return 0;
+		} else {
+			projectDAO.participateInProject(projectDAO.getProjectID(pro), pro.getLeader_id());
+			return 1;
+		}
+	}
+	
+	
 //	
 //	public int updateProject(Project pro) {
 //		return projectDAO.updateProject(pro);
