@@ -69,16 +69,17 @@
                             </span>
                         </a>
                     </header>
-                    <hr class="my-4" style="width: 75%;">
+                    <hr class="my-4" 
+                    style="width: 75%;">
                 </div>
 
-                <form class="needs-validation" novalidate>
+                <form class="needs-validation" action="/taskflow/project/create" method="post">
                     <div class="row g-3">
 
                         <!-- Team Color -->
                         <div class="col-sm-2">
                             <label for="exampleColorInput" class="form-label">Team Color</label>
-                            <input type="color" class="form-control form-control-color" id="exampleColorInput"
+                            <input type="color" name="color" class="form-control form-control-color" id="exampleColorInput"
                                 value="#563d7c" title="Choose your color">
                         </div>
 
@@ -87,7 +88,7 @@
                             <label for="projectName" class="form-label">Project Name</label>
                             <div class="input-group has-validation">
                                 <span class="input-group-text">#</span>
-                                <input type="text" class="form-control w-25" size="10" id="projectName"
+                                <input type="text" name="name" class="form-control w-25" size="10" id="projectName"
                                     placeholder="Your project name" required>
 
                                 <div class="invalid-feedback">
@@ -100,7 +101,7 @@
                         <!-- Notice -->
                         <div class="col-sm-9">
                             <label for="notice" class="form-label">Notice</label>
-                            <input type="notice" class="form-control" id="notice" placeholder="Write down the notice">
+                            <input type="notice" name="notice" class="form-control" id="notice" placeholder="Write down the notice">
                         </div>
                     </div>
 
@@ -109,7 +110,7 @@
                     <div class="find-btn">
                         <button class="btn btn-primary btn-lg px-4 gap-3" type="submit"
                             style="background-color: rgb(161, 162, 207); border: 0; outline: 0;">Create</button>
-                        <button class="btn btn-outline-secondary btn-lg px-4" type="reset">Cancel</button>
+                        <button class="btn btn-outline-secondary btn-lg px-4" type="reset" onclick="location.href='/taskflow/project/list';">Cancel</button>
                     </div>
                 </form>
             </div>

@@ -53,6 +53,7 @@ public class ProjectDao {
 			sqlSession.close();
 		}
 	}	
+	
 	public Participation participateInProject(Participation part) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
