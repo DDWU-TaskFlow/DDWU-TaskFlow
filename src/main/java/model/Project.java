@@ -25,6 +25,32 @@ public class Project implements Serializable {
         color = "";
     }
 
+	public Project(int leader_id, String name, int type, Date creationDate, String createdLink, String notice,
+			String color) {
+		super();
+		this.leader_id = leader_id;
+		this.name = name;
+		this.type = type;
+		this.creationDate = creationDate;
+		this.createdLink = createdLink;
+		this.notice = notice;
+		this.color = color;
+	}
+	
+	public Project(int project_id, int leader_id, String name, int type, Date creationDate, String createdLink,
+			String notice, String color) {
+		super();
+		this.project_id = project_id;
+		this.leader_id = leader_id;
+		this.name = name;
+		this.type = type;
+		this.creationDate = creationDate;
+		this.createdLink = createdLink;
+		this.notice = notice;
+		this.color = color;
+	}
+
+
 	public int getProject_id() {
         return project_id;
     }

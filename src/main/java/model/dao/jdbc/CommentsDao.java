@@ -1,5 +1,6 @@
 package model.dao.jdbc;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,23 +8,23 @@ import java.util.List;
 import model.Comments;
 import model.dao.jdbc.JDBCUtil;
 
-public class ThreadDao {
+public class CommentsDao {
 	
 	private JDBCUtil jdbcUtil = null;
 	
-	public ThreadDao() {
+	public CommentsDao() {
 		
 	    jdbcUtil = new JDBCUtil();
 		
 	}
 	
-	public int insertThread(Comments thread) {
-		String insertQuery = "INSERT INTO THREAD (thread_number, writtendate, content, task_id, member_id) "
-				+ "VALUES (SEQUENCE_THREAD.nextval, to_date(SYSDATE, 'YYYY-MM-DD HH24:mi:SS'), ?, ?, ?)";
+	public int insertComment(Comments comment) {
+		String insertQuery = "INSERT INTO Comments (comment_id, task_id, member_id, writtenDate, content) "
+				+ "VALUES (SEQUENCE_Comments.nextval, ?, ?, to_date(SYSDATE, 'YYYY-MM-DD HH24:mi:SS'), ?)";
 
 		int result = 0;
-		Object[] params = new Object[] { thread.getContent(), thread.getTask_id(), thread.getMember_id() };
-		jdbcUtil.setSqlAndParameters(insertQuery,  params);
+		Object[] params = new Object[] {comment.getTask_id(), comment.getMember_id(), comment.getContent()};
+		jdbcUtil.setSqlAndParameters(insertQuery, params);
 		
 		try {
 			result = jdbcUtil.executeUpdate();
@@ -39,13 +40,14 @@ public class ThreadDao {
 		return result;
 	}
 	
-	public int updateThread(Comments thread) {
-		String updateQuery = "UPDATE THREAD SET writtendate = to_date(SYSDATE, 'YYYY-MM-DD HH24:mi:SS') , content = ? "
-					+ "WHERE thread_number = ? ";
+	public int updateComment(Comments comment) {
+		String updateQuery = "UPDATE Comments "
+				+ "SET writtenDate = to_date(SYSDATE, 'YYYY-MM-DD HH24:mi:SS') , content = ? "
+				+ "WHERE comment_id = ? ";
 
         int result = 0;
-		Object[] params = new Object[] { thread.getContent(), thread.getThread_number() };
-		jdbcUtil.setSqlAndParameters(updateQuery,  params);
+		Object[] params = new Object[] { comment.getContent(), comment.getComment_id() };
+		jdbcUtil.setSqlAndParameters(updateQuery, params);
 		
 		try {
 			result = jdbcUtil.executeUpdate();
@@ -61,12 +63,12 @@ public class ThreadDao {
 		return result;
     }
 	
-	public int deleteThread(int threadId) {
-		String deleteQuery = "DELETE FROM THREAD "
-				+ "WHERE thread_number = ? ";
+	public int deleteComment(int commentId) {
+		String deleteQuery = "DELETE FROM Comments "
+				+ "WHERE comment_id = ? ";
 		
 		int result = 0;
-		Object[] params = new Object[] { threadId };
+		Object[] params = new Object[] { commentId };
 		jdbcUtil.setSqlAndParameters(deleteQuery, params);
 
 		try {
@@ -83,12 +85,12 @@ public class ThreadDao {
 		return result;
 	}
 	
-	public List<Comments> getThreadList(int taskId) {
-		String query = "SELECT thread_number, writtendate, content, task_id, THREAD.member_id "
-				+ "FROM THREAD JOIN TASK USING (task_id) "
+	public List<Comments> getCommentList(int taskId) {
+		String query = "SELECT comment_id, task_id, Comments.member_id AS member_id, writtenDate, content "
+				+ "FROM Comments JOIN TASK USING (task_id) "
 				+ "WHERE task_id = ? ";
 	
-		List<Comments> threadList = new ArrayList<Comments>();
+		List<Comments> commentList = new ArrayList<Comments>();
 		Object[] params = new Object[] { taskId };
 		jdbcUtil.setSqlAndParameters(query, params);
 		
@@ -96,12 +98,11 @@ public class ThreadDao {
 			ResultSet rs = jdbcUtil.executeQuery();
 			
 			while (rs.next()) {
-				int threadNumber = rs.getInt("thread_number");
-				String writtenDate = rs.getString("writtendate");
+				int comment_id = rs.getInt("comment_id");
+				int member_id = rs.getInt("member_id");
+				Date writtenDate = rs.getDate("writtenDate");
 				String content = rs.getString("content");
-				int memberId = rs.getInt("member_id");
-
-				threadList.add(new Comments(threadNumber, writtenDate, content, taskId, memberId));
+				commentList.add(new Comments(comment_id, taskId, member_id, writtenDate, content));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -109,7 +110,7 @@ public class ThreadDao {
 			jdbcUtil.close();
 		}
 		
-    	return threadList;
+    	return commentList;
 	}
 	
 }

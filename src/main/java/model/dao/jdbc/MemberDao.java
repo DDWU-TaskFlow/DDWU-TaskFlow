@@ -17,15 +17,15 @@ public class MemberDao {
 	public int insertMember(Member mem) {
 		int result = 0;
 		String insertQuery = "INSERT INTO MEMBER (member_id, user_name, password, name, email, phone, birth) " +
-				"VALUES (?, ?, ?, ?, ?, ?, ?) ";
+				"VALUES (SEQUENCE_MEMBER.nextval, ?, ?, ?, ?, ?, ?) ";
 
-		Object[] param = new Object[] {mem.getMember_id(), mem.getUserName(), mem.getPassword(), mem.getName(), mem.getEmail(), mem.getPhone(), mem.getBirth()};
+		Object[] param = new Object[] {mem.getUser_name(), mem.getPassword(), mem.getName(), mem.getEmail(), mem.getPhone(), mem.getBirth()};
 
 		jdbcUtil.setSqlAndParameters(insertQuery, param);
 
 		try {               
 			result = jdbcUtil.executeUpdate();      // insert 문 실행
-			System.out.println(mem.getMember_id() + " 님이 가입하셨습니다.");
+			System.out.println(mem.getUser_name() + " 님이 가입하셨습니다.");
 		} catch (SQLException ex) {
 			System.out.println("사용자 추가에서 입력오류 발생!!!");
 			if (ex.getErrorCode() == 1)
@@ -65,11 +65,11 @@ public class MemberDao {
 				+ "FROM MEMBER "
 				+ "WHERE member_id=? ";              
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {member_id});	// JDBCUtil에 query문과 매개 변수 설정
-		Member meme = null;
+		Member mem = null;
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
 			if (rs.next()) {						// 학생 정보 발견
-				meme = new Member(		// Community 객체를 생성하여 커뮤니티 정보를 저장
+				mem = new Member(		// Community 객체를 생성하여 커뮤니티 정보를 저장
 						member_id,
 						rs.getString("user_name"),
 						rs.getString("password"),
@@ -83,7 +83,7 @@ public class MemberDao {
 		} finally {
 			jdbcUtil.close();		// resource 반환
 		}
-		return meme;
+		return mem;
 	}
 
 

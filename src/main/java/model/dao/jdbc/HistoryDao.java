@@ -17,7 +17,7 @@ public class HistoryDao {
     
     public int insertProgress(int taskId, int progress) {
     	int result = 0;
-    	String insertQuery = "INSERT INTO PROGRESS (progress_id, progress, task_id, recordeddate) " +
+    	String insertQuery = "INSERT INTO PROGRESS (progress_id, progress, task_id, recordedDate) " +
                 				"VALUES (SEQUENCE_PROGRESS.nextval, ?, ?, to_date(SYSDATE, 'YYYY-MM-DD HH24:mi:SS')) ";
     	
     	Object[] param = new Object[] {progress, taskId};
@@ -60,7 +60,7 @@ public class HistoryDao {
                   progress.setProgressId(rs.getInt("PROGRESS_ID"));
                   progress.setProgress(rs.getInt("PROGRESS"));
                   progress.setTaskId(rs.getInt("TASK_ID"));
-                  progress.setRecordeDate(rs.getString("RECORDEDDATE"));
+                  progress.setRecordeDate(rs.getDate("RECORDEDDATE"));
                   list.add(progress);
             }
             return list;      

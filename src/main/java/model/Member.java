@@ -22,6 +22,16 @@ public class Member implements Serializable{
         birth = "";
     }
 	
+	public Member(String user_name, String password, String name, String email, String phone, String birth) {
+		super();
+		this.user_name = user_name;
+		this.password = password;
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.birth = birth;
+	}
+
 	public Member(int member_id, String user_name, String password, String name, String email, String phone,
 			String birth) {
 		super();
