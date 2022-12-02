@@ -7,13 +7,13 @@
 		<selectKey keyProperty="project_id" resultType="int" order="BEFORE">
 			SELECT Sequence_project.nextval AS project_id FROM DUAL
 		</selectKey>
-		INSERT INTO PROJECT (project_id, name, type, creationDate, createdlink, notice)
-		VALUES (#{project_id}, #{name}, #{type}, to_date(SYSDATE, 'YYYY-MM-DD HH24:mi:SS'), #{createdLink}, #{notice})
+		INSERT INTO PROJECT (project_id, leader_id, name, type, creationDate, createdLink, notice, color)
+		VALUES (#{project_id}, #{leader_id}, #{name}, #{type}, to_date(SYSDATE, 'YYYY-MM-DD HH24:mi:SS'), #{createdLink}, #{notice}, #{color})
 	</insert>
 	
 	<update id="updateProject" parameterType="Project">
 		UPDATE Project
-		SET name = #{name}, type = #{type}, createdlink = #{createdLink}, notice = #{notice}
+		SET leader_id = #{leader_id}, name = #{name}, type = #{type}, creationDate = to_date(SYSDATE, 'YYYY-MM-DD HH24:mi:SS'), createdLink = #{createdLink}, notice = #{notice}, color = #{color}
 		WHERE project_id = #{project_id}
 	</update>
 	
@@ -33,34 +33,19 @@
 	</delete>
 	
 	<select id="findProject" parameterType="int" resultType="Project">
-		SELECT project_id, name, type, creationDate, createdlink AS createdLink, notice 
+		SELECT project_id, leader_id, name, type, creationDate, createdLink, notice, color 
 		FROM project
 		WHERE project_id = #{project_id}
 	</select>
 	
-<!-- 	<select id="findProjectsInMember" parameterType="int" resultType="Project">
-		SELECT PROJECT.project_id AS project_id, PROJECT.name AS name, PROJECT.type AS type, PROJECT.creationDate AS creationDate, PROJECT.createdlink AS createdLink, PROJECT.notice AS notice
-		FROM MEMBER LEFT JOIN PARTICIPATION ON MEMBER.member_id = PARTICIPATION.member_id JOIN PROJECT ON PROJECT.project_id = PARTICIPATION.project_id 
-		WHERE MEMBER.member_id = #{member_id}
-	</select> -->
-	
 	<select id="findProjectsInMember" parameterType="int" resultType="Project">
-		SELECT PROJECT.project_id AS project_id, PROJECT.name AS name, PROJECT.type AS type, PROJECT.creationDate AS creationDate, PROJECT.createdlink AS createdLink, PROJECT.notice AS notice
+		SELECT PROJECT.project_id AS project_id, PROJECT.leader_id AS leader_id, PROJECT.name AS name, PROJECT.type AS type, PROJECT.creationDate AS creationDate, PROJECT.createdLink AS createdLink, PROJECT.notice AS notice, PROJECT.color AS color
 		FROM MEMBER LEFT JOIN PARTICIPATION ON MEMBER.member_id = PARTICIPATION.member_id JOIN PROJECT ON PROJECT.project_id = PARTICIPATION.project_id 
 		WHERE MEMBER.member_id = #{member_id}
 	</select>
 	
-	<!-- <resultMap id="testProjectsMap" type="model.Project">
-		<result column = "PROJECT.project_id" property="project_id"></result>
-		<result column = "PROJECT.name" property="name"></result>
-		<result column = "PROJECT.type" property="type"></result>
-		<result column = "PROJECT.creationDate" property="creationDate"></result>
-		<result column = "PROJECT.createdlink" property="createdLink"></result>
-		<result column = "PROJECT.notice" property="notice"></result>		
-	</resultMap>
-	 -->
 	<select id="findMembersInProject" parameterType="int" resultType="Member">
-		SELECT MEMBER.member_id AS member_id, MEMBER.password AS password, MEMBER.name AS name, MEMBER.email AS email, MEMBER.phone AS phone, MEMBER.birth AS birth, MEMBER.user_name AS user_name
+		SELECT MEMBER.member_id AS member_id, MEMBER.user_name AS user_name, MEMBER.password AS password, MEMBER.name AS name, MEMBER.email AS email, MEMBER.phone AS phone, MEMBER.birth AS birth
 		FROM MEMBER LEFT JOIN PARTICIPATION ON MEMBER.member_id = PARTICIPATION.member_id JOIN PROJECT ON PROJECT.project_id = PARTICIPATION.project_id 
 		WHERE PROJECT.project_id = #{project_id}
 	</select>

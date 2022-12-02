@@ -104,8 +104,8 @@ public class ProjectDao {
 	public List<Project> findProjectsInMember(int member_id) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-//			List<Project> result = sqlSession.getMapper(ProjectMapper.class).findProjectsInMember(member_id);			
-			List<Project> result = sqlSession.selectList("model.dao.mybatis.mapper.ProjectMapper.findProjectsInMember", member_id);
+			List<Project> result = sqlSession.getMapper(ProjectMapper.class).findProjectsInMember(member_id);			
+//			List<Project> result = sqlSession.selectList("model.dao.mybatis.mapper.ProjectMapper.findProjectsInMember", member_id);
 			System.out.println("test"+result);
 			return result;			
 		} finally {
