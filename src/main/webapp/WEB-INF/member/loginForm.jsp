@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -55,9 +56,9 @@
 
 <script>
 function login() {
-	if (form.userName.value == "") {
+	if (form.user_name.value == "") {
 		alert("사용자 ID를 입력하십시오.");
-		form.userId.focus();
+		form.user_name.focus();
 		return false;
 	}
 	if (form.password.value == "") {
@@ -65,6 +66,10 @@ function login() {
 		form.password.focus();
 		return false;
 	}
+	form.submit();
+}
+function goToJoin(targetUri) {
+	form.action = targetUri;
 	form.submit();
 }
 </script>
@@ -77,7 +82,7 @@ function login() {
 		<section class="container py-5" style="height: 250px;">
 			<div class="container-fluid text-center"
 				style="margin-top: 10px; width: 400px; height: 100px;">
-				<a href="index.jsp"
+				<a href="/index.jsp"
 					style="color: rgb(192, 86, 224); display: block;">
 					<p style="font-size: 70px; text-shadow: 1px 1px 5px rgb(197, 135, 226); font-weight: bold;">Task Flow</p>
 				</a>
@@ -86,13 +91,13 @@ function login() {
 	</div>
 		<br> <br>
 		<!-- 로그인이 실패한 경우 exception 객체에 저장된 오류 메시지를 출력 -->
-		<!--  <div class="col-lg-12">
+		<div class="col-lg-12">
 			<c:if test="${loginFailed}">
 				<h6 class="text-danger">
 					<c:out value="${exception.getMessage()}" />
 				</h6>
 			</c:if>
-		</div>-->
+		</div>
 		<!-- login form  -->
 		<div class="d-flex row text-center justify-content-center" style="width: 100%">
 			<form class="col-md-6 col-lg-6" name="form" method="POST" action="<c:url value='/member/login' />">
@@ -100,7 +105,7 @@ function login() {
 					<div
 						style="width: 150px; height: 40px; color: black; font-size: large;">ID</div>
 					<div>
-						<input type="text" name="userName" class="form-control"
+						<input type="text" name="user_name" class="form-control"
 							placeholder="사용자 ID">
 					</div>
 				</div>
@@ -116,10 +121,9 @@ function login() {
 				<br>
 				<div class="find-btn">
 					<input type="button" class="btn btn-primary btn-lg px-4 gap-3" 
-								style="background-color: rgb(161, 162, 207); border: 0; outline: 0;"
-								 value="로그인" onClick="login()">
-					<div class="btn btn-outline-secondary btn-lg px-4" type="reset">
-					<a href="<c:url value='/member/join' />">회원가입</a> </div>
+						   style="background-color: rgb(161, 162, 207); border: 0; outline: 0;"
+						   value="로그인" onClick="login()">
+					<a href="<c:url value='/member/join'/>" class="btn btn-outline-secondary btn-lg px-4">회원 가입</a>
 				</div>
 			</form>
 		</div>

@@ -202,6 +202,42 @@ public class ProjectDao {
         return null;
     }
     
+    public List<Project> findProjectsInMember(String user_name) {
+    	String query = 
+    			"SELECT PROJECT.project_id AS project_id, PROJECT.leader_id AS leader_id, PROJECT.name AS name, PROJECT.type AS type, PROJECT.creationDate AS creationDate, PROJECT.createdlink AS createdLink, PROJECT.notice AS notice, PROJECT.color AS color "
+    		+ "FROM MEMBER LEFT JOIN PARTICIPATION ON MEMBER.member_id = PARTICIPATION.member_id JOIN PROJECT ON PROJECT.project_id = PARTICIPATION.project_id "
+    		+ "WHERE MEMBER.user_name = ?";
+    	
+        Object[] param = new Object[] {user_name};
+        jdbcUtil.setSqlAndParameters(query, param);
+        
+        try {
+            ResultSet rs = jdbcUtil.executeQuery();      // query문 실행
+            List<Project> list = new ArrayList<Project>(); 
+            
+            while(rs.next()) {
+            	Project dto = new Project();
+            	dto.setProject_id(rs.getInt("project_id"));
+            	dto.setLeader_id(rs.getInt("leader_id"));
+            	dto.setName(rs.getString("name"));
+            	dto.setType(rs.getInt("type"));
+            	dto.setCreationDate(rs.getDate("creationDate"));
+            	dto.setCreatedLink(rs.getString("createdLink"));
+            	dto.setNotice(rs.getString("notice"));
+            	dto.setColor(rs.getString("color"));
+                list.add(dto);
+            }
+            return list;          
+        } catch (Exception ex) {
+            jdbcUtil.rollback();
+            ex.printStackTrace();       
+        } finally {
+            jdbcUtil.commit();
+            jdbcUtil.close();     
+        }
+        return null;
+    }
+    
     public List<Member> findMembersInProject(int projectId) throws SQLException {
         String query = "SELECT MEMBER.member_id AS member_id, MEMBER.user_name AS user_name, MEMBER.password AS password, MEMBER.name AS name, MEMBER.email AS email, MEMBER.phone AS phone, MEMBER.birth AS birth "
                 + "FROM MEMBER LEFT JOIN PARTICIPATION ON MEMBER.member_id = PARTICIPATION.member_id JOIN PROJECT ON PROJECT.project_id = PARTICIPATION.project_id "

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
 <meta name="author"
 	content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 <meta name="generator" content="Hugo 0.84.0">
-<title>myPage</title>
+<title>회원가입</title>
 
 <link rel="canonical"
 	href="https://getbootstrap.com/docs/5.0/examples/album/">
@@ -52,9 +53,9 @@
 <link href="form-validation.css" rel="stylesheet">
 <script>
 function memberCreate() {
-	if (form.userName.value == "") {
+	if (form.user_name.value == "") {
 		alert("사용자 ID를 입력하십시오.");
-		form.userId.focus();
+		form.user_name.focus();
 		return false;
 	} 
 	if (form.password.value == "") {
@@ -99,7 +100,7 @@ function memberCreate() {
 					<!-- 상단 바 Join -->
 					<div class="pt-5 text-center">
 						<header class="d-flex flex-wrap justify-content-center pt-3 mb-4">
-							<a href="joinForm.jsp" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+							<a href="/taskflow/member/joinForm.jsp" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
 								<svg class="bi me-2" width="5" height="32">
                                 <use xlink:href="#bootstrap" />
                             </svg> <span class="fs-4">
@@ -111,52 +112,52 @@ function memberCreate() {
 
 					<hr class="my-4">
 
-					<form class="needs-validation" novalidate name="form" method="POST" action="<c:url value='/member/join'/>">
+					<form class="needs-validation" novalidate name="form" method="POST" action="<c:url value='/member/join' />">
 						<div class="row g-3">
 
-							<!-- Member Id -->
+							<!-- user_name -->
 							<div class="col-12">
-								<label for="userName" class="form-label">Member Id</label> 
-									<input type="text" class="form-control" id="userName" value="">
+								<label for="user_name" class="form-label">Member Id</label> 
+									<input type="text" class="form-control" name="user_name" value="">
 							</div>
 
-							<!-- Password -->
+							<!-- password -->
 							<div class="col-sm-6">
 								<label for="password" class="form-label">Password</label>
-								<input type="text" class="form-control" id="password" placeholder="" value="">
+								<input type="text" class="form-control" name="password" placeholder="" value="">
 							</div>
 
 							<!-- Confirm New Password -->
 							<div class="col-sm-6">
 								<label for="confirmPassword" class="form-label">Confirm Password</label> <input type="text" class="form-control"
-									id="confirmPassword" placeholder="" value="">
+									name="confirmPassword" placeholder="" value="">
 							</div>
 
-							<!-- Name -->
+							<!-- name -->
 							<div class="col-12">
 								<label for="name" class="form-label">Name</label>
 								<div class="input-group has-validation">
 									<span class="input-group-text">#</span> <input type="text"
-										class="form-control" id="name" placeholder="Your name">
+										class="form-control" name="name" placeholder="Your name">
 								</div>
 							</div>
 
-							<!-- Email -->
+							<!-- email -->
 							<div class="col-12">
 								<label for="email" class="form-label">Email</label> 
-								<input type="text" class="form-control" id="email" placeholder="jisoo95@naver.com">
+								<input type="text" class="form-control" name="email" placeholder="jisoo95@naver.com">
 							</div>
 
-							<!-- Phone-->
+							<!-- phone-->
 							<div class="col-12">
 								<label for="phone" class="form-label">Phone</label> 
-								<input type="text" class="form-control" id="phone" placeholder="010-0000-0000">
+								<input type="text" class="form-control" name="phone" placeholder="010-0000-0000">
 							</div>
 
-							<!-- Birthday -->
+							<!-- birth -->
 							<div class="col-12">
 								<label for="birthday" class="form-label">Birthday</label>
-								<form> <p><input type="date" id="birthday"></p> </form>
+								<p><input type="date" name="birth"></p> 
 							</div>
 						</div>
 

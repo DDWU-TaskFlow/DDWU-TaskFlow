@@ -6,11 +6,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.member.EnterMemberController;
+import controller.member.JoinController;
 import controller.member.ListTeamMemberController;
 import controller.member.LoginController;
 import controller.member.LogoutController;
 import controller.member.MyPageController;
-import controller.member.RegisterUserController;
 import controller.project.CreateProjectController;
 import controller.project.DeleteProjectController;
 import controller.project.ListProjectController;
@@ -29,10 +29,12 @@ public class RequestMapping {
         mappings.put("/", new ForwardController("index.jsp"));
         
         // member
-        mappings.put("/member/login/form", new ForwardController("/user/loginForm.jsp")); 
+        mappings.put("/member/login/form", new ForwardController("/member/loginForm.jsp")); //테스트용
         mappings.put("/member/login", new LoginController());
         mappings.put("/member/logout", new LogoutController());
-        mappings.put("/member/join", new RegisterUserController());	// get, post
+        
+        mappings.put("/member/join", new JoinController());	// get, post
+        
         mappings.put("/member/team", new ListTeamMemberController());
         mappings.put("/member/entrance", new EnterMemberController());
         mappings.put("/member/mypage", new MyPageController());
