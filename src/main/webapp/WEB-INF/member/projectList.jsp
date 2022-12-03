@@ -75,9 +75,11 @@ h4.card-title {
 </style>
 
 <script type="text/javascript">
-<% String strID = (String)session.getAttribute("user_name");%>
+<% String strID = (String)session.getAttribute("user_name");
+if (strID != null) {%> 
 var strName="<%=strID%>";
 alert(strName+"님!! 환영합니다.");
+<%}%>
 </script>
 
 </head>
@@ -87,12 +89,16 @@ alert(strName+"님!! 환영합니다.");
 
 		<!-- 상단 Task Flow, member, project 생성 아이콘 -->
 		<section class="container py-5" style="height: 250px;">
+			<!-- **** 맨 위 상단 로그아웃 버튼 | session 값에 따라 보이고 안보이고 ***-->
+			<!--  <div style="width: 100px; height: 50px; margin-top: 5px; margin-right: 140px; float: right; color: rgb(0, 0, 0);">
+				<button type="button" class="btn btn-primary btn-lg px-4 gap-3" style="border: 1px solid #FFFFFF; background-color: rgb(192, 86, 224); width: 100px; height: 50px; font-size:10px;" onClick="<c:url value='/member/logout'/>">로그아웃</button>
+			</div>
 			<div class="container-fluid text-center"
 				style="margin-top: 10px; width: 400px; height: 100px;">
 				<a href="index.jsp" style="color: rgb(192, 86, 224); display: block;">
 					<p style="font-size: 70px; text-shadow: 1px 1px 5px rgb(197, 135, 226); font-weight: bold;">Task Flow</p>
 				</a>
-			</div>
+			</div>-->
 			<!-- +버튼 생성 -->
 			<div class="d-flex"
 				style="width: 50px; height: 50px; margin-left: 120px; float: left;">
