@@ -9,12 +9,13 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import model.dao.mybatis.mapper.ThreadMapper;
+import model.Comment;
+import model.dao.mybatis.mapper.CommentMapper;
 
-public class ThreadDao {
+public class CommentDao {
 	private SqlSessionFactory sqlSessionFactory;
 
-	public ThreadDao() {
+	public CommentDao() {
 		String resource = "mybatis-config.xml";
 		InputStream inputStream;
 		try {
@@ -25,37 +26,37 @@ public class ThreadDao {
 		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 	}
 	
-	public List<Thread> findThreadByTaskId(int taskId) {
+	public List<Comment> findCommentByTaskId(int taskId) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			return sqlSession.getMapper(ThreadMapper.class).selectThreadByTaskId(taskId);			
+			return sqlSession.getMapper(CommentMapper.class).selectCommentByTaskId(taskId);			
 		} finally {
 			sqlSession.close();
 		}
 	}
 	
-	public int insertThread(Thread thread) {
+	public int insertComment(Comment comment) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			return sqlSession.getMapper(ThreadMapper.class).insertThread(thread);			
+			return sqlSession.getMapper(CommentMapper.class).insertComment(comment);			
 		} finally {
 			sqlSession.close();
 		}
 	}
 
-	public int updateThread(Thread thread) {
+	public int updateComment(Comment comment) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			return sqlSession.getMapper(ThreadMapper.class).updateThread(thread);			
+			return sqlSession.getMapper(CommentMapper.class).updateComment(comment);			
 		} finally {
 			sqlSession.close();
 		}
 	}
 
-	public int deleteThread(int threadNumber) {
+	public int deleteComment(int commentId) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			return sqlSession.getMapper(ThreadMapper.class).deleteThread(threadNumber);			
+			return sqlSession.getMapper(CommentMapper.class).deleteComment(commentId);			
 		} finally {
 			sqlSession.close();
 		}
