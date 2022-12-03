@@ -238,7 +238,7 @@ public class ProjectDao {
         return null;
     }
     
-    public List<Member> findMembersInProject(int projectId) throws SQLException {
+    public List<Member> findMembersInProject(int projectId) {
         String query = "SELECT MEMBER.member_id AS member_id, MEMBER.user_name AS user_name, MEMBER.password AS password, MEMBER.name AS name, MEMBER.email AS email, MEMBER.phone AS phone, MEMBER.birth AS birth "
                 + "FROM MEMBER LEFT JOIN PARTICIPATION ON MEMBER.member_id = PARTICIPATION.member_id JOIN PROJECT ON PROJECT.project_id = PARTICIPATION.project_id "
                 + "WHERE PROJECT.project_id = ?";

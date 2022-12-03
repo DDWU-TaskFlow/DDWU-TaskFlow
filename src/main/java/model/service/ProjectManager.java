@@ -53,11 +53,11 @@ public class ProjectManager {
 		return projectDAO.findProjectsInMember(user_name);
 	}
 
-//	public List<Member> findMembersInProject(int project_id){
-//		//TEST
-//		System.out.println("ProjectManager의 findMembersInProject() 호출됨");
-//		return projectDAO.findMembersInProject(project_id);
-//	}
+	public List<Member> findMembersInProject(int project_id){
+		//TEST
+		System.out.println("ProjectManager의 findMembersInProject() 호출됨");
+		return projectDAO.findMembersInProject(project_id);
+	}
 	
 	public Project getProject(int project_id) {
 		//TEST
