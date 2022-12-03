@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="model.dao.mybatis.mapper.CommentMapper">
+	<cache />
+	
+	<sql id="BaseColumns">
+		comment_id AS commentId,
+		task_id AS taskId,
+		member_id AS memberId,
+  		writtenDate,
+		content
+	</sql>
+	
+	<select id="selectCommentByTaskId" parameterType="int" resultType="Comment">
+		SELECT <include refid="BaseColumns" />
+		FROM Comments
+		<where>
+			<if test="task_id != null">
+				task_id = #{taskId}
+			</if>
+		</where>
+	</select>
+	
+	<insert id="insertComment" parameterType="Comment">
+		<selectKey keyProperty="number" resultType="int" order="BEFORE">
+			SELECT SEQUENCE_Comments.nextval AS id FROM DUAL
+		</selectKey>
+		INSERT INTO Comments (comment_id, task_id, member_id, writtenDate, content)
+		VALUES (#{id}, #{taskId}, #{memberId}, SYSDATE, #{content})
+	</insert>
+	
+	<update id="updateComment" parameterType="Comment">
+		UPDATE Comments
+		 SET writtenDate = #{SYSDATE}, content = #{content}
+		WHERE Comment_id = #{commentId}
+	</update>
+ 
+	<delete id="deleteComment" parameterType="int">
+		DELETE FROM Comments
+		WHERE Comment_id = #{commentId}
+	</delete>
+
+
+</mapper>
