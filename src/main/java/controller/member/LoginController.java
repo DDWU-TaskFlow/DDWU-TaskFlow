@@ -6,7 +6,6 @@ import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import model.service.MemberManager;
-import model.Member;
 
 public class LoginController implements Controller {
     @Override
@@ -19,13 +18,10 @@ public class LoginController implements Controller {
 			MemberManager manager = MemberManager.getInstance();
 			manager.login(user_name, password);
 			
-			Member mem = manager.getMember(user_name);
-			System.out.println("youyoung: "+mem);
+//			Member mem = manager.getMember(user_name);
 			
 			// 세션에 사용자 이이디 저장
 			HttpSession session = request.getSession();
-			session.setAttribute("member_id", mem.getMember_id());
-			System.out.println("id"+mem.getMember_id()); 
             session.setAttribute(UserSessionUtils.USER_SESSION_KEY, user_name);
             
             return "redirect:/project/list";
