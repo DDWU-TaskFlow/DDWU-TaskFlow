@@ -27,6 +27,10 @@ public class MemberManager {
 		}
 		return memberDAO.insertMember(member);
 	}
+	
+	public int update(Member member) throws SQLException {
+		return memberDAO.updateMember(member);
+	}
 
 	/*public int update(Member user) throws SQLException, MemberNotFoundException {
 		int oldCommId = findUser(user.getUser_name()).getCommId();

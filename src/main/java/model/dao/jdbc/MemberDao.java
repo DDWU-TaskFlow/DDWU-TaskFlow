@@ -39,6 +39,66 @@ public class MemberDao {
 		}       
 		return result;      // insert 에 의해 반영된 레코드 수 반환 
 	}
+	
+	public int updateMember(Member mem) {
+		int result = 0;
+		
+		String updateQuery = "UPDATE MEMBER SET ";
+		
+		Object[] param = new Object[10];
+		int index = 0;
+
+		// 새로운 비밀번호가 설정됐을 경우
+		if(mem.getPassword() != null) {
+			updateQuery += "password = ?, ";
+			param[index++] = mem.getPassword();
+		}
+		// 새로운 닉네임이 설정됐을 경우
+		if(mem.getName() != null) {
+			updateQuery += "name = ?, ";
+			param[index++] = mem.getName();
+		}
+		// 새로운 이메일이 설정됐을 경우
+		if(mem.getEmail() != null) {
+			updateQuery += "email = ?, ";
+			param[index++] = mem.getEmail();
+		}
+		// 새로운 전화번호가 설정됐을 경우
+		if(mem.getPhone() != null) {
+			updateQuery += "phone = ?, ";
+			param[index++] = mem.getPhone();
+		}
+		// 새로운 생일이 설정됐을 경우
+		if(mem.getBirth() != null) {
+			updateQuery += "birth = ?, ";
+			param[index++] = mem.getBirth();
+		}
+		// update문에 조건 지정
+		updateQuery += "WHERE user_name = ? ";
+		updateQuery = updateQuery.replace(", WHERE", " WHERE");
+		
+		param[index++] = mem.getUser_name();
+		
+		Object[] newParam = new Object[index];
+		for(int i = 0; i < newParam.length; i++) {
+			newParam[i] = param[i];
+		}
+		
+		jdbcUtil.setSqlAndParameters(updateQuery, newParam);
+
+		try {               
+			result = jdbcUtil.executeUpdate();      // update 문 실행
+			System.out.println(mem.getUser_name() + " 님의 회원정보가 수정되었습니다.");
+		} catch (Exception ex) {
+			System.out.println("회원정보 수정에서 오류 발생!!!");
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {     
+			jdbcUtil.commit();
+			jdbcUtil.close();     
+		}       
+		return result;      // update 에 의해 반영된 레코드 수 반환 
+	}
 
 	public int deleteMember(int member_id) {
 		String deleteQuery = "DELETE FROM MEMBER WHERE MEMBER_ID = ?";
