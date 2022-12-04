@@ -111,9 +111,6 @@ public class MemberDao {
 		return mem;
 	}
 	
-	/**
-	 * 주어진 사용자 ID에 해당하는 사용자가 존재하는지 검사 
-	 */
 	public boolean existingUser(String user_name) throws SQLException {
 		String sql = "SELECT count(*) FROM MEMBER WHERE user_name=?";      
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {user_name});	// JDBCUtil에 query문과 매개 변수 설정

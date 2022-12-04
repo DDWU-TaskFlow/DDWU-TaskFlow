@@ -65,7 +65,9 @@ public class MemberManager {
 	
 	public boolean login(String userName, String password)throws SQLException, MemberNotFoundException, PasswordMismatchException {
 		Member member = getMember(userName);
-		if (!member.matchPassword(password)) {
+		if(member == null) {
+			throw new MemberNotFoundException("없는 회원입니다.");
+		} else if (!member.matchPassword(password)) {
 			throw new PasswordMismatchException("비밀번호가 일치하지 않습니다.");
 		}
 		return true;

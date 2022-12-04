@@ -8,7 +8,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author"
@@ -75,21 +75,22 @@ h4.card-title {
 </style>
 
 <script type="text/javascript">
-<% String strID = (String)session.getAttribute("user_name");
-int firstAccess = (int)session.getAttribute("firstAccess");
+<%String strID = (String) session.getAttribute("user_name");
+int firstAccess = (int) session.getAttribute("firstAccess");
 if (strID != null && firstAccess == 1) {%> 
 var strName="<%=strID%>";
-alert(strName+"님!! 환영합니다.");
+	alert(strName + "님!! 환영합니다.");
 <%}
-session.setAttribute("firstAccess", 0);
-%>
+session.setAttribute("firstAccess", 0);%>
+	
 </script>
 
 </head>
 <body>
 
 	<main>
-	  <!-- 상단 Task Flow, member, project 생성 아이콘 -->
+
+		<!-- 상단 Task Flow, member, project 생성 아이콘 -->
 		<section class="container py-5" style="height: 250px;">
 			<!-- **** 맨 위 상단 로그아웃 버튼 | session 값에 따라 보이고 안보이고 ***-->
 			<!--  <div style="width: 100px; height: 50px; margin-top: 5px; margin-right: 140px; float: right; color: rgb(0, 0, 0);">
@@ -97,8 +98,11 @@ session.setAttribute("firstAccess", 0);
 			</div>-->
 			<div class="container-fluid text-center"
 				style="margin-top: 10px; width: 400px; height: 100px;">
-				<a href="index.jsp" style="color: rgb(192, 86, 224); display: block;">
-					<p style="font-size: 70px; text-shadow: 1px 1px 5px rgb(197, 135, 226); font-weight: bold;">Task Flow</p>
+				<a href="index.jsp"
+					style="color: rgb(192, 86, 224); display: block;">
+					<p
+						style="font-size: 70px; text-shadow: 1px 1px 5px rgb(197, 135, 226); font-weight: bold;">Task
+						Flow</p>
 				</a>
 			</div>
 			<!-- +버튼 생성 -->
@@ -197,9 +201,7 @@ session.setAttribute("firstAccess", 0);
 						</div>
 					</div>
 				</div>
-
 				<div style="width: 25px;"></div>
-
 				백준 Class 2 다 풀기 프로젝트
 				<div class="card border-dark mb-3"
 					style="width: 350px; height: 200px;">
@@ -219,10 +221,7 @@ session.setAttribute("firstAccess", 0);
 						</div>
 					</div>
 				</div>
-
 				<div style="width: 25px;"></div>
-
-
 				동아리 프로젝트 프로젝트
 				<div class="card border-dark mb-3"
 					style="width: 350px; height: 200px;">
@@ -244,9 +243,7 @@ session.setAttribute("firstAccess", 0);
 						</div>
 					</div>
 				</div>
-
 				<div style="width: 25px;"></div>
-
 				sqld 자격증 공부 프로젝트
 				<div class="card border-dark mb-3"
 					style="width: 350px; height: 200px;">
@@ -265,7 +262,6 @@ session.setAttribute("firstAccess", 0);
 						</div>
 					</div>
 				</div>
-
 				<div style="width: 25px;"></div> -->
 
 

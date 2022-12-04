@@ -1,6 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="EUC-KR"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="model.*" %>
+<%@page import="model.service.ExistingUserException"%>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -52,6 +55,18 @@
 <!-- Custom styles for this template -->
 <link href="form-validation.css" rel="stylesheet">
 <script>
+<%
+Member member = (Member)request.getAttribute("member");
+if(member != null){
+	boolean joinFailed = (boolean)request.getAttribute("registerFailed");
+	if (joinFailed == true) {
+	ExistingUserException exception = (ExistingUserException)request.getAttribute("exception");
+	%>
+	alert("<%=exception.getMessage()%>");
+<%
+	member = null;}
+}
+%>
 function memberCreate() {
 	if (form.user_name.value == "") {
 		alert("사용자 ID를 입력하십시오.");
