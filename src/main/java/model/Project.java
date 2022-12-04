@@ -36,6 +36,7 @@ public class Project implements Serializable {
 		this.color = color;
 	}
 	
+	//임시로 링크 빼고 하기
 	public Project(int project_id, int leader_id, String name, int type, Date creationDate, String createdLink,
 			String notice, String color) {
 		super();
@@ -48,7 +49,18 @@ public class Project implements Serializable {
 		this.notice = notice;
 		this.color = color;
 	}
-
+	
+	public Project(int project_id, int leader_id, String name, int type, Date creationDate, String notice,
+			String color) {
+		super();
+		this.project_id = project_id;
+		this.leader_id = leader_id;
+		this.name = name;
+		this.type = type;
+		this.creationDate = creationDate;
+		this.notice = notice;
+		this.color = color;
+	}
 
 	public int getProject_id() {
         return project_id;

@@ -111,6 +111,31 @@ public class MemberDao {
 		return mem;
 	}
 	
+	public Member findMemberByName(String name) {
+		String sql = "SELECT * "
+				+ "FROM MEMBER "
+				+ "WHERE name=? ";              
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {name});	
+		Member mem = null;
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();		
+			if (rs.next()) {						
+				mem = new Member(	
+						rs.getString("user_name"),
+						rs.getString("password"),
+						name,
+						rs.getString("email"),
+						rs.getString("phone"),
+						rs.getString("birth"));
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();	
+		}
+		return mem;
+	}
+	
 	public boolean existingUser(String user_name) throws SQLException {
 		String sql = "SELECT count(*) FROM MEMBER WHERE user_name=?";      
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {user_name});	// JDBCUtil에 query문과 매개 변수 설정
