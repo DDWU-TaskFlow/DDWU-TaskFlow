@@ -18,9 +18,12 @@ public class ListProjectController implements Controller {
 		if(!UserSessionUtils.hasLogined(request.getSession())) {
 			return "/member/loginForm.jsp"; //여기서 session값에 따라 비로긴
 		}
+		
 		ProjectManager manager = ProjectManager.getInstance();
     
-		String user_name = request.getParameter(UserSessionUtils.USER_SESSION_KEY);
+		String user_name = (String)request.getSession().getAttribute("user_name");
+	    System.out.println("세션 저장 값" + user_name);
+		
 		List<Project> projectList = manager.findProjectsInMember(user_name);
 
 		// request 객체에 projectList 저장

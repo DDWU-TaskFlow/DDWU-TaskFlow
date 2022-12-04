@@ -2,7 +2,7 @@
 	pageEncoding="EUC-KR"%>
 <%@page import="java.util.*"%>
 <%@page import="model.*"%>
-<%@page import="controller.*" %>
+<%@page import="controller.*"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!doctype html>
@@ -79,7 +79,7 @@ h4.card-title {
 int firstAccess = (int)session.getAttribute("firstAccess");
 if (strID != null && firstAccess == 1) {%> 
 var strName="<%=strID%>";
-alert(strName+"´Ô!! È¯¿µÇÕ´Ï´Ù.");
+alert(strName+"ë‹˜!! í™˜ì˜í•©ë‹ˆë‹¤.");
 <%}
 session.setAttribute("firstAccess", 0);
 %>
@@ -89,12 +89,11 @@ session.setAttribute("firstAccess", 0);
 <body>
 
 	<main>
-
-		<!-- »ó´Ü Task Flow, member, project »ı¼º ¾ÆÀÌÄÜ -->
+	  <!-- ìƒë‹¨ Task Flow, member, project ìƒì„± ì•„ì´ì½˜ -->
 		<section class="container py-5" style="height: 250px;">
-			<!-- **** ¸Ç À§ »ó´Ü ·Î±×¾Æ¿ô ¹öÆ° | session °ª¿¡ µû¶ó º¸ÀÌ°í ¾Èº¸ÀÌ°í ***-->
+			<!-- **** ë§¨ ìœ„ ìƒë‹¨ ë¡œê·¸ì•„ì›ƒ ë²„íŠ¼ | session ê°’ì— ë”°ë¼ ë³´ì´ê³  ì•ˆë³´ì´ê³  ***-->
 			<!--  <div style="width: 100px; height: 50px; margin-top: 5px; margin-right: 140px; float: right; color: rgb(0, 0, 0);">
-				<button type="button" class="btn btn-primary btn-lg px-4 gap-3" style="border: 1px solid #FFFFFF; background-color: rgb(192, 86, 224); width: 100px; height: 50px; font-size:10px;" onClick="<c:url value='/member/logout'/>">·Î±×¾Æ¿ô</button>
+				<button type="button" class="btn btn-primary btn-lg px-4 gap-3" style="border: 1px solid #FFFFFF; background-color: rgb(192, 86, 224); width: 100px; height: 50px; font-size:10px;" onClick="<c:url value='/member/logout'/>">ë¡œê·¸ì•„ì›ƒ</button>
 			</div>-->
 			<div class="container-fluid text-center"
 				style="margin-top: 10px; width: 400px; height: 100px;">
@@ -102,7 +101,7 @@ session.setAttribute("firstAccess", 0);
 					<p style="font-size: 70px; text-shadow: 1px 1px 5px rgb(197, 135, 226); font-weight: bold;">Task Flow</p>
 				</a>
 			</div>
-			<!-- +¹öÆ° »ı¼º -->
+			<!-- +ë²„íŠ¼ ìƒì„± -->
 			<div class="d-flex"
 				style="width: 50px; height: 50px; margin-left: 120px; float: left;">
 				<button type="button"
@@ -110,18 +109,21 @@ session.setAttribute("firstAccess", 0);
 					style="border: 1px solid #FFFFFF; border-radius: 2em; cursor: pointer; cursor: hand; background-color: #ebebeb; color: rgb(0, 0, 0); width: 50px; height: 50px;">+</button>
 			</div>
 			<a href="/taskflow/member/mypage" style="float: right;">
-				<div class="d-flex justify-content-center align-items-center border border-secondary rounded-circle"
-					 style="width: 40px; height: 40px; margin-right: 150px; float: right;">
+				<div
+					class="d-flex justify-content-center align-items-center border border-secondary rounded-circle"
+					style="width: 40px; height: 40px; margin-right: 150px; float: right;">
 					<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-						fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+						fill="currentColor" class="bi bi-person-circle"
+						viewBox="0 0 16 16">
           				<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-						<path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+						<path fill-rule="evenodd"
+							d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
        		 		</svg>
 				</div>
 			</a>
 		</section>
 
-	<%-- 	<!-- Å×½ºÆ®¿ë ÄÚµå -->
+		<%-- 	<!-- í…ŒìŠ¤íŠ¸ìš© ì½”ë“œ -->
 		<p>
 			<c:forEach var="project" items="${projectList}">
 				${project}
@@ -129,47 +131,51 @@ session.setAttribute("firstAccess", 0);
 		</p>
 		 --%>
 
-		<!-- ÇÁ·ÎÁ§Æ® -->
+		<!-- í”„ë¡œì íŠ¸ -->
 		<div class="container align-items-center" style="max-width: 1130px;">
 
 			<div class="row justify-content-center">
 
-<c:forEach var="project" items="${projectList}">
+				<c:forEach var="project" items="${projectList}">
 
-				<!-- µ¥º£ÇÁ ÆÀÇÃ ÇÁ·ÎÁ§Æ® -->
-				<div class="card border-dark mb-3"
-					style="width: 350px; height: 200px;">
-					<div class="card-body">
-						<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35"
-							fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-        					<path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
+					<!-- ë°ë² í”„ íŒ€í”Œ í”„ë¡œì íŠ¸ -->
+					<div class="card border-dark mb-3"
+						style="width: 350px; height: 200px;">
+						<div class="card-body">
+							<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35"
+								fill="currentColor" class="bi bi-people-fill"
+								viewBox="0 0 16 16">
+        					<path
+									d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
       					</svg>
-						<h4 class="card-title">
-						
-							<a class="card-title" href="<c:url value='/project/view'>
+							<h4 class="card-title">
+
+								<a class="card-title"
+									href="<c:url value='/project/view'>
 						      							<c:param name='projectId' value='${project.project_id}'/>
 						   								</c:url>">
-						   								
-						   								
-						   	${project.name}</a>
-						</h4>
-						<p></p>
-						<p class="card-text" text-align="right">20%</p>
-						<p></p>
-						<div class="progress" style="height: 25px;">
-							<div class="progress-bar progress-bar-striped" role="progressbar"
-								style="width: 20%; height: 25px; background-color: #b3c7ff;"
-								aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+
+
+									${project.name}</a>
+							</h4>
+							<p></p>
+							<p class="card-text" text-align="right">20%</p>
+							<p></p>
+							<div class="progress" style="height: 25px;">
+								<div class="progress-bar progress-bar-striped"
+									role="progressbar"
+									style="width: 20%; height: 25px; background-color: #b3c7ff;"
+									aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
 
-				<div style="width: 25px;"></div>
-				
-</c:forEach>
+					<div style="width: 25px;"></div>
 
-<!-- 				»ıÈ°Áöµµ ¹× »ó´ã ÇÁ·ÎÁ§Æ®
+				</c:forEach>
+
+				<!-- 				ìƒí™œì§€ë„ ë° ìƒë‹´ í”„ë¡œì íŠ¸
 				<div class="card border-dark mb-3"
 					style="width: 350px; height: 200px;">
 					<div class="card-body">
@@ -178,7 +184,7 @@ session.setAttribute("firstAccess", 0);
         					<path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
       					</svg>
 						<h4 class="card-title">
-							<a class="card-title" href="./project/project.jsp">»ıÈ°Áöµµ ¹× »ó´ã</a>
+							<a class="card-title" href="./project/project.jsp">ìƒí™œì§€ë„ ë° ìƒë‹´</a>
 						</h4>
 						<p></p>
 						<p class="card-text" text-align="right">70%</p>
@@ -194,13 +200,13 @@ session.setAttribute("firstAccess", 0);
 
 				<div style="width: 25px;"></div>
 
-				¹éÁØ Class 2 ´Ù Ç®±â ÇÁ·ÎÁ§Æ®
+				ë°±ì¤€ Class 2 ë‹¤ í’€ê¸° í”„ë¡œì íŠ¸
 				<div class="card border-dark mb-3"
 					style="width: 350px; height: 200px;">
 					<div class="card-body">
 						<div style="height: 35px;"></div>
 						<h4 class="card-title">
-							<a class="card-title" href="./project/project.jsp">¹éÁØ Class 2 ´Ù Ç®±â</a>
+							<a class="card-title" href="./project/project.jsp">ë°±ì¤€ Class 2 ë‹¤ í’€ê¸°</a>
 						</h4>
 						<p></p>
 						<p class="card-text" text-align="right">30%</p>
@@ -217,7 +223,7 @@ session.setAttribute("firstAccess", 0);
 				<div style="width: 25px;"></div>
 
 
-				µ¿¾Æ¸® ÇÁ·ÎÁ§Æ® ÇÁ·ÎÁ§Æ®
+				ë™ì•„ë¦¬ í”„ë¡œì íŠ¸ í”„ë¡œì íŠ¸
 				<div class="card border-dark mb-3"
 					style="width: 350px; height: 200px;">
 					<div class="card-body">
@@ -226,7 +232,7 @@ session.setAttribute("firstAccess", 0);
             				<path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
          				</svg>
 						<h4 class="card-title">
-							<a class="card-title" href="./project/project.jsp">µ¿¾Æ¸® ÇÁ·ÎÁ§Æ®</a>
+							<a class="card-title" href="./project/project.jsp">ë™ì•„ë¦¬ í”„ë¡œì íŠ¸</a>
 						</h4>
 						<p></p>
 						<p class="card-text" text-align="right">10%</p>
@@ -241,13 +247,13 @@ session.setAttribute("firstAccess", 0);
 
 				<div style="width: 25px;"></div>
 
-				sqld ÀÚ°İÁõ °øºÎ ÇÁ·ÎÁ§Æ®
+				sqld ìê²©ì¦ ê³µë¶€ í”„ë¡œì íŠ¸
 				<div class="card border-dark mb-3"
 					style="width: 350px; height: 200px;">
 					<div class="card-body">
 						<div style="height: 35px;"></div>
 						<h4 class="card-title">
-							<a class="card-title" href="./project/project.jsp">sqld ÀÚ°İÁõ °øºÎ</a>
+							<a class="card-title" href="./project/project.jsp">sqld ìê²©ì¦ ê³µë¶€</a>
 						</h4>
 						<p></p>
 						<p class="card-text" text-align="right">0%</p>

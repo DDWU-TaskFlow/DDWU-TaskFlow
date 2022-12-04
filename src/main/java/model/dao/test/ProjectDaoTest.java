@@ -8,7 +8,7 @@ import model.Member;
 import model.dao.jdbc.ProjectDao;
 
 public class ProjectDaoTest {
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) {
 		ProjectDao projectDao = new ProjectDao();
 
 		// getPorjectList()
@@ -33,7 +33,7 @@ public class ProjectDaoTest {
 			}
 			System.out.println();       
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 

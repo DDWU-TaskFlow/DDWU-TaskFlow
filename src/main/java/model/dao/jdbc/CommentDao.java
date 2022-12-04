@@ -5,25 +5,24 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Comments;
-import model.dao.jdbc.JDBCUtil;
+import model.Comment;
 
-public class CommentsDao {
+public class CommentDao {
 	
 	private JDBCUtil jdbcUtil = null;
 	
-	public CommentsDao() {
+	public CommentDao() {
 		
 	    jdbcUtil = new JDBCUtil();
 		
 	}
 	
-	public int insertComment(Comments comment) {
+	public int insertComment(Comment comment) {
 		String insertQuery = "INSERT INTO Comments (comment_id, task_id, member_id, writtenDate, content) "
 				+ "VALUES (SEQUENCE_Comments.nextval, ?, ?, to_date(SYSDATE, 'YYYY-MM-DD HH24:mi:SS'), ?)";
 
 		int result = 0;
-		Object[] params = new Object[] {comment.getTask_id(), comment.getMember_id(), comment.getContent()};
+		Object[] params = new Object[] {comment.getTask_id(), comment.getMemberId(), comment.getContent()};
 		jdbcUtil.setSqlAndParameters(insertQuery, params);
 		
 		try {
@@ -40,13 +39,13 @@ public class CommentsDao {
 		return result;
 	}
 	
-	public int updateComment(Comments comment) {
+	public int updateComment(Comment comment) {
 		String updateQuery = "UPDATE Comments "
 				+ "SET writtenDate = to_date(SYSDATE, 'YYYY-MM-DD HH24:mi:SS') , content = ? "
 				+ "WHERE comment_id = ? ";
 
         int result = 0;
-		Object[] params = new Object[] { comment.getContent(), comment.getComment_id() };
+		Object[] params = new Object[] { comment.getContent(), comment.getCommentId() };
 		jdbcUtil.setSqlAndParameters(updateQuery, params);
 		
 		try {
@@ -85,12 +84,12 @@ public class CommentsDao {
 		return result;
 	}
 	
-	public List<Comments> getCommentList(int taskId) {
+	public List<Comment> getCommentList(int taskId) {
 		String query = "SELECT comment_id, task_id, Comments.member_id AS member_id, writtenDate, content "
 				+ "FROM Comments JOIN TASK USING (task_id) "
 				+ "WHERE task_id = ? ";
 	
-		List<Comments> commentList = new ArrayList<Comments>();
+		List<Comment> commentList = new ArrayList<Comment>();
 		Object[] params = new Object[] { taskId };
 		jdbcUtil.setSqlAndParameters(query, params);
 		
@@ -98,11 +97,11 @@ public class CommentsDao {
 			ResultSet rs = jdbcUtil.executeQuery();
 			
 			while (rs.next()) {
-				int comment_id = rs.getInt("comment_id");
-				int member_id = rs.getInt("member_id");
+				int commentId = rs.getInt("commentId");
+				int memberId = rs.getInt("member_id");
 				Date writtenDate = rs.getDate("writtenDate");
 				String content = rs.getString("content");
-				commentList.add(new Comments(comment_id, taskId, member_id, writtenDate, content));
+				commentList.add(new Comment(commentId, taskId, memberId, writtenDate, content));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

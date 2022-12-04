@@ -1,19 +1,19 @@
-package controller.project;
+package controller.task;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 
-public class UpdateProjectController implements Controller {
+public class CreateTaskController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		if (request.getMethod().equals("GET")) {	
-			return "/project/setting.jsp";
+			return "/task/createTask.jsp";
 		}
 		
-		return "redirect:/project/update";
+		return "redirect:/task/create";
 	}
 }

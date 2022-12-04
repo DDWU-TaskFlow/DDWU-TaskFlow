@@ -120,7 +120,7 @@
               <div class="find-btn my-1">
                   <button class="btn btn-primary" type="submit" 
                   style="background-color: rgb(161, 162, 207); border: 0; outline: 0;">Update</button>
-                  <button class="btn btn-outline-secondary" type="reset">Cancel</button>
+                  <button class="btn btn-outline-secondary" type="reset" onclick="javascript:history.back();">Cancel</button>
               </div>
 		
 			</div>
