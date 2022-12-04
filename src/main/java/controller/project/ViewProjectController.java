@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import controller.member.UserSessionUtils;
@@ -32,7 +33,10 @@ public class ViewProjectController implements Controller{
 		memberList = pManager.findMembersInProject(projectId);
 		
 		request.setAttribute("project", project);		// 프로젝트 정보 저장
-		request.setAttribute("memberList", memberList);		// 멤버리스트 저장	
+		request.setAttribute("memberList", memberList);		// 멤버리스트 저장	'
+		
+		HttpSession session = request.getSession();
+		request.setAttribute("userId", session.getAttribute("member_id"));
 		System.out.println(memberList);
 		
 		TaskManager tManager = TaskManager.getInstance();
