@@ -20,15 +20,14 @@ public class UpdateProjectController implements Controller {
     	
 		MemberManager mManager = MemberManager.getInstance();
     	ProjectManager pManager = ProjectManager.getInstance();
-		
-    	int projectId = Integer.parseInt(request.getParameter("projectId"));
-		Project project = pManager.getProject(projectId);		// 프로젝트 정보 검색
+
+		Project project = (Project) request.getAttribute("project");
 
 		String realName = request.getParameter("leader");
 		Member leader = mManager.getMemberByName(realName);
 		
 		Project newPro = new Project(
-				projectId,
+				project.getProject_id(),
 				leader.getMember_id(),
 				project.getName(),
 				project.getType(),

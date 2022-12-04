@@ -16,7 +16,8 @@ public class DeleteProjectController implements Controller{
 		}
 		
 		ProjectManager pManager = ProjectManager.getInstance();
-    	int projectId = Integer.parseInt(request.getParameter("projectId"));
+		Project pro = (Project) request.getAttribute("project");
+    	int projectId = pro.getProject_id();
 		pManager.outProject(projectId); //해당 project에 참여한 사람들 다 없애기
 		pManager.deleteProject(projectId);
 		
