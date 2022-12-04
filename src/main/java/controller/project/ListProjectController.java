@@ -22,7 +22,7 @@ public class ListProjectController implements Controller {
 		ProjectManager manager = ProjectManager.getInstance();
     
 		String user_name = (String)request.getSession().getAttribute("user_name");
-	    System.out.println("세션 저장 값" + user_name);
+	    System.out.println("ListProjectController: 세션 저장 값 " + user_name);
 		
 		List<Project> projectList = manager.findProjectsInMember(user_name);
 
