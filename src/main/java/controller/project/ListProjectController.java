@@ -16,7 +16,7 @@ public class ListProjectController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		if(!UserSessionUtils.hasLogined(request.getSession())) {
-			return "/member/projectList.jsp"; //여기서 session값에 따라 비로긴
+			return "/member/loginForm.jsp"; //여기서 session값에 따라 비로긴
 		}
 		ProjectManager manager = ProjectManager.getInstance();
     
