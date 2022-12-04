@@ -75,37 +75,33 @@ h4.card-title {
 </style>
 
 <script type="text/javascript">
-<%String strID = (String) session.getAttribute("user_name");
-if (strID != null) {%> 
+<% String strID = (String)session.getAttribute("user_name");
+int firstAccess = (int)session.getAttribute("firstAccess");
+if (strID != null && firstAccess == 1) {%> 
 var strName="<%=strID%>";
-alert(strName+"╢т!! х╞©╣гу╢о╢ы.");
-<%}%>
+alert(strName+"К▀≤!! М≥≤Л≤│М∙╘К▀┬К▀╓.");
+<%}
+session.setAttribute("firstAccess", 0);
+%>
 </script>
 
 </head>
 <body>
 
 	<main>
-
-		<!-- ╩С╢э Task Flow, member, project ╩Щ╪╨ ╬фюлдэ -->
+	  <!-- Л┐│К▀╗ Task Flow, member, project Л┐²Л└╠ Л∙└Л²╢Л╫≤ -->
 		<section class="container py-5" style="height: 250px;">
-			<!-- **** ╦г ю╖ ╩С╢э ╥н╠в╬ф©Т ╧Жф╟ | session ╟╙©║ ╣Ш╤С ╨╦юл╟М ╬х╨╦юл╟М ***-->
-			<div
-				style="width: 100px; height: 50px; margin-top: 5px; margin-right: 140px; float: right; color: rgb(0, 0, 0);">
-				<button type="button" class="btn btn-primary btn-lg px-4 gap-3"
-					style="border: 1px solid #FFFFFF; background-color: rgb(192, 86, 224); width: 100px; height: 50px; font-size: 10px;"
-					onclick="location.href='<c:url value='/member/logout'/>'">╥н╠в╬ф©Т</button>
-			</div>
+			<!-- **** К╖╗ Л°└ Л┐│К▀╗ К║°Й╥╦Л∙└Л⌡┐ К╡└М┼╪ | session Й╟▓Л≈░ К■╟К²╪ КЁ╢Л²╢ЙЁ═ Л∙┬КЁ╢Л²╢ЙЁ═ ***-->
+			<!--  <div style="width: 100px; height: 50px; margin-top: 5px; margin-right: 140px; float: right; color: rgb(0, 0, 0);">
+				<button type="button" class="btn btn-primary btn-lg px-4 gap-3" style="border: 1px solid #FFFFFF; background-color: rgb(192, 86, 224); width: 100px; height: 50px; font-size:10px;" onClick="<c:url value='/member/logout'/>">К║°Й╥╦Л∙└Л⌡┐</button>
+			</div>-->
 			<div class="container-fluid text-center"
 				style="margin-top: 10px; width: 400px; height: 100px;">
-				<a href="index.jsp"
-					style="color: rgb(192, 86, 224); display: block;">
-					<p
-						style="font-size: 70px; text-shadow: 1px 1px 5px rgb(197, 135, 226); font-weight: bold;">Task
-						Flow</p>
+				<a href="index.jsp" style="color: rgb(192, 86, 224); display: block;">
+					<p style="font-size: 70px; text-shadow: 1px 1px 5px rgb(197, 135, 226); font-weight: bold;">Task Flow</p>
 				</a>
 			</div>
-			<!-- +╧Жф╟ ╩Щ╪╨ -->
+			<!-- +К╡└М┼╪ Л┐²Л└╠ -->
 			<div class="d-flex"
 				style="width: 50px; height: 50px; margin-left: 120px; float: left;">
 				<button type="button"
@@ -127,7 +123,7 @@ alert(strName+"╢т!! х╞©╣гу╢о╢ы.");
 			</a>
 		</section>
 
-		<%-- 	<!-- ев╫╨ф╝©К дз╣Е -->
+		<%-- 	<!-- М┘▄Л┼╓М┼╦Л ╘ Л╫■К⌠° -->
 		<p>
 			<c:forEach var="project" items="${projectList}">
 				${project}
@@ -135,14 +131,14 @@ alert(strName+"╢т!! х╞©╣гу╢о╢ы.");
 		</p>
 		 --%>
 
-		<!-- га╥на╖ф╝ -->
+		<!-- М■└К║°Л═²М┼╦ -->
 		<div class="container align-items-center" style="max-width: 1130px;">
 
 			<div class="row justify-content-center">
 
 				<c:forEach var="project" items="${projectList}">
 
-					<!-- ╣╔╨ёга фюгц га╥на╖ф╝ -->
+					<!-- К█╟К╡═М■└ М▄─М■▄ М■└К║°Л═²М┼╦ -->
 					<div class="card border-dark mb-3"
 						style="width: 350px; height: 200px;">
 						<div class="card-body">
@@ -179,7 +175,7 @@ alert(strName+"╢т!! х╞©╣гу╢о╢ы.");
 
 				</c:forEach>
 
-				<!-- 				╩Щх╟аЖ╣╣ ╧в ╩С╢Ц га╥на╖ф╝
+				<!-- 				Л┐²М≥°Л╖─К▐└ К╟▐ Л┐│К▀╢ М■└К║°Л═²М┼╦
 				<div class="card border-dark mb-3"
 					style="width: 350px; height: 200px;">
 					<div class="card-body">
@@ -188,7 +184,7 @@ alert(strName+"╢т!! х╞©╣гу╢о╢ы.");
         					<path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
       					</svg>
 						<h4 class="card-title">
-							<a class="card-title" href="./project/project.jsp">╩Щх╟аЖ╣╣ ╧в ╩С╢Ц</a>
+							<a class="card-title" href="./project/project.jsp">Л┐²М≥°Л╖─К▐└ К╟▐ Л┐│К▀╢</a>
 						</h4>
 						<p></p>
 						<p class="card-text" text-align="right">70%</p>
@@ -204,13 +200,13 @@ alert(strName+"╢т!! х╞©╣гу╢о╢ы.");
 
 				<div style="width: 25px;"></div>
 
-				╧Иаь Class 2 ╢ы г╝╠Б га╥на╖ф╝
+				К╟╠Л╓─ Class 2 К▀╓ М▓─Й╦╟ М■└К║°Л═²М┼╦
 				<div class="card border-dark mb-3"
 					style="width: 350px; height: 200px;">
 					<div class="card-body">
 						<div style="height: 35px;"></div>
 						<h4 class="card-title">
-							<a class="card-title" href="./project/project.jsp">╧Иаь Class 2 ╢ы г╝╠Б</a>
+							<a class="card-title" href="./project/project.jsp">К╟╠Л╓─ Class 2 К▀╓ М▓─Й╦╟</a>
 						</h4>
 						<p></p>
 						<p class="card-text" text-align="right">30%</p>
@@ -227,7 +223,7 @@ alert(strName+"╢т!! х╞©╣гу╢о╢ы.");
 				<div style="width: 25px;"></div>
 
 
-				╣©╬ф╦╝ га╥на╖ф╝ га╥на╖ф╝
+				К▐≥Л∙└К╕╛ М■└К║°Л═²М┼╦ М■└К║°Л═²М┼╦
 				<div class="card border-dark mb-3"
 					style="width: 350px; height: 200px;">
 					<div class="card-body">
@@ -236,7 +232,7 @@ alert(strName+"╢т!! х╞©╣гу╢о╢ы.");
             				<path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
          				</svg>
 						<h4 class="card-title">
-							<a class="card-title" href="./project/project.jsp">╣©╬ф╦╝ га╥на╖ф╝</a>
+							<a class="card-title" href="./project/project.jsp">К▐≥Л∙└К╕╛ М■└К║°Л═²М┼╦</a>
 						</h4>
 						<p></p>
 						<p class="card-text" text-align="right">10%</p>
@@ -251,13 +247,13 @@ alert(strName+"╢т!! х╞©╣гу╢о╢ы.");
 
 				<div style="width: 25px;"></div>
 
-				sqld юз╟щаУ ╟Ь╨н га╥на╖ф╝
+				sqld Л·░Й╡╘Л╕² ЙЁ╣К╤─ М■└К║°Л═²М┼╦
 				<div class="card border-dark mb-3"
 					style="width: 350px; height: 200px;">
 					<div class="card-body">
 						<div style="height: 35px;"></div>
 						<h4 class="card-title">
-							<a class="card-title" href="./project/project.jsp">sqld юз╟щаУ ╟Ь╨н</a>
+							<a class="card-title" href="./project/project.jsp">sqld Л·░Й╡╘Л╕² ЙЁ╣К╤─</a>
 						</h4>
 						<p></p>
 						<p class="card-text" text-align="right">0%</p>
