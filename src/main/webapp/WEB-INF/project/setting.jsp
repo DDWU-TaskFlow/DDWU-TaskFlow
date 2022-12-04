@@ -86,9 +86,9 @@
 			<form name="leader">
 			<b>∆¿¿Â º±≈√&nbsp;&nbsp;</b>
 			    <select>
-				<c:forEach var="m" items="${memberList}">
+				<<c:forEach var="m" items="${memberList}">
 			        <option>${m.name}</option>
-			    </c:forEach>
+			    </c:forEach> 
 			    </select> 
 		    </form>
 		</div>

@@ -11,6 +11,7 @@ import controller.Controller;
 import controller.member.UserSessionUtils;
 import model.Member;
 import model.Project;
+import model.service.MemberManager;
 import model.service.ProjectManager;
 import model.service.TaskManager;
 
@@ -34,9 +35,8 @@ public class ViewProjectController implements Controller{
 		request.setAttribute("project", project);		// 프로젝트 정보 저장
 		request.setAttribute("memberList", memberList);		// 멤버리스트 저장	'
 		
-		HttpSession session = request.getSession();
-		request.setAttribute("userId", session.getAttribute("member_id"));
-		System.out.println(memberList);
+		request.setAttribute("userId", request.getSession().getAttribute("member_id"));
+		System.out.println(request.getSession().getAttribute("member_id"));
 		
 		TaskManager tManager = TaskManager.getInstance();
 		request.setAttribute("taskManager", tManager);

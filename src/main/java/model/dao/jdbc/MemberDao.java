@@ -96,6 +96,7 @@ public class MemberDao {
 			ResultSet rs = jdbcUtil.executeQuery();		
 			if (rs.next()) {						
 				mem = new Member(	
+						rs.getInt("member_id"),
 						user_name,
 						rs.getString("password"),
 						rs.getString("name"),

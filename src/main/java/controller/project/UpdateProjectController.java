@@ -13,22 +13,28 @@ public class UpdateProjectController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+		
 		if (request.getMethod().equals("GET")) {	
+			MemberManager mManager = MemberManager.getInstance();
+
+			int realId = Integer.parseInt(request.getParameter("userId"));
+			Member leader = mManager.getMember(realId);
+			System.out.println(leader);
+			
+			request.setAttribute("leader", leader);
+			request.setAttribute("memberManager", mManager);
+			
 			return "/project/setting.jsp";
 		}
     	
-		MemberManager mManager = MemberManager.getInstance();
+
     	ProjectManager pManager = ProjectManager.getInstance();
 
 		Project project = (Project) request.getAttribute("project");
 
-		String realName = request.getParameter("leader");
-		Member leader = mManager.getMemberByName(realName);
-		
 		Project newPro = new Project(
 				project.getProject_id(),
-				leader.getMember_id(),
+				project.getLeader_id(),
 				project.getName(),
 				project.getType(),
 				project.getCreationDate(),
@@ -36,6 +42,7 @@ public class UpdateProjectController implements Controller {
 				project.getColor()
 		);		
 		pManager.updateProject(newPro);
+
 		
 		return "redirect:/project/view";
 	}
