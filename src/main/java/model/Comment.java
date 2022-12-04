@@ -1,19 +1,19 @@
 package model;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Comment {
 	private int commentId;
 	private int taskId;
 	private int memberId;
-	private Date writtenDate;
+	private Timestamp writtenDate;
 	private String content;
 	
 	public Comment() {
-		this(0, 0, 0, new Date(0), "");
+		this(0, 0, 0, new Timestamp(0), "");
 	}
 
-	public Comment(int commentId, int taskId, int memberId, Date writtenDate, String content) {
+	public Comment(int commentId, int taskId, int memberId, Timestamp writtenDate, String content) {
 		super();
 		this.commentId = commentId;
 		this.taskId = taskId;
@@ -40,10 +40,10 @@ public class Comment {
 	public void setMemberId(int memberId) {
 		this.memberId = memberId;
 	}
-	public Date getWrittenDate() {
+	public Timestamp getWrittenDate() {
 		return writtenDate;
 	}
-	public void setWrittenDate(Date writtenDate) {
+	public void setWrittenDate(Timestamp writtenDate) {
 		this.writtenDate = writtenDate;
 	}
 	public String getContent() {

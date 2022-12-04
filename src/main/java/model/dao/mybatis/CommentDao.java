@@ -35,6 +35,15 @@ public class CommentDao {
 		}
 	}
 	
+	public String findMemberNameByCommentId(int commentId) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			return sqlSession.getMapper(CommentMapper.class).selectMemberNameByCommentId(commentId);			
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
 	public int insertComment(Comment comment) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
@@ -61,6 +70,5 @@ public class CommentDao {
 			sqlSession.close();
 		}
 	}
-	
 	
 }

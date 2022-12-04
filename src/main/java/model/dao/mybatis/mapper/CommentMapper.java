@@ -7,6 +7,8 @@ import model.Comment;
 public interface CommentMapper {
 	List<Comment> selectCommentByTaskId(int taskId);
 	
+	String selectMemberNameByCommentId(int commentId);
+	
 	int insertComment(Comment comment);
 
 	int updateComment(Comment comment);

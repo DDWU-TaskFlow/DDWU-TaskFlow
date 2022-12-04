@@ -138,6 +138,8 @@
 		      <c:import url="../task/taskView.jsp">
 		      	<c:param name="projectId" value="${proId}" />
 		      	<c:param name="memberId" value="${memId}" />
+      			<c:param name="taskManager" value="${taskManager}" />
+      			<c:param name="commentManager" value="${commentManager}" />
 		      </c:import>
 		    </div>
 		  </div>
