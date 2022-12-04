@@ -112,7 +112,11 @@ session.setAttribute("firstAccess", 0);%>
 					onclick="location.href='/taskflow/project/create';"
 					style="border: 1px solid #FFFFFF; border-radius: 2em; cursor: pointer; cursor: hand; background-color: #ebebeb; color: rgb(0, 0, 0); width: 50px; height: 50px;">+</button>
 			</div>
-			<a href="/taskflow/member/mypage" style="float: right;">
+			
+			<a style="float: right;" href="<c:url value='/member/mypage'>
+						<c:param name='user_name' value='${member.user_name}'/>
+						</c:url>">
+			
 				<div
 					class="d-flex justify-content-center align-items-center border border-secondary rounded-circle"
 					style="width: 40px; height: 40px; margin-right: 150px; float: right;">
