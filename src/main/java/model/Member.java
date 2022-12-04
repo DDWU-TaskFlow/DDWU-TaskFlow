@@ -107,8 +107,8 @@ public class Member implements Serializable{
 			return false;
 		}
 		return this.password.equals(password);
-	}
-	
+	}	
+	//회원가입시 아이디 검사
 	public boolean isSameUser(String user_name) {
         return this.user_name.equals(user_name);
     }
