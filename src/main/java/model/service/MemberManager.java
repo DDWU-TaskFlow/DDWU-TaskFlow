@@ -62,6 +62,11 @@ public class MemberManager {
  	public Member getMember(String userName) {
 		return memberDAO.findMember(userName);
 	}
+ 	
+ 	//사용자 이름으로 받아오는 방법.
+ 	public Member getMemberByName(String name) {
+		return memberDAO.findMemberByName(name);
+	}
 	
 	public boolean login(String userName, String password)throws SQLException, MemberNotFoundException, PasswordMismatchException {
 		Member member = getMember(userName);

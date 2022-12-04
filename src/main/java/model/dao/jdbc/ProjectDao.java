@@ -41,7 +41,34 @@ public class ProjectDao {
         }       
         return result;      // insert 에 의해 반영된 레코드 수 반환 
     }
-    
+
+	public int updateProject(Project pro) {
+		int result = 0;
+		
+		String updateQuery = "UPDATE Project"
+				+ "	SET leader_id = ?, name = ?, type = ?, creationDate = ?, createdLink = ?, notice = ?, color = ? "
+				+ "	WHERE project_id = ?";
+		Object[] param = new Object[] {pro.getLeader_id(), pro.getType(), pro.getCreationDate(), pro.getCreatedLink(), pro.getNotice(), pro.getColor()};
+		
+        jdbcUtil.setSqlAndParameters(updateQuery, param);
+        
+        try {               
+            result = jdbcUtil.executeUpdate();      // update 문 실행
+            System.out.println(pro.getProject_id() + " 번의 프로젝트 정보가 수정되었습니다.");
+        } catch (SQLException ex) {
+            System.out.println("수정오류 발생!!!");
+            if (ex.getErrorCode() == 1)
+                System.out.println("수정이 잘못되었습니다."); 
+        } catch (Exception ex) {
+            jdbcUtil.rollback();
+            ex.printStackTrace();
+        } finally {     
+            jdbcUtil.commit();
+            jdbcUtil.close();     
+        }       
+        return result;      // update 에 의해 반영된 레코드 수 반환 
+	}
+	
     public int getProjectID(Project pro) {
         String query = "SELECT PROJECT_ID "
         		+ "FROM PROJECT "
@@ -104,9 +131,24 @@ public class ProjectDao {
         return 0;
     }
     
-//    public Participation outProject() {
-//    	
-//    }
+    public int outProject(int project_id) {
+    	String outQuery = "DELETE FROM PARTICIPATION WHERE project_id = ?";		
+    	
+    	Object[] param = new Object[] {project_id};
+        jdbcUtil.setSqlAndParameters(outQuery, param);  
+        
+        try {
+            int result = jdbcUtil.executeUpdate();      // delete 문 실행
+            return result;                      // delete 에 의해 반영된 레코드 수 반환
+        } catch (Exception ex) {
+            jdbcUtil.rollback();
+            ex.printStackTrace();       
+        } finally {
+            jdbcUtil.commit();
+            jdbcUtil.close();     
+        }
+        return 0;
+    }
     
     public List<Project> getProjectList() {
         String allQuery = "SELECT PROJECT_ID, LEADER_ID, NAME, TYPE, CREATIONDATE, CREATEDLINK, NOTICE, COLOR FROM PROJECT";

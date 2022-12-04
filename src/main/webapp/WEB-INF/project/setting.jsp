@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!doctype html>
 <html lang="en">
@@ -72,8 +73,8 @@
 	  <nav class="navbar fixed-top navbar-dark border border-2 border-dark rounded mx-auto" aria-label="Main navigation" style="background-color: #A1A2D3; width: 90%; height: 120px; max-width: 1300px; margin-top: 50px;">
 	    <div class="container-fluid justify-content-between" style="margin-top: 10px;">
 	      <p style="text-shadow: 1px 1px 5px #000; margin-left: 10%;">
-	        <a class="navbar-brand fs-2" href="../index.jsp">Task Flow</a><br/>
-	        <a class="fs-5 ms-1" href="projectView.jsp" style="color: rgba(255, 255, 255, 0.863); text-decoration: none;">데베프 팀플</a>
+	        <a class="navbar-brand fs-2" href="../index.jsp">TaskFlow</a><br/>
+	        <a class="fs-5 ms-1" href='<c:url value='/project/projectView.jsp'/>' style="color: rgba(255, 255, 255, 0.863); text-decoration: none;">${project.name}</a>
 	      </p>
 	     </div>
 	  </nav>
@@ -82,55 +83,45 @@
 	
 		<div style="padding:80px;">
 		<div>
-			<form>
+			<form name="leader">
 			<b>팀장 선택&nbsp;&nbsp;</b>
-			      <select>
-			        <option>이송희</option>
-			        <option>서한나</option>
-			        <option>심재현</option>
-			        <option>정유영</option>
-			      </select>
+			    <select>
+				<c:forEach var="m" items="${memberList}">
+			        <option>${m.name}</option>
+			    </c:forEach>
+			    </select> 
 		    </form>
 		</div>
 		<br>
 		<div>
 			<b>초대링크&nbsp;&nbsp;</b>
-				<span class="button gray medium"><a href="#" onclick="clip(); return false;"> 복사</a></span>
+				<span class="button gray medium" ><a href="${project.createdLink}" onclick="clip(); return false;"> 복사</a></span>
 		</div>
 		<br>
 		<div class="input-group mb-3">
 		  <b>공지 발송</b>
-		  &nbsp;&nbsp;<textarea name="notion" cols="60" rows="2"></textarea>
-		  <button type="button"><img src="./image/send.png" alt="전송버튼" style="width:30px; height:30px;"></img></button>
-		  <p name="notion_cnt">(0 / 100)</p>
-		  
-		  <script>
-		  $(document).ready(function() {
-		      $('#notion').on('keyup', function() {
-		          $('#notion_cnt').html("("+$(this).val().length+" / 100)");
-		   
-		          if($(this).val().length > 100) {
-		              $(this).val($(this).val().substring(0, 100));
-		              $('#notion_cnt').html("(100 / 100)");
-		          }
-		      });
-		  });  
-		  </script>
+		  &nbsp;&nbsp;<textarea name="notion" cols="60" rows="2"></textarea> <button type="button" style="width:30px; height:30px;"></button>
 		</div>
 		
 		<div>
 			<b>프로젝트</b>
-			<span><a href="index.jsp">삭제</a></span>
+			&nbsp;&nbsp;<span><a href="<c:url value='/project/delete'/>">삭제</a></span>
 		</div> 
-		
+		<br>
+		<br>
+		<div>
+		<button class="btn btn-primary btn-lg px-4 gap-3" type="submit" onClick="location.href='<c:url value='/project/update'/>'
+	     style="background-color: rgb(161, 162, 207); border: 0; outline: 0;">확인</button>
+	     
+		<button class="btn btn-primary btn-lg px-4 gap-3" onClick="location.href='<c:url value='/project/view'/>'"
+	     style="background-color: rgb(161, 162, 207); border: 0; outline: 0;">뒤로가기</button>
+        </div>
+        
 		</div>
-	
-	</div>
-	
+	</div>     
   	<!-- 하단바 -->
 	<span class="d-flex justify-content-center" style="margin-top: 20px; color: lightgrey;">2022 DBP BAMANSAEJO</span>
-
-
+	
 </main>
 
 </body>
