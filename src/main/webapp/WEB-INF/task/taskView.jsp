@@ -1,16 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-<meta charset="EUC-KR">
-<title>task by member</title>
+	<meta charset="EUC-KR">
+	<title>task by member</title>
+	
+	<style>
+	::-webkit-scrollbar {
+	    display: none;
+	}
+	</style>
+
 </head>
 
-<body class="bg-light">
+<body class="bg-light" id="body" style="overflow-y: scroll;">
 
 	<div class="p-2 bg-body rounded shadow-sm">
 
@@ -29,8 +35,11 @@
 		<hr />
 		
 		
+	<div class="accordion" id="accordionExample">
+		
 		<!-- DB에서 불러오도록 변경 -->
-		<div class="d-flex p-1 align-items-center justify-content-between" style="height: 100px;">
+		<div class="accordion-item border">
+		<div id="headingTwo" class="accordion-header d-flex p-1 align-items-center justify-content-between" style="height: 100px; max-height: 500px;">
 			<span class="d-flex justify-content-center" style="width: 160px;">
 				<span class="d-block ps-3 pe-3 rounded-pill text-center"
 					style="background-color: #fffacc;">
@@ -38,8 +47,8 @@
 					2022/11/27
 				</span>
 			</span>
-			<span class="d-flex" style="width: 250px;">
-				요구사항 명세서 작성하고 이클래스에 제출하기
+			<span class="d-flex accordion-button collapsed p-2" style="width: 270px; height: 90px;" data-bs-toggle="collapse" data-bs-target="#collapse1">
+				요구사항 명세서 작성하고 이클래스에 제출하기 (30%)
 			</span>
 			<span class="d-flex justify-content-center" style="width: 80px;">
 				<button class="d-flex btn btn-outline-warning" onclick="location.href='<c:url value='/task/update/form' />';">
@@ -49,9 +58,16 @@
 				</button>
 			</span>
 		</div>
+		</div>
+	    <div id="collapse1" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+	      <div class="accordion-body">
+		      <jsp:include page="comment.jsp" />
+	      </div>
+	    </div>
 		<hr />
 
-		<div class="d-flex p-1 align-items-center justify-content-between" style="height: 100px;">
+		<div class="accordion-item border">
+		<div id="headingTwo" class="accordion-header d-flex p-1 align-items-center justify-content-between" style="height: 100px; max-height: 500px;">
 			<span class="d-flex justify-content-center" style="width: 160px;">
 				<span class="d-block ps-3 pe-3 rounded-pill text-center"
 					style="background-color: #fffacc;">
@@ -59,8 +75,8 @@
 					2022/10/15
 				</span>
 			</span>
-			<span class="d-flex" style="width: 250px;">
-				ERWIN Physical 모델링 수정하고 DDL 스크립트 돌리기
+			<span class="d-flex accordion-button collapsed p-2" style="width: 270px; height: 90px;" data-bs-toggle="collapse" data-bs-target="#collapse2">
+				ERWIN Physical 모델링 수정하고 DDL 스크립트 돌리기 (70%)
 			</span>
 			<span class="d-flex justify-content-center" style="width: 80px;">
 				<button class="d-flex btn btn-outline-warning" onclick="location.href='<c:url value='/task/update/form' />';">
@@ -70,9 +86,16 @@
 				</button>
 			</span>
 		</div>
+		</div>
+	    <div id="collapse2" class="accordion-collapse collapse p-2" data-bs-parent="#accordionExample">
+	      <div class="accordion-body">
+		      <jsp:include page="comment.jsp" />
+		  </div>
+	    </div>
 		<hr />
 		
-		<div class="d-flex p-1 align-items-center justify-content-between" style="height: 100px;">
+		<div class="accordion-item border">
+		<div id="headingTwo" class="accordion-header d-flex p-1 align-items-center justify-content-between" style="height: 100px; max-height: 500px;">
 			<span class="d-flex justify-content-center" style="width: 160px;">
 				<span class="d-block ps-3 pe-3 rounded-pill text-center"
 					style="background-color: #fffacc;">
@@ -80,8 +103,8 @@
 					2022/11/08
 				</span>
 			</span>
-			<span class="d-flex" style="width: 250px;">
-				자료 참고해서 엑셀 파일 작성하고 노션에 공유하기
+			<span class="d-flex accordion-button collapsed p-2" style="width: 270px; height: 90px;" data-bs-toggle="collapse" data-bs-target="#collapse3">
+				자료 참고해서 엑셀 파일 작성하고 노션에 공유하기 (50%)
 			</span>
 			<span class="d-flex justify-content-center" style="width: 80px;">
 				<button class="d-flex btn btn-outline-warning" onclick="location.href='<c:url value='/task/update/form' />';">
@@ -91,9 +114,16 @@
 				</button>
 			</span>
 		</div>
+		</div>
+	    <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+	      <div class="accordion-body">
+		      <jsp:include page="comment.jsp" />
+	      </div>
+	    </div>
 		<hr />
 
-		<div class="d-flex p-1 align-items-center justify-content-between" style="height: 100px;">
+		<div class="accordion-item border">
+		<div id="headingTwo" class="accordion-header d-flex p-1 align-items-center justify-content-between" style="height: 100px; max-height: 500px;">
 			<span class="d-flex justify-content-center" style="width: 160px;">
 				<span class="d-block ps-3 pe-3 rounded-pill text-center"
 					style="background-color: #fffacc;">
@@ -101,8 +131,8 @@
 					2022/12/05
 				</span>
 			</span>
-			<span class="d-flex" style="width: 250px;">
-				핵심 페이지 UI 디자인하고 일부 구현하기
+			<span class="d-flex accordion-button collapsed p-2" style="width: 270px; height: 90px;" data-bs-toggle="collapse" data-bs-target="#collapse4">
+				핵심 페이지 UI 디자인하고 일부 구현하기 (90%)
 			</span>
 			<span class="d-flex justify-content-center" style="width: 80px;">
 				<button class="d-flex btn btn-outline-warning" onclick="location.href='<c:url value='/task/update/form' />';">
@@ -112,8 +142,16 @@
 				</button>
 			</span>
 		</div>
+		</div>
+	    <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+	      <div class="accordion-body">
+		      <jsp:include page="comment.jsp" />
+	      </div>
+	    </div>
 		<hr />
-			
+		
+	</div>
+
 
 	</div>
 

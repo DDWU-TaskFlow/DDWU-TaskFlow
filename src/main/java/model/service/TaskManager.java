@@ -25,18 +25,21 @@ public class TaskManager {
 	public List<Task> getTaskList(int projectId) {
 		List<Task> taskList = null;
 		taskList = taskDao.getTaskList(projectId);
+		
+		System.out.println("getTaskList");
 		return taskList;
 	}
 	
 	public List<Task> getTaskList(int projectId, int memberId) {
 		List<Task> taskList = null;
 		taskList = taskDao.getTaskList(projectId, memberId);
+		
+		System.out.println("getTaskList");
 		return taskList;
 	}
 	
 	public int getMemberProgress(int projectId, int memberId) {
 		List<Task> taskList = getTaskList(projectId, memberId);
-		System.out.println(taskList);
 		int progress = 0;
 		int count = 0;
 		for (Task task : taskList) {
@@ -46,7 +49,12 @@ public class TaskManager {
 		if (progress > 0) {
 			progress /= count;
 		}
-		
+
 		return progress;
+	}
+	
+	public String findMemberNameByTaskId(int taskId) {
+		String memberName = taskDao.findMemberNameByTaskId(taskId);
+		return memberName;
 	}
 }

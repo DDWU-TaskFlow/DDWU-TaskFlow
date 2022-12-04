@@ -117,7 +117,7 @@
 	        </p>
 	      </div>
 	      <div class="col-lg-8 align-self-center">
-	        <a class="btn" href="#" style="width: 100%;" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTaskView" >
+	        <a class="btn" href="#" style="width: 100%;" data-bs-toggle="offcanvas" data-bs-target="#offcanvas<%=count%>" >
 	          <div class="progress" style="height: 35px; border: solid 1px #<%=colors[count % colors.length] %>;">
 	            <div class="progress-bar progress-bar-striped" role="progressbar" style="width: ${memProgress}%; height: 35px; background-color: #<%=colors[count % 4] %>;"
 	                aria-valuenow="${memProgress}" aria-valuemin="0" aria-valuemax="100">${memProgress}%</div>
@@ -127,16 +127,17 @@
 	    </div>
 	
 		  <!-- toggle task by member -->
-		  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasTaskView" aria-labelledby="offcanvasRightLabel" style="width: 550px;" data-bs-backdrop="false">
+		  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas<%=count%>" aria-labelledby="offcanvasRightLabel" style="width: 550px;" data-bs-backdrop="false">
 		    <div class="offcanvas-header" style="height: 70px;">
-		      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" updateTask.jsparia-label="Close"></button>
+		      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 		      <div class="d-flex justify-content-center"><p class="my-4 fs-5">${member.name}</p></div>
 		      <div></div>
 		    </div>
 		    <div class="offcanvas-body" id="task_member">
 		      <!-- import taskView.jsp -->
 		      <c:import url="../task/taskView.jsp">
-		      	<c:param name="memberId" value="${member.member_id}" />
+		      	<c:param name="projectId" value="${proId}" />
+		      	<c:param name="memberId" value="${memId}" />
 		      </c:import>
 		    </div>
 		  </div>
@@ -186,7 +187,8 @@
     <div class="offcanvas-body" id="task">
       <!-- import taskList.jsp -->
       <c:import url="../task/taskList.jsp">
-      	<c:param name="projectId" value="${project.project_id}" />
+      	<c:param name="projectId" value="${proId}" />
+      	<c:param name="taskManager" value="${taskManager}" />
       </c:import>
     </div>
   </div>

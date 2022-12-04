@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Member;
 import model.Task;
 import model.dao.jdbc.JDBCUtil;
 
@@ -146,6 +147,27 @@ public class TaskDao {
 		}
 		
     	return taskList;
+	}
+	
+	public String findMemberNameByTaskId(int taskId) {
+		String query = "SELECT MEMBER.name AS mName "
+				+ "FROM TASK JOIN MEMBER USING (member_id) "
+				+ "WHERE task_id = ? ";
+		
+		jdbcUtil.setSqlAndParameters(query, new Object[] {taskId});
+		String memberName = null;
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();	
+			
+			if (rs.next()) {		
+				memberName = rs.getString("mName");
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();	
+		}
+		return memberName;
 	}
 	
 }
