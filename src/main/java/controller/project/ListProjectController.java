@@ -16,7 +16,7 @@ public class ListProjectController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		if(!UserSessionUtils.hasLogined(request.getSession())) {
-			return "/member/loginForm.jsp"; //여기서 session값에 따라 비로긴
+			return "/member/projectList.jsp"; //여기서 session값에 따라 비로긴
 		}
 		
 		ProjectManager manager = ProjectManager.getInstance();
@@ -26,6 +26,7 @@ public class ListProjectController implements Controller {
 		
 		List<Project> projectList = manager.findProjectsInMember(user_name);
 
+	    request.setAttribute("userId", user_name);
 		// request 객체에 projectList 저장
 		request.setAttribute("projectList", projectList);
 		return "/member/projectList.jsp"; // session값에 따라 로긴
