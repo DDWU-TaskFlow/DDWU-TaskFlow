@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!doctype html>
@@ -56,7 +56,7 @@
 		textarea.select();
 		document.execCommand("copy");
 		document.body.removeChild(textarea);
-		alert("ÃÊ´ë¸µÅ©°¡ º¹»çµÇ¾ú½À´Ï´Ù.")
+		alert("ì´ˆëŒ€ë§í¬ê°€ ë³µì‚¬ë˜ì—ˆìŠµë‹ˆë‹¤.")
 	}
 
 </script>
@@ -67,8 +67,6 @@
 
 
 <main class="container align-items-center">
-
-	<!-- »ó´Ü¹Ù, project.name º¯°æ ¿¹Á¤ (DB ¿¬°á) -->
 	  <!-- background-image: radial-gradient(circle at 15%, #A1A2D3 5%, #FFFFFF 20%, #A1A2D3); -->
 	  <nav class="navbar fixed-top navbar-dark border border-2 border-dark rounded mx-auto" aria-label="Main navigation" style="background-color: #A1A2D3; width: 90%; height: 120px; max-width: 1300px; margin-top: 50px;">
 	    <div class="container-fluid justify-content-between" style="margin-top: 10px;">
@@ -78,48 +76,49 @@
 	      </p>
 	     </div>
 	  </nav>
-	
-	  <div class="p-3 bg-body rounded mx-auto" style="margin-top: 200px; width: 100%; height: 510px; overflow-y: auto;">
-	
+	    <div class="p-3 bg-body rounded mx-auto" style="margin-top: 200px; width: 100%; height: 510px; overflow-y: auto;">
 		<div style="padding:80px;">
+		<form method="POST" action="<c:url value='/project/update' />">
+		<input type="hidden" name="project_id" value="${project.project_id}"> <!-- ê°’ ì €ì¥ì„ ìœ„í•¨ -->
+		<input type="hidden" name="member_list" value="${memberList}">
 		<div>
-			<form name="leader">
-			<b>ÆÀÀå ¼±ÅÃ&nbsp;&nbsp;</b>
-			    <select>
+			<b>íŒ€ì¥ ì„ íƒ&nbsp;&nbsp;</b>
+			    <select name="leader" id="leader_select">
 				<c:forEach var="m" items="${memberList}">
 			        <option>${m.name}</option>
-			    </c:forEach>
+			    </c:forEach> 
 			    </select> 
-		    </form>
 		</div>
 		<br>
 		<div>
-			<b>ÃÊ´ë¸µÅ©&nbsp;&nbsp;</b>
-				<span class="button gray medium" ><a href="${project.createdLink}" onclick="clip(); return false;"> º¹»ç</a></span>
+			<b>ì´ˆëŒ€ë§í¬&nbsp;&nbsp;</b>
+				<span class="button gray medium" ><a href="${project.createdLink}" onclick="clip(); return false;"> ë³µì‚¬</a></span>
 		</div>
 		<br>
 		<div class="input-group mb-3">
-		  <b>°øÁö ¹ß¼Û</b>
+		  <b>ê³µì§€ ë°œì†¡</b>
 		  &nbsp;&nbsp;<textarea name="notion" cols="60" rows="2"></textarea> <button type="button" style="width:30px; height:30px;"></button>
 		</div>
 		
 		<div>
-			<b>ÇÁ·ÎÁ§Æ®</b>
-			&nbsp;&nbsp;<span><a href="<c:url value='/project/delete'/>">»èÁ¦</a></span>
+			<b>í”„ë¡œì íŠ¸</b>
+			&nbsp;&nbsp;<span><a href="<c:url value='/project/delete'></c:url>">ì‚­ì œ</a></span>
 		</div> 
+		
 		<br>
 		<br>
 		<div>
-		<button class="btn btn-primary btn-lg px-4 gap-3" type="submit" onClick="location.href='<c:url value='/project/update'/>'
-	     style="background-color: rgb(161, 162, 207); border: 0; outline: 0;">È®ÀÎ</button>
+	        
+		<button class="btn btn-primary btn-lg px-4 gap-3" type="submit" 
+	     style="background-color: rgb(161, 162, 207); border: 0; outline: 0;">í™•ì¸</button>
 	     
-		<button class="btn btn-primary btn-lg px-4 gap-3" onClick="location.href='<c:url value='/project/view'/>'"
-	     style="background-color: rgb(161, 162, 207); border: 0; outline: 0;">µÚ·Î°¡±â</button>
+		<button class="btn btn-primary btn-lg px-4 gap-3" type="reset" onClick="history.back()"
+	     style="background-color: rgb(161, 162, 207); border: 0; outline: 0;">ë’¤ë¡œê°€ê¸°</button>
         </div>
-        
+		</form>
 		</div>
 	</div>     
-  	<!-- ÇÏ´Ü¹Ù -->
+  	<!-- í•˜ë‹¨ë°” -->
 	<span class="d-flex justify-content-center" style="margin-top: 20px; color: lightgrey;">2022 DBP BAMANSAEJO</span>
 	
 </main>
