@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@page import="java.util.*"%>
 <%@page import="model.*"%>
 <%@page import="controller.*"%>
@@ -76,12 +76,14 @@ h4.card-title {
 
 <script type="text/javascript">
 <%String strID = (String) session.getAttribute("user_name");
+if (strID != null) { 
 int firstAccess = (int) session.getAttribute("firstAccess");
-if (strID != null && firstAccess == 1) {%> 
+if (firstAccess == 1) {%> 
 var strName="<%=strID%>";
 	alert(strName + "님!! 환영합니다.");
 <%}
-session.setAttribute("firstAccess", 0);%>
+session.setAttribute("firstAccess", 0);
+}%>
 	
 </script>
 
@@ -91,10 +93,11 @@ session.setAttribute("firstAccess", 0);%>
 	<main>
 		<!-- 상단 Task Flow, member, project 생성 아이콘 -->
 		<section class="container py-5" style="height: 250px;">
-			<!-- **** 맨 위 상단 로그아웃 버튼 | session 값에 따라 보이고 안보이고 ***-->
-			<!--  <div style="width: 100px; height: 50px; margin-top: 5px; margin-right: 140px; float: right; color: rgb(0, 0, 0);">
-				<button type="button" class="btn btn-primary btn-lg px-4 gap-3" style="border: 1px solid #FFFFFF; background-color: rgb(192, 86, 224); width: 100px; height: 50px; font-size:10px;" onClick="<c:url value='/member/logout'/>">로그아웃</button>
-			</div>-->
+			<c:if test="${not empty userId}">
+			<div style="width: 100px; height: 50px; margin-top: 5px; margin-right: 140px; float: right; color: rgb(0, 0, 0);">
+				<button type="button" class="btn btn-primary btn-lg px-4 gap-3" style="border: 1px solid #FFFFFF; background-color: rgb(192, 86, 224); width: 100px; height: 50px; font-size:10px;" onClick="location.href='<c:url value='/member/logout'/>'">로그아웃</button>
+			</div>
+			</c:if>
 			<div class="container-fluid text-center"
 				style="margin-top: 10px; width: 400px; height: 100px;">
 				<a href="index.jsp"
@@ -104,6 +107,7 @@ session.setAttribute("firstAccess", 0);%>
 						Flow</p>
 				</a>
 			</div>
+			<c:if test="${not empty userId}">
 			<!-- +버튼 생성 -->
 			<div class="d-flex"
 				style="width: 50px; height: 50px; margin-left: 120px; float: left;">
@@ -127,7 +131,8 @@ session.setAttribute("firstAccess", 0);%>
 							d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
        		 		</svg>
 				</div>
-			</a>
+			</a>			
+			</c:if>
 		</section>
 
 		<%-- 	<!-- 테스트용 코드 -->
@@ -137,7 +142,8 @@ session.setAttribute("firstAccess", 0);%>
 			</c:forEach>
 		</p>
 		 --%>
-
+		<c:choose>
+		<c:when test="${not empty userId}">
 		<!-- 프로젝트 -->
 		<div class="container align-items-center" style="max-width: 1130px;">
 
@@ -183,6 +189,12 @@ session.setAttribute("firstAccess", 0);%>
 
 				</c:forEach>
 
+		</c:when>
+		<c:when test="${empty userId}">
+		      <jsp:include page="nonLogin.jsp" />
+		</c:when>
+		</c:choose>
+		
 				<!-- 				생활지도 및 상담 프로젝트
 				<div class="card border-dark mb-3"
 					style="width: 350px; height: 200px;">
