@@ -49,7 +49,6 @@ public class ProjectDao {
 				+ "WHERE project_id = ?";
 		
 		Object[] param = new Object[] {pro.getLeader_id(), pro.getNotice(), pro.getProject_id()};
-		System.out.println("디에이오리더"+pro.getLeader_id());
         jdbcUtil.setSqlAndParameters(updateQuery, param);
         
         try {               

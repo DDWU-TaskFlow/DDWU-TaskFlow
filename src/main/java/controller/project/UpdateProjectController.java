@@ -44,6 +44,7 @@ public class UpdateProjectController implements Controller {
 		project.setNotice(request.getParameter("notice"));
 		
 		pManager.updateProject(project);
-		return "redirect:/project/view"; //이부분 오류
+		
+		return "redirect:/project/view?step=2&&project_id="+projectId; //projectView 진입방법: step==2
 	}
 }

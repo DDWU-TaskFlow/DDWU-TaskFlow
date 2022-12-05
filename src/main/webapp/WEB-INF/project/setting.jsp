@@ -79,7 +79,6 @@
 	    <div class="p-3 bg-body rounded mx-auto" style="margin-top: 200px; width: 100%; height: 510px; overflow-y: auto;">
 		<div style="padding:80px;">
 		<form method="POST" action="<c:url value='/project/update' />">
-		<input type="hidden" name="step" value="2"> <!-- projectView 진입방법2 -->
 		<input type="hidden" name="project_id" value="${project.project_id}"> <!-- 값 저장을 위함 -->
 		<input type="hidden" name="member_list" value="${memberList}">
 		<div>
@@ -113,7 +112,7 @@
 		<button class="btn btn-primary btn-lg px-4 gap-3" type="submit" 
 	     style="background-color: rgb(161, 162, 207); border: 0; outline: 0;">확인</button>
 	     
-		<button class="btn btn-primary btn-lg px-4 gap-3" onClick="history.back()"
+		<button class="btn btn-primary btn-lg px-4 gap-3" type="reset" onClick="history.back()"
 	     style="background-color: rgb(161, 162, 207); border: 0; outline: 0;">뒤로가기</button>
         </div>
 		</form>
