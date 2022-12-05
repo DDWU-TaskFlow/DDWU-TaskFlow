@@ -162,9 +162,7 @@
 	     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 	     <c:if test="${userId != project.leader_id}">
 	       <li class="nav-item">
-	       	<!-- onclink으로 구현 -->
-	       	<!-- 팀장은 disabled 속성 주기 -->	
-	         <button class="btn btn-outline-danger">프로젝트 나가기</button>
+	         <button class="btn btn-outline-danger" onClick='location.href="<c:url value='/project/out'> <c:param name="userId" value="${userId}" /><c:param name="project_id" value="${project.project_id}" /></c:url>"' >프로젝트 나가기</button>
 	       </li>
 	     </c:if>
 	       <li class="nav-item" style="margin-left: 10px;">

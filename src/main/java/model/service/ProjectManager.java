@@ -76,6 +76,10 @@ public class ProjectManager {
 	public int outProject(int project_id) {
 		return projectDAO.outProject(project_id);
 	}
+	
+	public int outProjectByMember(Participation part) {
+		return projectDAO.outProjectForMember(part);
+	}
 	 
 	public Project findProject(int project_id) {
 		return projectDAO.findProject(project_id);

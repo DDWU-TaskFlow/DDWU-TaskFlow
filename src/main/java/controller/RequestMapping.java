@@ -42,7 +42,7 @@ public class RequestMapping {
         mappings.put("/project/create", new CreateProjectController());	// get, post
         mappings.put("/project/update", new UpdateProjectController());
         mappings.put("/project/delete", new DeleteProjectController());
-        mappings.put("/project/setting/out", new OutProjectController());
+        mappings.put("/project/out", new OutProjectController());
         mappings.put("/project/list", new ListProjectController());
         mappings.put("/project/view", new ViewProjectController());
         

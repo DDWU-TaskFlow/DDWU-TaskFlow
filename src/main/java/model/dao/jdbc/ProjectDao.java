@@ -149,6 +149,25 @@ public class ProjectDao {
         return 0;
     }
     
+    public int outProjectForMember(Participation part) {
+    	String outQuery = "DELETE FROM PARTICIPATION WHERE member_id = ? and project_id = ?";		
+    	
+    	Object[] param = new Object[] {part.getMember_id(), part.getProject_id()};
+        jdbcUtil.setSqlAndParameters(outQuery, param);  
+        
+        try {
+            int result = jdbcUtil.executeUpdate();      // delete 문 실행
+            return result;                      // delete 에 의해 반영된 레코드 수 반환
+        } catch (Exception ex) {
+            jdbcUtil.rollback();
+            ex.printStackTrace();       
+        } finally {
+            jdbcUtil.commit();
+            jdbcUtil.close();     
+        }
+        return 0;
+    }
+    
     public List<Project> getProjectList() {
         String allQuery = "SELECT PROJECT_ID, LEADER_ID, NAME, TYPE, CREATIONDATE, CREATEDLINK, NOTICE, COLOR FROM PROJECT";
         jdbcUtil.setSqlAndParameters(allQuery, null);
