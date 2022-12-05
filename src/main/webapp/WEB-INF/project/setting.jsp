@@ -102,7 +102,7 @@
 		
 		<div>
 			<b>프로젝트</b>
-			&nbsp;&nbsp;<span><a href="<c:url value='/project/delete'></c:url>">삭제</a></span>
+			&nbsp;&nbsp;<span><a href="<c:url value='/project/delete'> <c:param name="project_id" value="${project.project_id}" /></c:url>">삭제</a></span>
 		</div> 
 		
 		<br>

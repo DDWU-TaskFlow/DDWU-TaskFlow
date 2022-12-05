@@ -81,7 +81,6 @@
       </c:if>
       </div>
   </nav>
-
 <main class="container align-items-center">
 
   <div class="p-3 bg-body rounded mx-auto" style="margin-top: 200px; width: 100%; height: 510px; overflow-y: auto;">
