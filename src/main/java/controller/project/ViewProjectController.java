@@ -5,13 +5,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import controller.Controller;
 import controller.member.UserSessionUtils;
 import model.Member;
 import model.Project;
-import model.service.MemberManager;
 import model.service.ProjectManager;
 import model.service.TaskManager;
 
@@ -23,9 +20,11 @@ public class ViewProjectController implements Controller{
 		if(!UserSessionUtils.hasLogined(request.getSession())) {
 			return "/member/loginForm.jsp";
 		}
-		
     	Project project = null;
     	List<Member> memberList = new ArrayList<Member>();
+
+		//1)projectList->view type == 1
+    	//2)setting->view type == 2
     	
     	ProjectManager pManager = ProjectManager.getInstance();
 		int projectId = Integer.parseInt(request.getParameter("projectId"));

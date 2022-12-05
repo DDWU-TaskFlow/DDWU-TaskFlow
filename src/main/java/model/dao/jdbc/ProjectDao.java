@@ -43,13 +43,13 @@ public class ProjectDao {
     }
 
 	public int updateProject(Project pro) {
-		int result = 0;
+		int result = 0;		
+		String updateQuery = "UPDATE PROJECT "
+				+ "SET leader_id = ?, notice = ? "
+				+ "WHERE project_id = ?";
 		
-		String updateQuery = "UPDATE Project"
-				+ "	SET leader_id = ?, name = ?, type = ?, creationDate = ?, createdLink = ?, notice = ?, color = ? "
-				+ "	WHERE project_id = ?";
-		Object[] param = new Object[] {pro.getLeader_id(), pro.getType(), pro.getCreationDate(), pro.getCreatedLink(), pro.getNotice(), pro.getColor()};
-		
+		Object[] param = new Object[] {pro.getLeader_id(), pro.getNotice(), pro.getProject_id()};
+		System.out.println("디에이오리더"+pro.getLeader_id());
         jdbcUtil.setSqlAndParameters(updateQuery, param);
         
         try {               

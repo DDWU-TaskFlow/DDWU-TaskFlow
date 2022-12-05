@@ -58,8 +58,7 @@
 
 
 <body class="bg-light" style="overflow-y: hidden;">
-
-  <!-- 상단바, project.name 변경 예정 (DB 연결) -->
+  <!-- 상단바(DB 연결) -->
   <!-- background-image: radial-gradient(circle at 15%, #A1A2D3 5%, #FFFFFF 20%, #A1A2D3); -->
   <nav class="navbar fixed-top navbar-dark border border-2 border-dark rounded mx-auto" aria-label="Main navigation" style="background-color: #A1A2D3; width: 90%; height: 120px; max-width: 1300px; margin-top: 50px;">
       	<div class="container-fluid justify-content-between" style="margin-top: 10px;">
@@ -71,6 +70,7 @@
       <c:if test="${userId == project.leader_id}">
 	      <a href="<c:url value='/project/update'>
 		      		 <c:param name="userId" value="${userId}" />
+		      		 <c:param name="projectId" value="${project.project_id}"/>
 	      		   </c:url>" style="float: right;">
 	        <div class="d-flex justify-content-center align-items-center border border-secondary rounded-circle" style="width: 40px; height: 40px; margin-top: -10px; margin-right: 100px; float: right;">
 	          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="rgb(255, 255, 255)" class="bi bi-gear-fill" viewBox="0 0 16 16">
@@ -159,7 +159,7 @@
 	<nav class="navbar navbar-expand-lg navbar-light" style="margin-top: -35px;">
 		<div class="container-fluid">
 	     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-	     <c:if test="${member.member_id != project.leader_id}">
+	     <c:if test="${userId != project.leader_id}">
 	       <li class="nav-item">
 	       	<!-- onclink으로 구현 -->
 	       	<!-- 팀장은 disabled 속성 주기 -->	

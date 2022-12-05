@@ -122,6 +122,7 @@ public class MemberDao {
 			ResultSet rs = jdbcUtil.executeQuery();		
 			if (rs.next()) {						
 				mem = new Member(	
+						rs.getInt("member_id"),
 						rs.getString("user_name"),
 						rs.getString("password"),
 						name,

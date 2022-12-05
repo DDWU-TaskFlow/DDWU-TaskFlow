@@ -89,7 +89,7 @@ session.setAttribute("firstAccess", 0);%>
 <body>
 
 	<main>
-
+		<input type="hidden" name="step" value="1">  <!-- projectView 진입방법1 -->
 		<!-- 상단 Task Flow, member, project 생성 아이콘 -->
 		<section class="container py-5" style="height: 250px;">
 			<!-- **** 맨 위 상단 로그아웃 버튼 | session 값에 따라 보이고 안보이고 ***-->
