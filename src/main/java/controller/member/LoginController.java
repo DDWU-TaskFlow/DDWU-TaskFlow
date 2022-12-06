@@ -26,7 +26,7 @@ public class LoginController implements Controller {
             session.setAttribute(UserSessionUtils.USER_SESSION_KEY, user_name);
             session.setAttribute("firstAccess", 1);
             
-            request.setAttribute("member_id", mem.getMember_id());
+            session.setAttribute("member_id", mem.getMember_id());
             
             return "redirect:/project/list";
 		} catch (Exception e) {

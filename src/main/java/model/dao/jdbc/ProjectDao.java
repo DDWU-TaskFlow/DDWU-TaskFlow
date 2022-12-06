@@ -43,13 +43,12 @@ public class ProjectDao {
     }
 
 	public int updateProject(Project pro) {
-		int result = 0;
+		int result = 0;		
+		String updateQuery = "UPDATE PROJECT "
+				+ "SET leader_id = ?, notice = ? "
+				+ "WHERE project_id = ?";
 		
-		String updateQuery = "UPDATE Project"
-				+ "	SET leader_id = ?, name = ?, type = ?, creationDate = ?, createdLink = ?, notice = ?, color = ? "
-				+ "	WHERE project_id = ?";
-		Object[] param = new Object[] {pro.getLeader_id(), pro.getType(), pro.getCreationDate(), pro.getCreatedLink(), pro.getNotice(), pro.getColor()};
-		
+		Object[] param = new Object[] {pro.getLeader_id(), pro.getNotice(), pro.getProject_id()};
         jdbcUtil.setSqlAndParameters(updateQuery, param);
         
         try {               
@@ -135,6 +134,25 @@ public class ProjectDao {
     	String outQuery = "DELETE FROM PARTICIPATION WHERE project_id = ?";		
     	
     	Object[] param = new Object[] {project_id};
+        jdbcUtil.setSqlAndParameters(outQuery, param);  
+        
+        try {
+            int result = jdbcUtil.executeUpdate();      // delete 문 실행
+            return result;                      // delete 에 의해 반영된 레코드 수 반환
+        } catch (Exception ex) {
+            jdbcUtil.rollback();
+            ex.printStackTrace();       
+        } finally {
+            jdbcUtil.commit();
+            jdbcUtil.close();     
+        }
+        return 0;
+    }
+    
+    public int outProjectForMember(Participation part) {
+    	String outQuery = "DELETE FROM PARTICIPATION WHERE member_id = ? and project_id = ?";		
+    	
+    	Object[] param = new Object[] {part.getMember_id(), part.getProject_id()};
         jdbcUtil.setSqlAndParameters(outQuery, param);  
         
         try {
