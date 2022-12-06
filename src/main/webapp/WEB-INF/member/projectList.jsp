@@ -100,9 +100,7 @@ session.setAttribute("firstAccess", 0);%>
 				style="margin-top: 10px; width: 400px; height: 100px;">
 				<a href="index.jsp"
 					style="color: rgb(192, 86, 224); display: block;">
-					<p
-						style="font-size: 70px; text-shadow: 1px 1px 5px rgb(197, 135, 226); font-weight: bold;">Task
-						Flow</p>
+					<p style="font-size: 70px; text-shadow: 1px 1px 5px rgb(197, 135, 226); font-weight: bold;">Task Flow</p>
 				</a>
 			</div>
 			<!-- +버튼 생성 -->
@@ -117,8 +115,7 @@ session.setAttribute("firstAccess", 0);%>
 						<c:param name='user_name' value='${member.user_name}'/>
 						</c:url>">
 			
-				<div
-					class="d-flex justify-content-center align-items-center border border-secondary rounded-circle"
+				<div class="d-flex justify-content-center align-items-center border border-secondary rounded-circle"
 					style="width: 40px; height: 40px; margin-right: 150px; float: right;">
 					<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
 						fill="currentColor" class="bi bi-person-circle"
@@ -131,14 +128,6 @@ session.setAttribute("firstAccess", 0);%>
 			</a>
 		</section>
 
-		<%-- 	<!-- 테스트용 코드 -->
-		<p>
-			<c:forEach var="project" items="${projectList}">
-				${project}
-			</c:forEach>
-		</p>
-		 --%>
-
 		<!-- 프로젝트 -->
 		<div class="container align-items-center" style="max-width: 1130px;">
 
@@ -146,24 +135,17 @@ session.setAttribute("firstAccess", 0);%>
 
 				<c:forEach var="project" items="${projectList}">
 
-					<!-- 데베프 팀플 프로젝트 -->
 					<div class="card border-dark mb-3"
 						style="width: 350px; height: 200px;">
 						<div class="card-body">
-							<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35"
-								fill="currentColor" class="bi bi-people-fill"
-								viewBox="0 0 16 16">
-        					<path
-									d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
-      					</svg>
+							<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+        						<path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
+      						</svg>
 							<h4 class="card-title">
-
 								<a class="card-title"
 									href="<c:url value='/project/view'>
 						      							<c:param name='projectId' value='${project.project_id}'/>
 						   								</c:url>">
-
-
 									${project.name}</a>
 							</h4>
 							<p></p>

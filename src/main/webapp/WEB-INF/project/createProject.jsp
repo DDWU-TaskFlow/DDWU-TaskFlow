@@ -63,8 +63,7 @@
                                 <use xlink:href="#bootstrap" />
                             </svg>
                             <span class="fs-4">
-                                <p
-                                    style="font-size: 40px; text-shadow: 1px 1px 5px rgb(197, 135, 226); font-weight: bold; color:rgb(192, 86, 224);">
+                                <p style="font-size: 40px; text-shadow: 1px 1px 5px rgb(197, 135, 226); font-weight: bold; color:rgb(192, 86, 224);">
                                     Create Project</p>
                             </span>
                         </a>
