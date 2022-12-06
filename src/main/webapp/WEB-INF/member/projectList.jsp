@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@page import="java.util.*"%>
 <%@page import="model.*"%>
 <%@page import="controller.*"%>
@@ -105,6 +105,15 @@ session.setAttribute("firstAccess", 0);%>
 						Flow</p>
 				</a>
 			</div>
+			
+			<!-- in버튼 생성 -->
+			<div class="d-flex"
+				style="width: 50px; height: 50px; margin-left: 120px; float: left;">
+				<button type="button"
+					onclick="location.href='/taskflow/project/join';"
+					style="border: 1px solid #FFFFFF; border-radius: 2em; cursor: pointer; cursor: hand; background-color: #ebebeb; color: rgb(0, 0, 0); width: 50px; height: 50px;">in</button>
+			</div>
+			
 			<!-- +버튼 생성 -->
 			<div class="d-flex"
 				style="width: 50px; height: 50px; margin-left: 120px; float: left;">
@@ -112,6 +121,7 @@ session.setAttribute("firstAccess", 0);%>
 					onclick="location.href='/taskflow/project/create';"
 					style="border: 1px solid #FFFFFF; border-radius: 2em; cursor: pointer; cursor: hand; background-color: #ebebeb; color: rgb(0, 0, 0); width: 50px; height: 50px;">+</button>
 			</div>
+			
 			<a href="/taskflow/member/mypage" style="float: right;">
 				<div
 					class="d-flex justify-content-center align-items-center border border-secondary rounded-circle"

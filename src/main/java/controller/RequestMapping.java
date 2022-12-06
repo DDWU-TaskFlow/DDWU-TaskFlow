@@ -13,6 +13,7 @@ import controller.member.LogoutController;
 import controller.member.MyPageController;
 import controller.project.CreateProjectController;
 import controller.project.DeleteProjectController;
+import controller.project.JoinProjectController;
 import controller.project.ListProjectController;
 import controller.project.OutProjectController;
 import controller.project.UpdateProjectController;
@@ -45,6 +46,7 @@ public class RequestMapping {
         mappings.put("/project/setting/out", new OutProjectController());
         mappings.put("/project/list", new ListProjectController());
         mappings.put("/project/view", new ViewProjectController());
+        mappings.put("/project/join", new JoinProjectController());		// get, post
         
         logger.info("Initialized Request Mapping!");
     }

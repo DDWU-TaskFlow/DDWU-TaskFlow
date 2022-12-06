@@ -271,5 +271,24 @@ public class ProjectDao {
         return null;
     }
     
+    public int getProjectID(String code) {
+        String query = "SELECT * "
+        		+ "FROM PROJECT "
+        		+ "WHERE CREATEDLINK = ?";
+        Object[] param = new Object[] { code };        
+        jdbcUtil.setSqlAndParameters(query, param);
+                
+        try { 
+            ResultSet rs = jdbcUtil.executeQuery();     // query 문 실행               
+            rs.next(); 
+            return rs.getInt("PROJECT_ID");      
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            jdbcUtil.close(); 
+        }       
+        return -1;    
+    }
+    
 }
 
