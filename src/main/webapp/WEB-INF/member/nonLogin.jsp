@@ -92,8 +92,8 @@
       <h4 class="card-title"><a class="card-title" href="<c:url value='/member/login/form' />">로그인</a></h4>
       <div style="height: 50px;"></div>
       <div class="progress" style="height: 25px;">
-        <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 20%; height: 25px; background-color: #b3c7ff;"
-            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 100%; height: 25px; background-color: #b3c7ff;"
+            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
         </div>
       </div>
     </div>
@@ -111,8 +111,8 @@
       <h4 class="card-title"><a class="card-title" href="<c:url value='/member/join' />">회원가입</a></h4>
       <div style="height: 50px;"></div>
       <div class="progress" style="height: 25px;">
-        <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 70%; height: 25px; background-color: #A1A2D3;"
-            aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 100%; height: 25px; background-color: #A1A2D3;"
+            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
         </div>
       </div>
     </div>
