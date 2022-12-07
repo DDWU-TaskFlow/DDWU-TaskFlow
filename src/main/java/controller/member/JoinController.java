@@ -1,5 +1,7 @@
 package controller.member;
 
+import java.sql.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -29,7 +31,7 @@ public class JoinController implements Controller {
 			request.getParameter("name"),
 			request.getParameter("email"),
 			request.getParameter("phone"),
-			request.getParameter("brith"));
+			Date.valueOf(request.getParameter("brith")));
 		
         log.debug("Create Member: {}", member);
 

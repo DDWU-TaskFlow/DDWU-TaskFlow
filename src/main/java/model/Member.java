@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 @SuppressWarnings("serial")
 public class Member implements Serializable{
@@ -10,7 +11,7 @@ public class Member implements Serializable{
     private String name;
     private String email;
     private String phone;
-    private String birth;
+    private Date birth;
     
 	public Member() {
         member_id = -1;
@@ -19,10 +20,10 @@ public class Member implements Serializable{
         name = "성춘향";
         email = "chun@naver.com";
         phone = "010-0000-0000";
-        birth = "";
+        birth = new Date(0);
     }
 	
-	public Member(String user_name, String password, String name, String email, String phone, String birth) {
+	public Member(String user_name, String password, String name, String email, String phone, Date birth) {
 		super();
 		this.user_name = user_name;
 		this.password = password;
@@ -33,7 +34,7 @@ public class Member implements Serializable{
 	}
 
 	public Member(int member_id, String user_name, String password, String name, String email, String phone,
-			String birth) {
+			Date birth) {
 		super();
 		this.member_id = member_id;
 		this.user_name = user_name;
@@ -92,11 +93,11 @@ public class Member implements Serializable{
 		this.phone = phone;
 	}
 
-	public String getBirth() {
+	public Date getBirth() {
 		return birth;
 	}
 
-	public void setBirth(String birth) {
+	public void setBirth(Date birth) {
 		this.birth = birth;
 
 	}

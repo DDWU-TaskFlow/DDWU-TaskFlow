@@ -136,7 +136,7 @@ public class MemberDao {
 						rs.getString("name"),
 						rs.getString("email"),
 						rs.getString("phone"),
-						rs.getString("birth"));
+						rs.getDate("birth"));
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -162,7 +162,7 @@ public class MemberDao {
 						rs.getString("name"),
 						rs.getString("email"),
 						rs.getString("phone"),
-						rs.getString("birth"));
+						rs.getDate("birth"));
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -188,7 +188,7 @@ public class MemberDao {
 						name,
 						rs.getString("email"),
 						rs.getString("phone"),
-						rs.getString("birth"));
+						rs.getDate("birth"));
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
