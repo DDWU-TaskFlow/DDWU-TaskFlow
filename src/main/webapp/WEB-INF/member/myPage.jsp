@@ -50,23 +50,54 @@
         }
       }
     </style>
-
-    <!-- Custom styles for this template -->
-    <link href="myPage.jsp" rel="stylesheet">
     
 <script>
+
 function update() {
-	form.submit();
-	document.location.href="/taskflow/member/mypage";
+	if(checkSpace(document.form.newPassword.value) == true) {
+		alert("비밀번호에 공백은 사용할 수 없습니다.");
+		return false;
+	}
+	if(validatePassword() == false) {
+		return false;
+	}
+	
+	return true;
 }
+
 function goToProjectList() {
 	document.location.href="/taskflow/project/list";
+}
+
+// 공백 확인
+function checkSpace(str) {
+	if(str.search(/\s/) != -1) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+// 비밀번호 재확인
+function validatePassword() {
+	var newPw = document.getElementById("newPassword");
+	var confirmPw = document.getElementById("confirmPassword");
+	
+	if(newPw.value != confirmPw.value) {
+		confirmPw.setCustomValidity("비밀번호가 일치하지 않습니다.");
+		confirmPw.reportValidity();
+		return false;
+	} else {
+		confirmPw.setCustomValidity("");
+	}
+	return true;
+	
 }
 </script>
   </head>
   <body class="bg-light">
-  <form name="form" method="POST" action="/taskflow/member/mypage">  <!-- action="<c:url value='/member/myPage'/>" -->
-    
+    <form name="form" method="POST" action="/taskflow/member/mypage" onsubmit="return update();">
+
 <div class="container">
     <main>
         <div class="row g-5">
@@ -102,13 +133,14 @@ function goToProjectList() {
                         <!-- New Password -->
                         <div class="col-sm-6">
                             <label for="newPassword" class="form-label">New Password</label>
-                            <input type="text" class="form-control" name="newPassword" placeholder="" value="">
+                            <input type="text" class="form-control" id="newPassword" name="newPassword" placeholder="" value="">
                         </div>
     
                         <!-- Confirm New Password -->
                         <div class="col-sm-6">
                             <label for="confirmPassword" class="form-label">Confirm New Password</label>
-                            <input type="text" class="form-control" name="confirmPassword" placeholder="" value="">
+                            <input type="text" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="" value=""
+                            		onchange="validatePassword()">
                         </div>
     
                         <!-- Name -->
@@ -145,8 +177,7 @@ function goToProjectList() {
 
                     <div class="find-btn">
                         <button type="submit" class="btn btn-primary btn-lg px-4 gap-3" 
-                        	style="background-color: rgb(161, 162, 207); border: 0; outline: 0;"
-                        	value="Update">Update</button>
+                        	style="background-color: rgb(161, 162, 207); border: 0; outline: 0;">Update</button>
                         <button class="btn btn-outline-secondary btn-lg px-4" type="reset" onClick="goToProjectList();">Cancel</button>      
                     </div>
             </div>
