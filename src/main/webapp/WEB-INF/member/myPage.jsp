@@ -34,8 +34,14 @@
       }
 
       .find-btn {
+        height: 50px;
+      }
+      
+      .danger-btn {
         text-align: center;
         display: inline-block;
+        position: relative;
+        top: 25px;
       }
 
       @media (min-width: 768px) {
@@ -65,27 +71,26 @@ function goToProjectList() {
     <main>
         <div class="row g-5">
             <div class="col-md-7 col-lg-8">
-
-                <!-- 상단 바 My Page -->
                 <div class="pt-5 text-center">
                     <header class="d-flex flex-wrap justify-content-center pt-3 mb-4">
-                        <a href="myPage.jsp"
-                            class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-                            <!-- <svg class="bi me-2" width="5" height="32">
-                                <use xlink:href="#bootstrap" />
-                            </svg> -->
+                        <a href="#" onClick="location.reload()"
+                            class='d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none'>
+                            
+  							<!-- 상단 바 My Page -->
                             <span class="fs-4">
                                 <p style="font-size: 40px; text-shadow: 1px 1px 5px rgb(197, 135, 226); font-weight: bold; color:rgb(192, 86, 224);">My Page</p>
                             </span>
                         </a>
-                    </header>
+                        
+                        <!-- 회원 탈퇴 버튼 -->
+                        <div class="danger-btn">
+                     	   <button class="btn btn-outline-danger" onClick="">회원 탈퇴</button>  
+                        </div>  
+                    </header>                                           
                 </div>
 
                 <hr class="my-4">
 
-				<!--
-                <form class="needs-validation" method="POST" action="<c:url value'/taskflow/member/mypage'/>">
-                -->
                     <div class="row g-3">
 
                         <!-- Member Id 확인(읽기 전용) -->
@@ -139,19 +144,15 @@ function goToProjectList() {
                     <hr class="my-4">
 
                     <div class="find-btn">
-                 
-                    
                         <button type="submit" class="btn btn-primary btn-lg px-4 gap-3" 
                         	style="background-color: rgb(161, 162, 207); border: 0; outline: 0;"
                         	value="Update">Update</button>
-                        <button class="btn btn-outline-secondary btn-lg px-4" type="reset" onClick="goToProjectList();">Cancel</button>
-                    
+                        <button class="btn btn-outline-secondary btn-lg px-4" type="reset" onClick="goToProjectList();">Cancel</button>      
                     </div>
             </div>
         </div>
     </main>
 </div>
-
       </form>
   </body>
 </html>
