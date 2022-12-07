@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
   <head>
@@ -51,6 +52,9 @@
 function update() {
 	form.submit();
 	document.location.href="/taskflow/member/mypage";
+}
+function goToProjectList() {
+	document.location.href="/taskflow/project/list";
 }
 </script>
   </head>
@@ -127,7 +131,7 @@ function update() {
                         <div class="col-12">
                             <label for="address2" class="form-label">Birthday</label>
                             <form>
-                                <p><input type="date" value="${member.birth }"></p>
+                                <p><input type="date" value=parsedDate></p>
                             </form>
                         </div>
                     </div>
@@ -140,7 +144,7 @@ function update() {
                         <button type="submit" class="btn btn-primary btn-lg px-4 gap-3" 
                         	style="background-color: rgb(161, 162, 207); border: 0; outline: 0;"
                         	value="Update">Update</button>
-                        <button class="btn btn-outline-secondary btn-lg px-4" type="reset">Cancel</button>
+                        <button class="btn btn-outline-secondary btn-lg px-4" type="reset" onClick="goToProjectList();">Cancel</button>
                     
                     </div>
             </div>
