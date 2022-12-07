@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
@@ -54,7 +54,7 @@
         <div class="row g-5">
             <div class="col-md-7 col-lg-8">
 
-                <!-- »ó´Ü ¹Ù Create Project-->
+                <!-- ìƒë‹¨ ë°” Create Project-->
                 <div class="pt-5 text-center">
                     <header class="d-flex flex-wrap justify-content-center pt-3 mb-4">
                         <a href="createProject.jsp"

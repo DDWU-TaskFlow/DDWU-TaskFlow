@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<meta charset="EUC-KR">
+	<meta charset="UTF-8">
 	<title>taskList.jsp</title>
 	
 	<style>
@@ -21,26 +21,26 @@
 
 	<div class="p-2 bg-body rounded shadow-sm">
 
-		<!-- »ó´Ü¹Ù -->
+		<!-- ìƒë‹¨ë°” -->
 		<div style="float: left;">
 			<a href="#" class="btn rounded-pill"
-				style="width: 80px; background-color: #b3c7ff;">¹èÁ¤</a>&nbsp; <a
+				style="width: 80px; background-color: #b3c7ff;">ë°°ì •</a>&nbsp; <a
 				href="#" class="btn rounded-pill"
-				style="width: 80px; background-color: #b3c7ff;">¹Ì¹èÁ¤</a>
+				style="width: 80px; background-color: #b3c7ff;">ë¯¸ë°°ì •</a>
 		</div>
-		<!-- Á¤·Ä (±âÇÑ, ¸â¹ö, ÅÂ½ºÅ©) -->
+		<!-- ì •ë ¬ (ê¸°í•œ, ë©¤ë²„, íƒœìŠ¤í¬) -->
 		<!-- <div class="form-group d-flex flex-row-reverse">
   <select class="form-select" id="exampleSelect1" style="width: 100px;">
-    <option selected>ÀüÃ¼</option>
-    <option>ÀÌ¼ÛÈñ</option>
-    <option>½ÉÀçÇö</option>
-    <option>Á¤À¯¿µ</option>
-    <option>¼­ÇÑ³ª</option>
+    <option selected>ì „ì²´</option>
+    <option>ì´ì†¡í¬</option>
+    <option>ì‹¬ìž¬í˜„</option>
+    <option>ì •ìœ ì˜</option>
+    <option>ì„œí•œë‚˜</option>
   </select>
 </div> -->
 		<div class="d-flex flex-row-reverse">
 			<a href="<c:url value="/task/create/form" />" class="btn"
-				style="width: 65px; background-color: #7c78c0; color: white;">Ãß°¡</a>&nbsp;
+				style="width: 65px; background-color: #7c78c0; color: white;">ì¶”ê°€</a>&nbsp;
 		</div>
 		<hr />
 
@@ -50,7 +50,7 @@
 	<c:forEach var="task" items="${taskList}">
 		<c:set var="taskId" value="${task.task_id}" />
 	
-		<!-- DB¿¡¼­ ºÒ·¯¿Àµµ·Ï º¯°æ -->
+		<!-- DBì—ì„œ ë¶ˆëŸ¬ì˜¤ë„ë¡ ë³€ê²½ -->
 		<div class="d-flex p-1 align-items-center" style="height: 70px;">
 			<span class="d-block text-center"><strong>'${task.name}'</strong><br>
 				<span class="d-block mt-1 rounded-pill text-center"
@@ -72,7 +72,7 @@
 	</c:forEach>
 		
 		<div class="d-flex p-1 align-items-center" style="height: 70px;">
-			<span class="d-block text-center"><strong>'UI µðÀÚÀÎ'</strong><br>
+			<span class="d-block text-center"><strong>'UI ë””ìžì¸'</strong><br>
 				<span class="d-block mt-1 rounded-pill text-center"
 				style="background-color: rgb(233, 231, 231); width: 200px;">
 				by 2022/12/05</span>
@@ -81,7 +81,7 @@
 				<summary>DETAIL</summary>
 				<span class="p-2 rounded-3"
 					style="width: 190px; height: 65px; background-color: black; color: white; margin-left: 80px; margin-top: -40px;">
-					ÇÙ½É ÆäÀÌÁö UI µðÀÚÀÎÇÏ±â</span>
+					í•µì‹¬ íŽ˜ì´ì§€ UI ë””ìžì¸í•˜ê¸°</span>
 			</details>
 			<span class="me-2" style="margin-left: auto;">
 				<button class=" btn btn-outline-dark rounded-circle" type="button" onclick="location.href='<c:url value='/task/update/form' />';">
