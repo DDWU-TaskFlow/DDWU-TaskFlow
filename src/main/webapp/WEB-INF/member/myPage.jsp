@@ -168,7 +168,7 @@ function validatePassword() {
                         <div class="col-12">
                             <label for="address2" class="form-label">Birthday</label>
                             <form>
-                                <p><input type="date" value=parsedDate></p>
+                                <p><input type="date" name="birth" value="${member.birth }"></p>
                             </form>
                         </div>
                     </div>

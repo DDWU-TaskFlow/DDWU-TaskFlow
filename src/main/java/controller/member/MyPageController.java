@@ -1,5 +1,7 @@
 package controller.member;
 
+import java.sql.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -39,7 +41,7 @@ public class MyPageController implements Controller {
 		Member updateMember = new Member( member.getMember_id(), 
 				request.getParameter("user_name"), password,
 				request.getParameter("name"), request.getParameter("email"),
-				request.getParameter("phone"), request.getParameter("birth"));
+				request.getParameter("phone"), Date.valueOf(request.getParameter("birth")));
 
 		manager.update(updateMember);
 		
