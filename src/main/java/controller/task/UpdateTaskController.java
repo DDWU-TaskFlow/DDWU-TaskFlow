@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
+import controller.member.UserSessionUtils;
 import model.Member;
 import model.Task;
 import model.service.ProjectManager;
@@ -17,6 +18,10 @@ public class UpdateTaskController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
+		if(!UserSessionUtils.hasLogined(request.getSession())) {
+			return "/member/projectList.jsp";
+		}
+	    
 		TaskManager tManager = TaskManager.getInstance();
 		ProjectManager pManager = ProjectManager.getInstance();
 		
