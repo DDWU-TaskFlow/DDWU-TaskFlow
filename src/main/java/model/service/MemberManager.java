@@ -27,6 +27,10 @@ public class MemberManager {
 		}
 		return memberDAO.insertMember(member);
 	}
+	
+	public int update(Member member) throws SQLException {
+		return memberDAO.updateMember(member);
+	}
 
 	/*public int update(Member user) throws SQLException, MemberNotFoundException {
 		int oldCommId = findUser(user.getUser_name()).getCommId();
@@ -61,6 +65,11 @@ public class MemberManager {
 	//사용자 아이디로 받아오는 방법.
  	public Member getMember(String userName) {
 		return memberDAO.findMember(userName);
+	}
+ 	
+ 	//사용자 이름으로 받아오는 방법.
+ 	public Member getMemberByName(String name) {
+		return memberDAO.findMemberByName(name);
 	}
 	
 	public boolean login(String userName, String password)throws SQLException, MemberNotFoundException, PasswordMismatchException {

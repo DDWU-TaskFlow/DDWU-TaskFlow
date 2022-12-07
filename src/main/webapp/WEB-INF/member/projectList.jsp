@@ -76,12 +76,14 @@ h4.card-title {
 
 <script type="text/javascript">
 <%String strID = (String) session.getAttribute("user_name");
+if (strID != null) { 
 int firstAccess = (int) session.getAttribute("firstAccess");
-if (strID != null && firstAccess == 1) {%> 
+if (firstAccess == 1) {%> 
 var strName="<%=strID%>";
 	alert(strName + "님!! 환영합니다.");
 <%}
-session.setAttribute("firstAccess", 0);%>
+session.setAttribute("firstAccess", 0);
+}%>
 	
 </script>
 
@@ -89,22 +91,21 @@ session.setAttribute("firstAccess", 0);%>
 <body>
 
 	<main>
-
 		<!-- 상단 Task Flow, member, project 생성 아이콘 -->
 		<section class="container py-5" style="height: 250px;">
-			<!-- **** 맨 위 상단 로그아웃 버튼 | session 값에 따라 보이고 안보이고 ***-->
-			<!--  <div style="width: 100px; height: 50px; margin-top: 5px; margin-right: 140px; float: right; color: rgb(0, 0, 0);">
-				<button type="button" class="btn btn-primary btn-lg px-4 gap-3" style="border: 1px solid #FFFFFF; background-color: rgb(192, 86, 224); width: 100px; height: 50px; font-size:10px;" onClick="<c:url value='/member/logout'/>">로그아웃</button>
-			</div>-->
+			<c:if test="${not empty userId}">
+			<div style="width: 100px; height: 50px; margin-top: 5px; margin-right: 140px; float: right; color: rgb(0, 0, 0);">
+				<button type="button" class="btn btn-primary btn-lg px-4 gap-3" style="border: 1px solid #FFFFFF; background-color: rgb(192, 86, 224); width: 100px; height: 50px; font-size:10px;" onClick="location.href='<c:url value='/member/logout'/>'">로그아웃</button>
+			</div>
+			</c:if>
 			<div class="container-fluid text-center"
 				style="margin-top: 10px; width: 400px; height: 100px;">
 				<a href="index.jsp"
 					style="color: rgb(192, 86, 224); display: block;">
-					<p
-						style="font-size: 70px; text-shadow: 1px 1px 5px rgb(197, 135, 226); font-weight: bold;">Task
-						Flow</p>
+					<p style="font-size: 70px; text-shadow: 1px 1px 5px rgb(197, 135, 226); font-weight: bold;">Task Flow</p>
 				</a>
 			</div>
+
 			
 			<!-- in버튼 생성 -->
 			<div class="d-flex"
@@ -114,6 +115,9 @@ session.setAttribute("firstAccess", 0);%>
 					style="border: 1px solid #FFFFFF; border-radius: 2em; cursor: pointer; cursor: hand; background-color: #ebebeb; color: rgb(0, 0, 0); width: 50px; height: 50px;">in</button>
 			</div>
 			
+
+			<c:if test="${not empty userId}">
+
 			<!-- +버튼 생성 -->
 			<div class="d-flex"
 				style="width: 50px; height: 50px; margin-left: 120px; float: left;">
@@ -122,9 +126,17 @@ session.setAttribute("firstAccess", 0);%>
 					style="border: 1px solid #FFFFFF; border-radius: 2em; cursor: pointer; cursor: hand; background-color: #ebebeb; color: rgb(0, 0, 0); width: 50px; height: 50px;">+</button>
 			</div>
 			
+
 			<a href="/taskflow/member/mypage" style="float: right;">
 				<div
 					class="d-flex justify-content-center align-items-center border border-secondary rounded-circle"
+
+			<a style="float: right;" href="<c:url value='/member/mypage'>
+						<c:param name='user_name' value='${member.user_name}'/>
+						</c:url>">
+			
+				<div class="d-flex justify-content-center align-items-center border border-secondary rounded-circle"
+
 					style="width: 40px; height: 40px; margin-right: 150px; float: right;">
 					<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
 						fill="currentColor" class="bi bi-person-circle"
@@ -134,17 +146,13 @@ session.setAttribute("firstAccess", 0);%>
 							d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
        		 		</svg>
 				</div>
-			</a>
+			</a>			
+			</c:if>
 		</section>
 
-		<%-- 	<!-- 테스트용 코드 -->
-		<p>
-			<c:forEach var="project" items="${projectList}">
-				${project}
-			</c:forEach>
-		</p>
-		 --%>
-
+		<c:choose>
+		<c:when test="${not empty userId}">
+     
 		<!-- 프로젝트 -->
 		<div class="container align-items-center" style="max-width: 1130px;">
 
@@ -152,24 +160,18 @@ session.setAttribute("firstAccess", 0);%>
 
 				<c:forEach var="project" items="${projectList}">
 
-					<!-- 데베프 팀플 프로젝트 -->
 					<div class="card border-dark mb-3"
 						style="width: 350px; height: 200px;">
 						<div class="card-body">
-							<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35"
-								fill="currentColor" class="bi bi-people-fill"
-								viewBox="0 0 16 16">
-        					<path
-									d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
-      					</svg>
+							<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+        						<path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
+      						</svg>
 							<h4 class="card-title">
-
 								<a class="card-title"
 									href="<c:url value='/project/view'>
+														<c:param name='step' value='1'/> 
 						      							<c:param name='projectId' value='${project.project_id}'/>
-						   								</c:url>">
-
-
+						   					</c:url>"><!-- projectView 진입방법1 -->
 									${project.name}</a>
 							</h4>
 							<p></p>
@@ -189,6 +191,12 @@ session.setAttribute("firstAccess", 0);%>
 
 				</c:forEach>
 
+		</c:when>
+		<c:when test="${empty userId}">
+		      <jsp:include page="nonLogin.jsp" />
+		</c:when>
+		</c:choose>
+		
 				<!-- 				생활지도 및 상담 프로젝트
 				<div class="card border-dark mb-3"
 					style="width: 350px; height: 200px;">

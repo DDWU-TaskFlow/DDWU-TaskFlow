@@ -22,6 +22,16 @@
 		</where>
 	</select>
 	
+	<select id="selectMemberNameByCommentId" parameterType="int" resultType="String">
+		SELECT name
+		FROM Comments JOIN Member USING (member_id)
+		<where>
+			<if test="commnet_id != null">
+				comment_id = #{commentId}
+			</if>
+		</where>
+	</select>
+	
 	<insert id="insertComment" parameterType="Comment">
 		<selectKey keyProperty="number" resultType="int" order="BEFORE">
 			SELECT SEQUENCE_Comments.nextval AS id FROM DUAL

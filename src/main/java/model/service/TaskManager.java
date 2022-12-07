@@ -53,6 +53,11 @@ public class TaskManager {
 		return progress;
 	}
 	
+	public Task findTaskByTaskId(int taskId) {
+		Task task = taskDao.findTaskByTaskId(taskId);
+		return task;
+	}
+	
 	public String findMemberNameByTaskId(int taskId) {
 		String memberName = taskDao.findMemberNameByTaskId(taskId);
 		return memberName;

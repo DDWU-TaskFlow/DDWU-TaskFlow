@@ -1,7 +1,7 @@
 package model.dao.jdbc;
 
-import java.sql.Date;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class CommentDao {
 	
 	public int insertComment(Comment comment) {
 		String insertQuery = "INSERT INTO Comments (comment_id, task_id, member_id, writtenDate, content) "
-				+ "VALUES (SEQUENCE_Comments.nextval, ?, ?, to_date(SYSDATE, 'YYYY-MM-DD HH24:mi:SS'), ?)";
+				+ "VALUES (SEQUENCE_Comments.nextval, ?, ?, SYSDATE, ?)";
 
 		int result = 0;
 		Object[] params = new Object[] {comment.getTask_id(), comment.getMemberId(), comment.getContent()};
@@ -28,7 +28,7 @@ public class CommentDao {
 		try {
 			result = jdbcUtil.executeUpdate();
 		} catch (Exception e) {
-            System.out.println("스레드 삽입에서 오류 발생!!!");
+            System.out.println("코멘트 삽입에서 오류 발생!!!");
             jdbcUtil.rollback();
 			e.printStackTrace();
 		} finally {
@@ -41,7 +41,7 @@ public class CommentDao {
 	
 	public int updateComment(Comment comment) {
 		String updateQuery = "UPDATE Comments "
-				+ "SET writtenDate = to_date(SYSDATE, 'YYYY-MM-DD HH24:mi:SS') , content = ? "
+				+ "SET writtenDate = SYSDATE , content = ? "
 				+ "WHERE comment_id = ? ";
 
         int result = 0;
@@ -51,7 +51,7 @@ public class CommentDao {
 		try {
 			result = jdbcUtil.executeUpdate();
 		} catch (Exception e) {
-            System.out.println("스레드 수정에서 오류 발생!!!");
+            System.out.println("코멘트 수정에서 오류 발생!!!");
             jdbcUtil.rollback();
 			e.printStackTrace();
 		} finally {
@@ -73,7 +73,7 @@ public class CommentDao {
 		try {
 			result = jdbcUtil.executeUpdate();
 		} catch (Exception e) {
-            System.out.println("스레드 삭제에서 오류 발생!!!");
+            System.out.println("코멘트 삭제에서 오류 발생!!!");
             jdbcUtil.rollback();
 			e.printStackTrace();
 		} finally {
@@ -99,7 +99,7 @@ public class CommentDao {
 			while (rs.next()) {
 				int commentId = rs.getInt("commentId");
 				int memberId = rs.getInt("member_id");
-				Date writtenDate = rs.getDate("writtenDate");
+				Timestamp writtenDate = rs.getTimestamp("writtenDate");
 				String content = rs.getString("content");
 				commentList.add(new Comment(commentId, taskId, memberId, writtenDate, content));
 			}

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	
 <!DOCTYPE html>
 <html lang="en">
@@ -34,80 +35,30 @@
 		</div>
 		<hr />
 		
-		
-	<div class="accordion" id="accordionExample">
-		
-		<!-- DB에서 불러오도록 변경 -->
-		<div class="accordion-item border">
-		<div id="headingTwo" class="accordion-header d-flex p-1 align-items-center justify-content-between" style="height: 100px; max-height: 500px;">
-			<span class="d-flex justify-content-center" style="width: 160px;">
-				<span class="d-block ps-3 pe-3 rounded-pill text-center"
-					style="background-color: #fffacc;">
-					<strong style="text-decoration: underline;">요구사항 분석</strong><br>by
-					2022/11/27
-				</span>
-			</span>
-			<span class="d-flex accordion-button collapsed p-2" style="width: 270px; height: 90px;" data-bs-toggle="collapse" data-bs-target="#collapse1">
-				요구사항 명세서 작성하고 이클래스에 제출하기 (30%)
-			</span>
-			<span class="d-flex justify-content-center" style="width: 80px;">
-				<button class="d-flex btn btn-outline-warning" onclick="location.href='<c:url value='/task/update/form' />';">
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-					  <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-					</svg>
-				</button>
-			</span>
-		</div>
-		</div>
-	    <div id="collapse1" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-	      <div class="accordion-body">
-		      <jsp:include page="comment.jsp" />
-	      </div>
-	    </div>
-		<hr />
+	<c:set var="proId" value="${param.projectId}" />
+	<c:set var="memId" value="${param.memberId}" />
+	
+	<div class="accordion" id="accordion${memId}">
 
-		<div class="accordion-item border">
-		<div id="headingTwo" class="accordion-header d-flex p-1 align-items-center justify-content-between" style="height: 100px; max-height: 500px;">
-			<span class="d-flex justify-content-center" style="width: 160px;">
-				<span class="d-block ps-3 pe-3 rounded-pill text-center"
-					style="background-color: #fffacc;">
-					<strong style="text-decoration: underline;">데이터베이스 설계</strong><br>by
-					2022/10/15
-				</span>
-			</span>
-			<span class="d-flex accordion-button collapsed p-2" style="width: 270px; height: 90px;" data-bs-toggle="collapse" data-bs-target="#collapse2">
-				ERWIN Physical 모델링 수정하고 DDL 스크립트 돌리기 (70%)
-			</span>
-			<span class="d-flex justify-content-center" style="width: 80px;">
-				<button class="d-flex btn btn-outline-warning" onclick="location.href='<c:url value='/task/update/form' />';">
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-					  <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-					</svg>
-				</button>
-			</span>
-		</div>
-		</div>
-	    <div id="collapse2" class="accordion-collapse collapse p-2" data-bs-parent="#accordionExample">
-	      <div class="accordion-body">
-		      <jsp:include page="comment.jsp" />
-		  </div>
-	    </div>
-		<hr />
+	<c:set var="taskList" value="${taskManager.getTaskList(proId, memId)}" />
+	<c:forEach var="task" items="${taskList}">
 		
 		<div class="accordion-item border">
 		<div id="headingTwo" class="accordion-header d-flex p-1 align-items-center justify-content-between" style="height: 100px; max-height: 500px;">
 			<span class="d-flex justify-content-center" style="width: 160px;">
 				<span class="d-block ps-3 pe-3 rounded-pill text-center"
 					style="background-color: #fffacc;">
-					<strong style="text-decoration: underline;">MVC 구조 설계</strong><br>by
-					2022/11/08
+					<strong style="text-decoration: underline;">${task.name}</strong><br>by
+					${task.deadline}
 				</span>
 			</span>
-			<span class="d-flex accordion-button collapsed p-2" style="width: 270px; height: 90px;" data-bs-toggle="collapse" data-bs-target="#collapse3">
-				자료 참고해서 엑셀 파일 작성하고 노션에 공유하기 (50%)
+			<span class="d-flex accordion-button collapsed p-2" style="width: 270px; height: 90px;" data-bs-toggle="collapse" data-bs-target="#collapse${task.task_id}">
+				${task.content} (${task.task_progress}%)
 			</span>
 			<span class="d-flex justify-content-center" style="width: 80px;">
-				<button class="d-flex btn btn-outline-warning" onclick="location.href='<c:url value='/task/update/form' />';">
+				<button class="d-flex btn btn-outline-warning" onclick="location.href='<c:url value='/task/update'>
+		      																			  <c:param name="taskId" value="${task.task_id}" />
+																					   </c:url>';">
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
 					  <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
 					</svg>
@@ -115,41 +66,19 @@
 			</span>
 		</div>
 		</div>
-	    <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+	    <div id="collapse${task.task_id}" class="accordion-collapse collapse" data-bs-parent="#accordion${memId}">
 	      <div class="accordion-body">
-		      <jsp:include page="comment.jsp" />
+	       	  <!-- include comment.jsp -->
+		      <c:import url="../task/comment.jsp">
+		      	<c:param name="taskId" value="${task.task_id}" />
+      			<c:param name="commentManager" value="${commentManager}" />
+		      </c:import>
 	      </div>
 	    </div>
 		<hr />
+		
+	</c:forEach>
 
-		<div class="accordion-item border">
-		<div id="headingTwo" class="accordion-header d-flex p-1 align-items-center justify-content-between" style="height: 100px; max-height: 500px;">
-			<span class="d-flex justify-content-center" style="width: 160px;">
-				<span class="d-block ps-3 pe-3 rounded-pill text-center"
-					style="background-color: #fffacc;">
-					<strong style="text-decoration: underline;">UI 디자인</strong><br>by
-					2022/12/05
-				</span>
-			</span>
-			<span class="d-flex accordion-button collapsed p-2" style="width: 270px; height: 90px;" data-bs-toggle="collapse" data-bs-target="#collapse4">
-				핵심 페이지 UI 디자인하고 일부 구현하기 (90%)
-			</span>
-			<span class="d-flex justify-content-center" style="width: 80px;">
-				<button class="d-flex btn btn-outline-warning" onclick="location.href='<c:url value='/task/update/form' />';">
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-					  <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-					</svg>
-				</button>
-			</span>
-		</div>
-		</div>
-	    <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-	      <div class="accordion-body">
-		      <jsp:include page="comment.jsp" />
-	      </div>
-	    </div>
-		<hr />
-		
 	</div>
 
 

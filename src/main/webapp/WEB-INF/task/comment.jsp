@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="EUC-KR">
-	<title>commentView.jsp</title>
-</head>
-<body>
-	<div class="border">
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<div class="border">
+	
+	<c:set var="taskId" value="${param.taskId}" />
+	<c:set var="commentList" value="${commentManager.findCommentByTaskId(taskId)}" />
+	<c:forEach var="comment" items="${commentList}">
+		<c:set var="comId" value="${comment.commentId}" />
 	
 		<div class="d-flex pt-3 border justify-content-center align-items-center">
 	      <span class="d-block rounded-pill pb-3" style="width: 50px;">
@@ -18,28 +18,14 @@
 	      </span>
 	      <p>
 	        <span class="d-flex rounded-pill justify-content-center" style="width: 300px;">
-	        	2022/09/10 10:00
-	        	<strong class="ms-3">|&nbsp;정유영&nbsp;|</strong>
+	        	${comment.writtenDate}
+	        	<strong class="ms-3">|&nbsp;${commentManager.findMemberNameByCommentId(comId)}&nbsp;|</strong>
 	        </span>
-	        <span class="d-block rounded-pill text-center" style="max-width: 300px;">"규륫"</span>
+	        <span class="d-block rounded-pill text-center" style="max-width: 300px;">"${comment.content}"</span>
 	      </p>
 	    </div>
-	
-	    <div class="d-flex pt-3 border justify-content-center align-items-center">
-	      <span class="d-block rounded-pill pb-3" style="width: 50px;">
-			<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#7c78c0" class="bi bi-wechat" viewBox="0 0 16 16">
-			  <path d="M11.176 14.429c-2.665 0-4.826-1.8-4.826-4.018 0-2.22 2.159-4.02 4.824-4.02S16 8.191 16 10.411c0 1.21-.65 2.301-1.666 3.036a.324.324 0 0 0-.12.366l.218.81a.616.616 0 0 1 .029.117.166.166 0 0 1-.162.162.177.177 0 0 1-.092-.03l-1.057-.61a.519.519 0 0 0-.256-.074.509.509 0 0 0-.142.021 5.668 5.668 0 0 1-1.576.22ZM9.064 9.542a.647.647 0 1 0 .557-1 .645.645 0 0 0-.646.647.615.615 0 0 0 .09.353Zm3.232.001a.646.646 0 1 0 .546-1 .645.645 0 0 0-.644.644.627.627 0 0 0 .098.356Z"/>
-			  <path d="M0 6.826c0 1.455.781 2.765 2.001 3.656a.385.385 0 0 1 .143.439l-.161.6-.1.373a.499.499 0 0 0-.032.14.192.192 0 0 0 .193.193c.039 0 .077-.01.111-.029l1.268-.733a.622.622 0 0 1 .308-.088c.058 0 .116.009.171.025a6.83 6.83 0 0 0 1.625.26 4.45 4.45 0 0 1-.177-1.251c0-2.936 2.785-5.02 5.824-5.02.05 0 .1 0 .15.002C10.587 3.429 8.392 2 5.796 2 2.596 2 0 4.16 0 6.826Zm4.632-1.555a.77.77 0 1 1-1.54 0 .77.77 0 0 1 1.54 0Zm3.875 0a.77.77 0 1 1-1.54 0 .77.77 0 0 1 1.54 0Z"/>
-			</svg>
-	      </span>
-	      <p>
-	        <span class="d-flex rounded-pill justify-content-center" style="width: 300px;">
-	        	2022/09/11 23:37
-	        	<strong class="ms-3">|&nbsp;심재현&nbsp;|</strong>
-	       	</span>
-	        <span class="d-block rounded-pill text-center" style="max-width: 300px;">"잘 하고 계신감"</span>
-	      </p>
-	    </div>
+	    
+	</c:forEach>
     
     </div>
     
@@ -53,7 +39,4 @@
 		</svg>
 	  </button>
 	</div>
-    </div>
-
-</body>
-</html>
+</div>

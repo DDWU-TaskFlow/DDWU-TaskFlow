@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.Controller;
+import model.Member;
 import model.service.MemberManager;
 
 public class LoginController implements Controller {
@@ -18,12 +19,14 @@ public class LoginController implements Controller {
 			MemberManager manager = MemberManager.getInstance();
 			manager.login(user_name, password);
 			
-//			Member mem = manager.getMember(user_name);
+			Member mem = manager.getMember(user_name);
 			
 			// 세션에 사용자 이이디 저장
 			HttpSession session = request.getSession();
             session.setAttribute(UserSessionUtils.USER_SESSION_KEY, user_name);
             session.setAttribute("firstAccess", 1);
+            
+            session.setAttribute("member_id", mem.getMember_id());
             
             return "redirect:/project/list";
 		} catch (Exception e) {

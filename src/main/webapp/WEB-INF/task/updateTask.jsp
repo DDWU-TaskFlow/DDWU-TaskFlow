@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!doctype html>
 <html lang="en">
@@ -67,52 +68,59 @@
   <div class="d-flex p-3 bg-body rounded mx-auto justify-content-center" style="margin-top: 200px; width: 100%; height: 510px;">
   
 	  <!-- task 수정 -->
-      <span class="p-4 mt-4" style="font-size: 20px; font-weight: bold;">TASK 수정</span>
+      <span class="d-flex p-4 mt-4 justify-content-center" style="font-size: 20px; font-weight: bold; width: 250px;">TASK 수정</span>
 
-      <form class="needs-validation m-4" novalidate>
-          <div class="d-flex row mt-4 justify-content-center">
+      <form class="m-4">
+          <div class="d-flex row mt-4 justify-content-start">
 	  
 			  <!-- Task Name -->
 			  <div class="col-12">
-		            <label for="task_name" class="form-label">Task명</label>
-		            <input type="text" class="form-control" value="Task Name" style="width: 200px;">
-		            <div class="invalid-feedback">
-		                Please enter a valid email address for shipping updates.
-		            </div>
-		        </div>
+		            <label for="task_name" class="form-label">Task 이름</label>
+		            <input type="text" class="form-control" value="${task.name}" style="width: 200px;">
+		      </div>
+		      <span style="height: 15px;"></span>
 			  
 			  <!-- Task 배정 -->
-			  <div class="col-12">
+			  <div class="col-sm-5">
 		        <label for="task_name" class="form-label">배정</label>
 				<div class="input-group mb-3" style="width: 150px;">
 				  <label class="input-group-text " for="inputGroupSelect01">담당</label>
 				  <select class="form-select" id="inputGroupSelect01">
-				    <option value="0" selected>미배정</option>
-				    <option value="1">이송희</option>
-				    <option value="2">심재현</option>
-				    <option value="3">정유영</option>
-				    <option value="4">서한나</option>
+				  
+					<c:forEach var="member" items="${memberList}">
+				        <option value="${member.member_id}"
+		        		<c:if test="${member.member_id == task.member_id}">
+		        		selected
+		        		</c:if>>
+				        ${member.name}</option>
+				    </c:forEach>
 				  </select>
 				</div>
 			   </div>
-				
-		
-			  <!-- Task 진행률 -->
-			  <div class="col-12">
-				  <label for="customRange2" class="form-label">진행률</label>
-				  <div>
-					  <input type="range" class="form-range" id="customRange2" style="width: 80%;"
-								min="0" max="100" step="1" value="0"  oninput="document.getElementById('progressValue').innerHTML=this.value;">
-					  <span id="progressValue"></span>
-				  </div>
-			  </div>
 		
 			  <!-- Task 기한 -->
-			  <div class="col-12">
+			  <div class="col-sm-5">
 				  <label for="address2" class="form-label">기한</label>
 				  <form>
-				      <p><input type="date"></p>
+				      <p><input type="date" value="${task.deadline}"></p>
 			      </form>
+			  </div>
+			  
+			  <!-- Task 내용 -->
+			  <div class="col-12">
+		            <label for="task_content" class="form-label">Task 내용</label>
+		            <input type="text" class="form-control" value="${task.content}" style="width: 70%; height: 60px;">
+		      </div>
+		      <span style="height: 20px;"></span>
+			  
+			  <!-- Task 진행률 -->
+			  <div class="col-12" style="height: 80px;">
+				  <label for="customRange2" class="form-label">진행률</label>
+				  <span id="progressValue">(${task.task_progress}%)</span>
+				  <div>
+					  <input type="range" class="form-range" id="customRange2" style="width: 80%;"
+								min="0" max="100" step="1" value="${task.task_progress}"  oninput="document.getElementById('progressValue').innerHTML='('+this.value+'%)';">
+				  </div>
 			  </div>
 			  
               <hr/>
@@ -120,6 +128,7 @@
               <div class="find-btn my-1">
                   <button class="btn btn-primary" type="submit" 
                   style="background-color: rgb(161, 162, 207); border: 0; outline: 0;">Update</button>
+                  <span style="width: 40px;"></span>
                   <button class="btn btn-outline-secondary" type="reset" onclick="javascript:history.back();">Cancel</button>
               </div>
 		

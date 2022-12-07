@@ -45,9 +45,17 @@
     </style>
 
     <!-- Custom styles for this template -->
-    <link href="form-validation.css" rel="stylesheet">
+    <link href="myPage.jsp" rel="stylesheet">
+    
+<script>
+function update() {
+	form.submit();
+	document.location.href="/taskflow/member/mypage";
+}
+</script>
   </head>
   <body class="bg-light">
+  <form name="form" method="POST" action="/taskflow/member/mypage">  <!-- action="<c:url value='/member/myPage'/>" -->
     
 <div class="container">
     <main>
@@ -59,9 +67,9 @@
                     <header class="d-flex flex-wrap justify-content-center pt-3 mb-4">
                         <a href="myPage.jsp"
                             class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-                            <svg class="bi me-2" width="5" height="32">
+                            <!-- <svg class="bi me-2" width="5" height="32">
                                 <use xlink:href="#bootstrap" />
-                            </svg>
+                            </svg> -->
                             <span class="fs-4">
                                 <p style="font-size: 40px; text-shadow: 1px 1px 5px rgb(197, 135, 226); font-weight: bold; color:rgb(192, 86, 224);">My Page</p>
                             </span>
@@ -71,25 +79,27 @@
 
                 <hr class="my-4">
 
-                <form class="needs-validation" novalidate>
+				<!--
+                <form class="needs-validation" method="POST" action="<c:url value'/taskflow/member/mypage'/>">
+                -->
                     <div class="row g-3">
 
                         <!-- Member Id 확인(읽기 전용) -->
                         <div class="col-12">
                             <label for="member_id" class="form-label">Member Id <span class="text-muted">(Read Only)</span></label>
-                            <input type="text" class="form-control" id="email" value="${member.userName}" readonly="readonly">
+                            <input type="text" class="form-control" name="user_name" value="${member.user_name}" readonly="readonly">
                         </div>
 
                         <!-- New Password -->
                         <div class="col-sm-6">
                             <label for="newPassword" class="form-label">New Password</label>
-                            <input type="text" class="form-control" id="newPassword" placeholder="" value="">
+                            <input type="text" class="form-control" name="newPassword" placeholder="" value="">
                         </div>
     
                         <!-- Confirm New Password -->
                         <div class="col-sm-6">
                             <label for="confirmPassword" class="form-label">Confirm New Password</label>
-                            <input type="text" class="form-control" id="confirmPassword" placeholder="" value="">
+                            <input type="text" class="form-control" name="confirmPassword" placeholder="" value="">
                         </div>
     
                         <!-- Name -->
@@ -97,20 +107,20 @@
                             <label for="name" class="form-label">Name</label>
                             <div class="input-group has-validation">
                                 <span class="input-group-text">#</span>
-                                <input type="text" class="form-control" id="name" value="${member.name }" placeholder="Your name">
+                                <input type="text" class="form-control" name="name" value="${member.name }" placeholder="Your name">
                             </div>
                         </div>
     
                         <!-- Email -->
                         <div class="col-12">
                             <label for="email" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="email" value="${member.email }" placeholder="jisoo95@naver.com">
+                            <input type="text" class="form-control" name="email" value="${member.email }" placeholder="jisoo95@naver.com">
                         </div>
     
                         <!-- Phone-->
                         <div class="col-12">
                             <label for="phone" class="form-label">Phone</label>
-                            <input type="text" class="form-control" id="phone" value="${member.phone }" placeholder="010-0000-0000">
+                            <input type="text" class="form-control" name="phone" value="${member.phone }" placeholder="010-0000-0000">
                         </div>
     
                         <!-- Birthday -->
@@ -125,17 +135,19 @@
                     <hr class="my-4">
 
                     <div class="find-btn">
-                        <button class="btn btn-primary btn-lg px-4 gap-3" type="submit" 
-                        style="background-color: rgb(161, 162, 207); border: 0; outline: 0;">Update</button>
+                 
+                    
+                        <button type="submit" class="btn btn-primary btn-lg px-4 gap-3" 
+                        	style="background-color: rgb(161, 162, 207); border: 0; outline: 0;"
+                        	value="Update"></button>
                         <button class="btn btn-outline-secondary btn-lg px-4" type="reset">Cancel</button>
+                    
                     </div>
-                </form>
             </div>
         </div>
     </main>
 </div>
-    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
-      <script src="form-validation.js"></script>
+      </form>
   </body>
 </html>

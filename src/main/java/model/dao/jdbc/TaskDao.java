@@ -149,6 +149,33 @@ public class TaskDao {
     	return taskList;
 	}
 	
+	public Task findTaskByTaskId(int taskId) {
+		String query = "SELECT task_id, task_progress, project_id, member_id, name, content, deadline "
+				+ "FROM TASK "
+				+ "WHERE task_id = ? ";
+		
+		jdbcUtil.setSqlAndParameters(query, new Object[] {taskId});
+		Task task = new Task();
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();	
+			
+			if (rs.next()) {		
+				task.setTask_id(taskId);
+				task.setProject_id(rs.getInt("project_id"));
+				task.setMember_id(rs.getInt("member_id"));
+				task.setTask_progress(rs.getInt("task_progress"));
+				task.setName(rs.getString("name"));
+				task.setContent(rs.getString("content"));
+				task.setDeadline(rs.getDate("deadline"));
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();	
+		}
+		return task;
+	}
+	
 	public String findMemberNameByTaskId(int taskId) {
 		String query = "SELECT MEMBER.name AS mName "
 				+ "FROM TASK JOIN MEMBER USING (member_id) "

@@ -18,6 +18,7 @@ import controller.project.ListProjectController;
 import controller.project.OutProjectController;
 import controller.project.UpdateProjectController;
 import controller.project.ViewProjectController;
+import controller.task.UpdateTaskController;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -39,14 +40,17 @@ public class RequestMapping {
         mappings.put("/member/entrance", new EnterMemberController());
         mappings.put("/member/mypage", new MyPageController());
         
-        // projeDct
+        // project
         mappings.put("/project/create", new CreateProjectController());	// get, post
         mappings.put("/project/update", new UpdateProjectController());
         mappings.put("/project/delete", new DeleteProjectController());
-        mappings.put("/project/setting/out", new OutProjectController());
+        mappings.put("/project/out", new OutProjectController());
         mappings.put("/project/list", new ListProjectController());
         mappings.put("/project/view", new ViewProjectController());
         mappings.put("/project/join", new JoinProjectController());		// get, post
+        
+        // task
+        mappings.put("/task/update", new UpdateTaskController()); // get, post
         
         logger.info("Initialized Request Mapping!");
     }
