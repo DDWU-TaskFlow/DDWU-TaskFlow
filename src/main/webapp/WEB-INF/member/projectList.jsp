@@ -80,7 +80,7 @@ if (strID != null) {
 	int firstAccess = (int) session.getAttribute("firstAccess");
 	if (firstAccess == 1) {%> 
 var strName="<%=strID%>";
-	alert(strName + "님!! 환영합니다.");
+	alert(strName + "님 방가방가");
 <%}
 session.setAttribute("firstAccess", 0);
 }%>
@@ -111,16 +111,6 @@ session.setAttribute("firstAccess", 0);
 				</a>
 			</div>
 
-
-			<!-- in버튼 생성 -->
-			<div class="d-flex"
-				style="width: 50px; height: 50px; margin-left: 120px; float: left;">
-				<button type="button"
-					onclick="location.href='/taskflow/project/join';"
-					style="border: 1px solid #FFFFFF; border-radius: 2em; cursor: pointer; cursor: hand; background-color: #ebebeb; color: rgb(0, 0, 0); width: 50px; height: 50px;">in</button>
-			</div>
-
-
 			<c:if test="${not empty userId}">
 
 				<!-- +버튼 생성 -->
@@ -129,6 +119,15 @@ session.setAttribute("firstAccess", 0);
 					<button type="button"
 						onclick="location.href='/taskflow/project/create';"
 						style="border: 1px solid #FFFFFF; border-radius: 2em; cursor: pointer; cursor: hand; background-color: #ebebeb; color: rgb(0, 0, 0); width: 50px; height: 50px;">+</button>
+				</div>
+
+
+				<!-- in버튼 생성 -->
+				<div class="d-flex"
+					style="width: 50px; height: 50px; margin-left: 120px; float: left;">
+					<button type="button"
+						onclick="location.href='/taskflow/project/join';"
+						style="border: 1px solid #FFFFFF; border-radius: 2em; cursor: pointer; cursor: hand; background-color: #ebebeb; color: rgb(0, 0, 0); width: 50px; height: 50px;">in</button>
 				</div>
 
 
