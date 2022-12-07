@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
   <head>
@@ -62,7 +62,7 @@ function update() {
         <div class="row g-5">
             <div class="col-md-7 col-lg-8">
 
-                <!-- »ó´Ü ¹Ù My Page -->
+                <!-- ìƒë‹¨ ë°” My Page -->
                 <div class="pt-5 text-center">
                     <header class="d-flex flex-wrap justify-content-center pt-3 mb-4">
                         <a href="myPage.jsp"
@@ -84,7 +84,7 @@ function update() {
                 -->
                     <div class="row g-3">
 
-                        <!-- Member Id È®ÀÎ(ÀÐ±â Àü¿ë) -->
+                        <!-- Member Id í™•ì¸(ì½ê¸° ì „ìš©) -->
                         <div class="col-12">
                             <label for="member_id" class="form-label">Member Id <span class="text-muted">(Read Only)</span></label>
                             <input type="text" class="form-control" name="user_name" value="${member.user_name}" readonly="readonly">
@@ -139,7 +139,7 @@ function update() {
                     
                         <button type="submit" class="btn btn-primary btn-lg px-4 gap-3" 
                         	style="background-color: rgb(161, 162, 207); border: 0; outline: 0;"
-                        	value="Update"></button>
+                        	value="Update">Update</button>
                         <button class="btn btn-outline-secondary btn-lg px-4" type="reset">Cancel</button>
                     
                     </div>

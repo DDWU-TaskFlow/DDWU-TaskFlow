@@ -1,17 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author"
 	content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 <meta name="generator" content="Hugo 0.84.0">
 
-<title>·Î±×ÀÎ</title>
+<title>ë¡œê·¸ì¸</title>
 
 <link rel="canonical"
 	href="https://getbootstrap.com/docs/5.0/examples/offcanvas-navbar/">
@@ -57,12 +57,12 @@
 <script>
 function login() {
 	if (form.user_name.value == "") {
-		alert("»ç¿ëÀÚ ID¸¦ ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+		alert("ì‚¬ìš©ì IDë¥¼ ì…ë ¥í•˜ì‹­ì‹œì˜¤.");
 		form.user_name.focus();
 		return false;
 	}
 	if (form.password.value == "") {
-		alert("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+		alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì‹­ì‹œì˜¤.");
 		form.password.focus();
 		return false;
 	}
@@ -78,7 +78,7 @@ function goToJoin(targetUri) {
 <body class="text-center">
 
 	<div class="container">
-		<!-- »ó´Ü Task Flow -->
+		<!-- ìƒë‹¨ Task Flow -->
 		<section class="container py-5" style="height: 250px;">
 			<div class="container-fluid text-center"
 				style="margin-top: 10px; width: 400px; height: 100px;">
@@ -90,7 +90,7 @@ function goToJoin(targetUri) {
 		</section>
 	</div>
 		<br> <br>
-		<!-- ·Î±×ÀÎÀÌ ½ÇÆĞÇÑ °æ¿ì exception °´Ã¼¿¡ ÀúÀåµÈ ¿À·ù ¸Ş½ÃÁö¸¦ Ãâ·Â -->
+		<!-- ë¡œê·¸ì¸ì´ ì‹¤íŒ¨í•œ ê²½ìš° exception ê°ì²´ì— ì €ì¥ëœ ì˜¤ë¥˜ ë©”ì‹œì§€ë¥¼ ì¶œë ¥ -->
 		<div class="col-lg-12">
 			<c:if test="${loginFailed}">
 				<h6 class="text-danger">
@@ -106,7 +106,7 @@ function goToJoin(targetUri) {
 						style="width: 150px; height: 40px; color: black; font-size: large;">ID</div>
 					<div>
 						<input type="text" name="user_name" class="form-control"
-							placeholder="»ç¿ëÀÚ ID">
+							placeholder="ì‚¬ìš©ì ID">
 					</div>
 				</div>
 				<div class="d-flex justify-content-center">
@@ -114,7 +114,7 @@ function goToJoin(targetUri) {
 						style="width: 150px; height: 40px; color: black; font-size: large;">PW</div>
 					<div>
 						<input type="password" name="password" class="form-control"
-							placeholder="ºñ¹Ğ¹øÈ£">
+							placeholder="ë¹„ë°€ë²ˆí˜¸">
 					</div>
 				</div>
 				<br>
@@ -122,8 +122,8 @@ function goToJoin(targetUri) {
 				<div class="find-btn">
 					<input type="button" class="btn btn-primary btn-lg px-4 gap-3" 
 						   style="background-color: rgb(161, 162, 207); border: 0; outline: 0;"
-						   value="·Î±×ÀÎ" onClick="login()">
-					<a href="<c:url value='/member/join'/>" class="btn btn-outline-secondary btn-lg px-4">È¸¿ø °¡ÀÔ</a>
+						   value="ë¡œê·¸ì¸" onClick="login()">
+					<a href="<c:url value='/member/join'/>" class="btn btn-outline-secondary btn-lg px-4">íšŒì› ê°€ì…</a>
 				</div>
 			</form>
 		</div>

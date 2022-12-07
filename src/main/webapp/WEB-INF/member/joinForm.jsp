@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="EUC-KR"%>
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="model.*" %>
 <%@page import="model.service.ExistingUserException"%>
@@ -13,7 +13,7 @@
 <meta name="author"
 	content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 <meta name="generator" content="Hugo 0.84.0">
-<title>È¸¿ø°¡ÀÔ</title>
+<title>íšŒì›ê°€ì…</title>
 
 <link rel="canonical"
 	href="https://getbootstrap.com/docs/5.0/examples/album/">
@@ -69,34 +69,34 @@ if(member != null){
 %>
 function memberCreate() {
 	if (form.user_name.value == "") {
-		alert("»ç¿ëÀÚ ID¸¦ ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+		alert("ì‚¬ìš©ì IDë¥¼ ì…ë ¥í•˜ì‹­ì‹œì˜¤.");
 		form.user_name.focus();
 		return false;
 	} 
 	if (form.password.value == "") {
-		alert("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+		alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì‹­ì‹œì˜¤.");
 		form.password.focus();
 		return false;
 	}
 	if (form.password.value != form.confirmPassword.value) {
-		alert("ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
+		alert("ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		form.name.focus();
 		return false;
 	}
 	if (form.name.value == "") {
-		alert("ÀÌ¸§À» ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+		alert("ì´ë¦„ì„ ì…ë ¥í•˜ì‹­ì‹œì˜¤.");
 		form.name.focus();
 		return false;
 	}
 	var emailExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 	if(emailExp.test(form.email.value)==false) {
-		alert("ÀÌ¸ŞÀÏ Çü½ÄÀÌ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù.");
+		alert("ì´ë©”ì¼ í˜•ì‹ì´ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		form.email.focus();
 		return false;
 	}
 	var phoneExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
 	if(phoneExp.test(form.phone.value)==false) {
-		alert("ÀüÈ­¹øÈ£ Çü½ÄÀÌ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù.");
+		alert("ì „í™”ë²ˆí˜¸ í˜•ì‹ì´ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		form.phone.focus();
 		return false;
 	}
@@ -112,7 +112,7 @@ function memberCreate() {
 			<div class="row g-5">
 				<div class="col-md-7 col-lg-8">
 
-					<!-- »ó´Ü ¹Ù Join -->
+					<!-- ìƒë‹¨ ë°” Join -->
 					<div class="pt-5 text-center">
 						<header class="d-flex flex-wrap justify-content-center pt-3 mb-4">
 							<a href="/taskflow/member/joinForm.jsp" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
