@@ -19,6 +19,7 @@ import controller.project.OutProjectController;
 import controller.project.SendMessageController;
 import controller.project.UpdateProjectController;
 import controller.project.ViewProjectController;
+import controller.task.CreateTaskController;
 import controller.task.UpdateTaskController;
 
 public class RequestMapping {
@@ -53,6 +54,7 @@ public class RequestMapping {
         mappings.put("/project/sendMessage", new SendMessageController());
         
         // task
+        mappings.put("/task/create", new CreateTaskController()); // get, post
         mappings.put("/task/update", new UpdateTaskController()); // get, post
         
         logger.info("Initialized Request Mapping!");
