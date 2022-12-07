@@ -70,13 +70,15 @@
 	  <!-- task 수정 -->
       <span class="d-flex p-4 mt-4 justify-content-center" style="font-size: 20px; font-weight: bold; width: 250px;">TASK 수정</span>
 
-      <form class="m-4">
+      <form class="m-4" method="POST" action="<c:url value='/task/update' />">
           <div class="d-flex row mt-4 justify-content-start">
 	  
+			  <input type="hidden" name="taskId" value="${task.task_id}">
+		
 			  <!-- Task Name -->
 			  <div class="col-12">
-		            <label for="task_name" class="form-label">Task 이름</label>
-		            <input type="text" class="form-control" value="${task.name}" style="width: 200px;">
+		            <label for="taskName" class="form-label">Task 이름</label>
+		            <input type="text" name="taskName" class="form-control" value="${task.name}" style="width: 200px;">
 		      </div>
 		      <span style="height: 15px;"></span>
 			  
@@ -85,7 +87,7 @@
 		        <label for="task_name" class="form-label">배정</label>
 				<div class="input-group mb-3" style="width: 150px;">
 				  <label class="input-group-text " for="inputGroupSelect01">담당</label>
-				  <select class="form-select" id="inputGroupSelect01">
+				  <select class="form-select" name="memberId" id="inputGroupSelect01">
 				  
 					<c:forEach var="member" items="${memberList}">
 				        <option value="${member.member_id}"
@@ -102,14 +104,14 @@
 			  <div class="col-sm-5">
 				  <label for="address2" class="form-label">기한</label>
 				  <form>
-				      <p><input type="date" value="${task.deadline}"></p>
+				      <p><input type="date" name="deadline" value="${task.deadline}"></p>
 			      </form>
 			  </div>
 			  
 			  <!-- Task 내용 -->
 			  <div class="col-12">
-		            <label for="task_content" class="form-label">Task 내용</label>
-		            <input type="text" class="form-control" value="${task.content}" style="width: 70%; height: 60px;">
+		            <label for="taskContent" class="form-label">Task 내용</label>
+		            <input type="text" name="content" class="form-control" value="${task.content}" style="width: 70%; height: 60px;">
 		      </div>
 		      <span style="height: 20px;"></span>
 			  
@@ -118,7 +120,7 @@
 				  <label for="customRange2" class="form-label">진행률</label>
 				  <span id="progressValue">(${task.task_progress}%)</span>
 				  <div>
-					  <input type="range" class="form-range" id="customRange2" style="width: 80%;"
+					  <input type="range" class="form-range" id="customRange2" style="width: 80%;" name="taskProgress"
 								min="0" max="100" step="1" value="${task.task_progress}"  oninput="document.getElementById('progressValue').innerHTML='('+this.value+'%)';">
 				  </div>
 			  </div>
@@ -126,7 +128,7 @@
               <hr/>
 
               <div class="find-btn my-1">
-                  <button class="btn btn-primary" type="submit" 
+                  <button class="btn btn-primary" type="submit"
                   style="background-color: rgb(161, 162, 207); border: 0; outline: 0;">Update</button>
                   <span style="width: 40px;"></span>
                   <button class="btn btn-outline-secondary" type="reset" onclick="javascript:history.back();">Cancel</button>
@@ -137,6 +139,8 @@
 
 
 	    <div style="height: 70px;"></div>
+	    
+	    
 	
 	
 		  

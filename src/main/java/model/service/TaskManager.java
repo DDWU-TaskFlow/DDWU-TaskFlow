@@ -62,4 +62,9 @@ public class TaskManager {
 		String memberName = taskDao.findMemberNameByTaskId(taskId);
 		return memberName;
 	}
+	
+	public int updateTask(Task task) {
+		return taskDao.updateTask(task);
+	}
+	
 }
