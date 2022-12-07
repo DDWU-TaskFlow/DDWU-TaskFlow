@@ -65,11 +65,11 @@ public class TaskDao {
 	}
 
 	public int updateTask(Task task) {
-		String updateQuery = "UPDATE TASK SET taskProgress = ? , name = ? , content = ? , deadline = ? "
+		String updateQuery = "UPDATE TASK SET member_id = ? , task_progress = ? , name = ? , content = ? , deadline = ? "
 					+ "WHERE task_id = ? ";
 
         int result = 0;
-		Object[] params = new Object[] { task.getTask_progress(), task.getName(), task.getContent(), task.getDeadline(), task.getTask_id() };
+		Object[] params = new Object[] { task.getMember_id(), task.getTask_progress(), task.getName(), task.getContent(), task.getDeadline(), task.getTask_id() };
 		jdbcUtil.setSqlAndParameters(updateQuery,  params);
 		
 		try {
