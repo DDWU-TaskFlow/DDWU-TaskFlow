@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import model.Member;
-import model.dao.jdbc.MemberDao;
 import model.service.MemberManager;
 
 public class MyPageController implements Controller {
