@@ -207,8 +207,10 @@
       <div></div>
     </div>
     <div class="offcanvas-body" id="history">
-      <!-- include history.jsp -->
-      <jsp:include page="history.jsp" />
+      <!-- import history.jsp -->
+       <c:import url="./history.jsp">
+      	<c:param name="historyList" value="${historyList}" />
+      </c:import>
     </div>
   </div>
 	

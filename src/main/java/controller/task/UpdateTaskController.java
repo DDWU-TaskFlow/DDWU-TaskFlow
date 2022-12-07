@@ -10,6 +10,7 @@ import controller.Controller;
 import controller.member.UserSessionUtils;
 import model.Member;
 import model.Task;
+import model.service.HistoryManager;
 import model.service.ProjectManager;
 import model.service.TaskManager;
 
@@ -41,17 +42,24 @@ public class UpdateTaskController implements Controller {
 		}
 
 		System.out.println("task update Controller");
+		int taskId = Integer.parseInt(request.getParameter("taskId"));
 		Task task = new Task();
-		task = tManager.findTaskByTaskId(Integer.parseInt(request.getParameter("taskId")));
+		task = tManager.findTaskByTaskId(taskId);
+		int progress = task.getTask_progress();
 		
 		task.setName(request.getParameter("taskName"));
-		task.setTask_progress(Integer.parseInt(request.getParameter("taskProgress")));
+		int newProgress = Integer.parseInt(request.getParameter("taskProgress"));
+		task.setTask_progress(newProgress);
 		task.setMember_id(Integer.parseInt(request.getParameter("memberId")));
 		task.setContent(request.getParameter("content"));
 		task.setDeadline(Date.valueOf(request.getParameter("deadline")));
 
 		if (tManager.updateTask(task) == 1) {
 			System.out.println("task update 성공");
+			if (newProgress != progress) {
+				HistoryManager hManager = HistoryManager.getInstance();
+				hManager.insertProgress(taskId, progress);
+			}
 		}
 		
 		return "redirect:/project/view?step=1&&projectId="+task.getProject_id();
