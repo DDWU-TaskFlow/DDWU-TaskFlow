@@ -1,5 +1,7 @@
 package controller.task;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -30,6 +32,7 @@ public class CommentController implements Controller {
 			System.out.println(comment);
 			if (cManager.insertComment(comment) == 1) {
 				System.out.println("comment insert 성공");
+//				request.setAttribute("msg", "comment insert 성공");
 			}
 		}
 		else if(request.getServletPath().equals("/comment/delete")) { // 삭제
@@ -37,10 +40,22 @@ public class CommentController implements Controller {
 			System.out.println("삭제할 태스크" + commentId);
 			if (cManager.deleteComment(commentId) == 1) {
 				System.out.println("comment delete 성공");
+//				request.setAttribute("msg", "comment delete 성공");
 			}
 		}
 		
+//		response.setCharacterEncoding("utf-8");
+//		PrintWriter writer = response.getWriter();
+//		writer.println("<script type='text/javascript'>");
+//		writer.println("alert('성공했습니다.');");
+//		writer.println("history.back();");
+//		writer.println("</script>");
+//		writer.flush();
+
+//		request.setAttribute("url", "/project/view?step=1&&projectId="+request.getParameter("projectId"));
+//		
 		return "redirect:/project/view?step=1&&projectId="+request.getParameter("projectId");
+//		return "/task/commentAlert.jsp";
 		
 	}
 }
