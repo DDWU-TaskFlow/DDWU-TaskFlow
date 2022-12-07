@@ -16,6 +16,7 @@ import controller.project.DeleteProjectController;
 import controller.project.JoinProjectController;
 import controller.project.ListProjectController;
 import controller.project.OutProjectController;
+import controller.project.SendMessageController;
 import controller.project.UpdateProjectController;
 import controller.project.ViewProjectController;
 import controller.task.UpdateTaskController;
@@ -48,6 +49,8 @@ public class RequestMapping {
         mappings.put("/project/list", new ListProjectController());
         mappings.put("/project/view", new ViewProjectController());
         mappings.put("/project/join", new JoinProjectController());		// get, post
+        
+        mappings.put("/project/sendMessage", new SendMessageController());
         
         // task
         mappings.put("/task/update", new UpdateTaskController()); // get, post

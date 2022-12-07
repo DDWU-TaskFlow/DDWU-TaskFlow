@@ -28,7 +28,13 @@
 		<oracle-jdbc-driver.version>21.3.0.0</oracle-jdbc-driver.version>
 		<mybatis.version>3.5.7</mybatis.version>
 	</properties>
-	<dependencies>
+		<dependencies>
+		<!-- solAPI -->
+		<dependency>
+	  		<groupId>net.nurigo</groupId>
+	  		<artifactId>sdk</artifactId>
+	  		<version>4.2.7</version>
+		</dependency>
 		<!-- MyBatis -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
