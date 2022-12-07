@@ -1,7 +1,5 @@
 package controller.task;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.sql.Date;
 import java.util.List;
 
@@ -10,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import model.Member;
-import model.Project;
 import model.Task;
 import model.service.ProjectManager;
 import model.service.TaskManager;
@@ -38,6 +35,7 @@ public class UpdateTaskController implements Controller {
 			return "/task/updateTask.jsp";
 		}
 
+		System.out.println("task update Controller");
 		Task task = new Task();
 		task = tManager.findTaskByTaskId(Integer.parseInt(request.getParameter("taskId")));
 		

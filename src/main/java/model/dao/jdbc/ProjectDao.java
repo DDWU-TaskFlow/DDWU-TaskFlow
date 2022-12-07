@@ -317,7 +317,7 @@ public class ProjectDao {
                 dto.setName(rs.getString("name"));
                 dto.setEmail(rs.getString("email"));
                 dto.setPhone(rs.getString("phone"));
-                dto.setBirth(rs.getString("birth"));
+                dto.setBirth(rs.getDate("birth"));
                 list.add(dto);
             }
             return list;          

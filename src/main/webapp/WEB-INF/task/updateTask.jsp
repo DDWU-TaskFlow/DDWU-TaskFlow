@@ -70,7 +70,7 @@
 	  <!-- task 수정 -->
       <span class="d-flex p-4 mt-4 justify-content-center" style="font-size: 20px; font-weight: bold; width: 250px;">TASK 수정</span>
 
-      <form class="m-4" method="POST" action="<c:url value='/task/update' />">
+      <form class="m-4" method="POST">
           <div class="d-flex row mt-4 justify-content-start">
 	  
 			  <input type="hidden" name="taskId" value="${task.task_id}">
@@ -129,21 +129,19 @@
 
               <div class="find-btn my-1">
                   <button class="btn btn-primary" type="submit"
-                  style="background-color: rgb(161, 162, 207); border: 0; outline: 0;">Update</button>
+                  style="background-color: rgb(161, 162, 207); border: 0; outline: 0;" onclick="javascript: form.action='/taskflow/task/update';">Update</button>
                   <span style="width: 40px;"></span>
                   <button class="btn btn-outline-secondary" type="reset" onclick="javascript:history.back();">Cancel</button>
+              	  <button class="btn btn-outline-danger" type="button" style="float: right; margin-right: 20px;" onclick='location.href="<c:url value='/task/delete'>
+																	              	 <c:param name="taskId" value="${task.task_id}" />
+																	              	 <c:param name="projectId" value="${task.project_id}" />
+																	            </c:url>"'>Task 삭제</button>
               </div>
 		
 			</div>
 		</form>
 
-
 	    <div style="height: 70px;"></div>
-	    
-	    
-	
-	
-		  
   
   </div>
 	

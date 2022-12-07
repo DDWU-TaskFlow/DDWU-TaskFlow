@@ -105,9 +105,7 @@ session.setAttribute("firstAccess", 0);
 				style="margin-top: 10px; width: 400px; height: 100px;">
 				<a href="index.jsp"
 					style="color: rgb(192, 86, 224); display: block;">
-					<p
-						style="font-size: 70px; text-shadow: 1px 1px 5px rgb(197, 135, 226); font-weight: bold;">Task
-						Flow</p>
+					<p style="font-size: 70px; text-shadow: 1px 1px 5px rgb(197, 135, 226); font-weight: bold;">Task Flow</p>
 				</a>
 			</div>
 
