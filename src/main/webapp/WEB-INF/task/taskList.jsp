@@ -38,14 +38,16 @@
     <option>서한나</option>
   </select>
 </div> -->
+
+	<c:set var="proId" value="${param.projectId}" />
+	
 		<div class="d-flex flex-row-reverse">
-			<a href="<c:url value="/task/create/form" />" class="btn"
-				style="width: 65px; background-color: #7c78c0; color: white;">추가</a>&nbsp;
+			<a href="<c:url value="/task/create" >
+						<c:param name="projectId" value="${proId}" />
+					</c:url>" class="btn" style="width: 65px; background-color: #7c78c0; color: white;">추가</a>&nbsp;
 		</div>
 		<hr />
 
-
-	<c:set var="proId" value="${param.projectId}" />
 	<c:set var="taskList" value="${taskManager.getTaskList(proId)}" />
 	<c:forEach var="task" items="${taskList}">
 		<c:set var="taskId" value="${task.task_id}" />

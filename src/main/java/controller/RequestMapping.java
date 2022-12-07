@@ -18,6 +18,7 @@ import controller.project.ListProjectController;
 import controller.project.OutProjectController;
 import controller.project.UpdateProjectController;
 import controller.project.ViewProjectController;
+import controller.task.CreateTaskController;
 import controller.task.UpdateTaskController;
 
 public class RequestMapping {
@@ -50,6 +51,7 @@ public class RequestMapping {
         mappings.put("/project/join", new JoinProjectController());		// get, post
         
         // task
+        mappings.put("/task/create", new CreateTaskController()); // get, post
         mappings.put("/task/update", new UpdateTaskController()); // get, post
         
         logger.info("Initialized Request Mapping!");

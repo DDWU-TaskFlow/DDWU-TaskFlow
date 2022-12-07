@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!doctype html>
 <html lang="en">
@@ -67,60 +68,57 @@
   <div class="d-flex p-3 bg-body rounded mx-auto justify-content-center" style="margin-top: 200px; width: 100%; height: 510px;">
   
 	  <!-- task 수정 -->
-      <span class="p-4 mt-4" style="font-size: 20px; font-weight: bold;">TASK 수정</span>
+      <span class="d-flex p-4 mt-4 justify-content-center" style="font-size: 20px; font-weight: bold; width: 250px;">TASK 생성</span>
 
-      <form class="needs-validation m-4" novalidate>
-          <div class="d-flex row mt-4 justify-content-center">
+      <form class="m-4" method="POST" action="<c:url value='/task/create' />">
+          <div class="d-flex row mt-4 justify-content-start">
 	  
+			  <input type="hidden" name="projectId" value="${projectId}">
+		
 			  <!-- Task Name -->
 			  <div class="col-12">
-		            <label for="task_name" class="form-label">Task명</label>
-		            <input type="text" class="form-control" value="Task Name" style="width: 200px;">
-		            <div class="invalid-feedback">
-		                Please enter a valid email address for shipping updates.
-		            </div>
-		        </div>
+		            <label for="taskName" class="form-label">Task 이름</label>
+		            <input type="text" name="taskName" class="form-control" value="" placeholder="Task Name" style="width: 200px;">
+		      </div>
+		      <span style="height: 15px;"></span>
 			  
 			  <!-- Task 배정 -->
-			  <div class="col-12">
+			  <div class="col-sm-5">
 		        <label for="task_name" class="form-label">배정</label>
 				<div class="input-group mb-3" style="width: 150px;">
 				  <label class="input-group-text " for="inputGroupSelect01">담당</label>
-				  <select class="form-select" id="inputGroupSelect01">
-				    <option value="0" selected>미배정</option>
-				    <option value="1">이송희</option>
-				    <option value="2">심재현</option>
-				    <option value="3">정유영</option>
-				    <option value="4">서한나</option>
+				  <select class="form-select" name="memberId" id="inputGroupSelect01">
+				  		<option value="-1" selected>미배정</option>
+					<c:forEach var="member" items="${memberList}">
+				        <option value="${member.member_id}">
+				        ${member.name}</option>
+				    </c:forEach>
 				  </select>
 				</div>
 			   </div>
-				
-		
-			  <!-- Task 진행률 -->
-			  <div class="col-12">
-				  <label for="customRange2" class="form-label">진행률</label>
-				  <div>
-					  <input type="range" class="form-range" id="customRange2" style="width: 80%;"
-								min="0" max="100" step="1" value="0"  oninput="document.getElementById('progressValue').innerHTML=this.value;">
-					  <span id="progressValue"></span>
-				  </div>
-			  </div>
 		
 			  <!-- Task 기한 -->
-			  <div class="col-12">
+			  <div class="col-sm-5">
 				  <label for="address2" class="form-label">기한</label>
 				  <form>
-				      <p><input type="date"></p>
+				      <p><input type="date" name="deadline"></p>
 			      </form>
 			  </div>
+			  
+			  <!-- Task 내용 -->
+			  <div class="col-12">
+		            <label for="taskContent" class="form-label">Task 내용</label>
+		            <input type="text" name="content" class="form-control" value="" placeholder="할 일을 입력하세요" style="width: 70%; height: 60px;">
+		      </div>
+		      <span style="height: 20px;"></span>
 			  
               <hr/>
 
               <div class="find-btn my-1">
-                  <button class="btn btn-primary" type="submit" 
-                  style="background-color: rgb(161, 162, 207); border: 0; outline: 0;">Update</button>
-                  <button class="btn btn-outline-secondary" type="reset">Cancel</button>
+                  <button class="btn btn-primary" type="submit"
+                  style="background-color: rgb(161, 162, 207); border: 0; outline: 0;">Create</button>
+                  <span style="width: 40px;"></span>
+                  <button class="btn btn-outline-secondary" type="reset" onclick="javascript:history.back();">Cancel</button>
               </div>
 		
 			</div>
@@ -128,9 +126,7 @@
 
 
 	    <div style="height: 70px;"></div>
-	
-	
-		  
+	    
   
   </div>
 	

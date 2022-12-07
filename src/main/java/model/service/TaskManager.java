@@ -63,8 +63,15 @@ public class TaskManager {
 		return memberName;
 	}
 	
+	public int insertTask(Task task) {
+		return taskDao.insertTask(task);
+	}
+	
 	public int updateTask(Task task) {
 		return taskDao.updateTask(task);
 	}
 	
+	public int deleteTask(int taskId) {
+		return taskDao.deleteTask(taskId);
+	}
 }
