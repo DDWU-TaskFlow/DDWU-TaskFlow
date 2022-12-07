@@ -33,11 +33,11 @@
 	</select>
 	
 	<insert id="insertComment" parameterType="Comment">
-		<selectKey keyProperty="number" resultType="int" order="BEFORE">
-			SELECT SEQUENCE_Comments.nextval AS id FROM DUAL
+		<selectKey keyProperty="commentId" resultType="int" order="BEFORE">
+			SELECT SEQUENCE_Comments.nextval AS commentId FROM DUAL
 		</selectKey>
 		INSERT INTO Comments (comment_id, task_id, member_id, writtenDate, content)
-		VALUES (#{id}, #{taskId}, #{memberId}, SYSDATE, #{content})
+		VALUES (#{commentId}, #{taskId}, #{memberId}, SYSDATE, #{content})
 	</insert>
 	
 	<update id="updateComment" parameterType="Comment">
