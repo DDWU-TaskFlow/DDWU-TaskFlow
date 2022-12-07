@@ -38,11 +38,10 @@ public class CreateProjectController implements Controller{
 				request.getParameter("name"),
 				0,
 				new Date(0),
-				"",
+				manager.getRandomString(),
 				request.getParameter("notice"),
 				""
-				)
-				;
+				);
 		
 		
 		manager.insertProject(project);

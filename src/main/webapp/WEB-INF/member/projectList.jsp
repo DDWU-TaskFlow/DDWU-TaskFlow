@@ -105,7 +105,19 @@ session.setAttribute("firstAccess", 0);
 					<p style="font-size: 70px; text-shadow: 1px 1px 5px rgb(197, 135, 226); font-weight: bold;">Task Flow</p>
 				</a>
 			</div>
+
+			
+			<!-- in버튼 생성 -->
+			<div class="d-flex"
+				style="width: 50px; height: 50px; margin-left: 120px; float: left;">
+				<button type="button"
+					onclick="location.href='/taskflow/project/join';"
+					style="border: 1px solid #FFFFFF; border-radius: 2em; cursor: pointer; cursor: hand; background-color: #ebebeb; color: rgb(0, 0, 0); width: 50px; height: 50px;">in</button>
+			</div>
+			
+
 			<c:if test="${not empty userId}">
+
 			<!-- +버튼 생성 -->
 			<div class="d-flex"
 				style="width: 50px; height: 50px; margin-left: 120px; float: left;">
@@ -114,11 +126,17 @@ session.setAttribute("firstAccess", 0);
 					style="border: 1px solid #FFFFFF; border-radius: 2em; cursor: pointer; cursor: hand; background-color: #ebebeb; color: rgb(0, 0, 0); width: 50px; height: 50px;">+</button>
 			</div>
 			
+
+			<a href="/taskflow/member/mypage" style="float: right;">
+				<div
+					class="d-flex justify-content-center align-items-center border border-secondary rounded-circle"
+
 			<a style="float: right;" href="<c:url value='/member/mypage'>
 						<c:param name='user_name' value='${member.user_name}'/>
 						</c:url>">
 			
 				<div class="d-flex justify-content-center align-items-center border border-secondary rounded-circle"
+
 					style="width: 40px; height: 40px; margin-right: 150px; float: right;">
 					<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
 						fill="currentColor" class="bi bi-person-circle"
