@@ -1,18 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!doctype html>
 <html lang="en">
 
 <head>
-  <meta charset="EUC-KR">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Hugo 0.84.0">
 
-  <title>TASK ºˆ¡§</title>
+  <title>TASK ÏàòÏ†ï</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/offcanvas-navbar/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,13 +52,13 @@
 
 <body class="bg-light" >
 
-  <!-- ªÛ¥‹πŸ, project.name ∫Ø∞Ê øπ¡§ (DB ø¨∞·) -->
+  <!-- ÏÉÅÎã®Î∞î, project.name Î≥ÄÍ≤Ω ÏòàÏ†ï (DB Ïó∞Í≤∞) -->
   <!-- background-image: radial-gradient(circle at 15%, #A1A2D3 5%, #FFFFFF 20%, #A1A2D3); -->
   <nav class="navbar fixed-top navbar-dark border border-2 border-dark rounded mx-auto" aria-label="Main navigation" style="background-color: #A1A2D3; width: 90%; height: 120px; max-width: 1300px; margin-top: 50px;">
     <div class="container-fluid justify-content-between" style="margin-top: 10px;">
       <p style="text-shadow: 1px 1px 5px #000; margin-left: 10%;">
         <a class="navbar-brand fs-2" href="../index.jsp">Task Flow</a><br/>
-        <a class="fs-5 ms-1" href="projectView.jsp" style="color: rgba(255, 255, 255, 0.863); text-decoration: none;">µ•∫£«¡ ∆¿«√</a>
+        <a class="fs-5 ms-1" href="projectView.jsp" style="color: rgba(255, 255, 255, 0.863); text-decoration: none;">Îç∞Î≤†ÌîÑ ÌåÄÌîå</a>
       </p>
      </div>
   </nav>
@@ -67,24 +67,24 @@
 
   <div class="d-flex p-3 bg-body rounded mx-auto justify-content-center" style="margin-top: 200px; width: 100%; height: 510px;">
   
-	  <!-- task ºˆ¡§ -->
-      <span class="d-flex p-4 mt-4 justify-content-center" style="font-size: 20px; font-weight: bold; width: 250px;">TASK ºˆ¡§</span>
+	  <!-- task ÏàòÏ†ï -->
+      <span class="d-flex p-4 mt-4 justify-content-center" style="font-size: 20px; font-weight: bold; width: 250px;">TASK ÏàòÏ†ï</span>
 
       <form class="m-4">
           <div class="d-flex row mt-4 justify-content-start">
 	  
 			  <!-- Task Name -->
 			  <div class="col-12">
-		            <label for="task_name" class="form-label">Task ¿Ã∏ß</label>
+		            <label for="task_name" class="form-label">Task Ïù¥Î¶Ñ</label>
 		            <input type="text" class="form-control" value="${task.name}" style="width: 200px;">
 		      </div>
 		      <span style="height: 15px;"></span>
 			  
-			  <!-- Task πË¡§ -->
+			  <!-- Task Î∞∞Ï†ï -->
 			  <div class="col-sm-5">
-		        <label for="task_name" class="form-label">πË¡§</label>
+		        <label for="task_name" class="form-label">Î∞∞Ï†ï</label>
 				<div class="input-group mb-3" style="width: 150px;">
-				  <label class="input-group-text " for="inputGroupSelect01">¥„¥Á</label>
+				  <label class="input-group-text " for="inputGroupSelect01">Îã¥Îãπ</label>
 				  <select class="form-select" id="inputGroupSelect01">
 				  
 					<c:forEach var="member" items="${memberList}">
@@ -98,24 +98,24 @@
 				</div>
 			   </div>
 		
-			  <!-- Task ±‚«— -->
+			  <!-- Task Í∏∞Ìïú -->
 			  <div class="col-sm-5">
-				  <label for="address2" class="form-label">±‚«—</label>
+				  <label for="address2" class="form-label">Í∏∞Ìïú</label>
 				  <form>
 				      <p><input type="date" value="${task.deadline}"></p>
 			      </form>
 			  </div>
 			  
-			  <!-- Task ≥ªøÎ -->
+			  <!-- Task ÎÇ¥Ïö© -->
 			  <div class="col-12">
-		            <label for="task_content" class="form-label">Task ≥ªøÎ</label>
+		            <label for="task_content" class="form-label">Task ÎÇ¥Ïö©</label>
 		            <input type="text" class="form-control" value="${task.content}" style="width: 70%; height: 60px;">
 		      </div>
 		      <span style="height: 20px;"></span>
 			  
-			  <!-- Task ¡¯«‡∑¸ -->
+			  <!-- Task ÏßÑÌñâÎ•† -->
 			  <div class="col-12" style="height: 80px;">
-				  <label for="customRange2" class="form-label">¡¯«‡∑¸</label>
+				  <label for="customRange2" class="form-label">ÏßÑÌñâÎ•†</label>
 				  <span id="progressValue">(${task.task_progress}%)</span>
 				  <div>
 					  <input type="range" class="form-range" id="customRange2" style="width: 80%;"
@@ -143,7 +143,7 @@
   
   </div>
 	
-  	<!-- «œ¥‹πŸ -->
+  	<!-- ÌïòÎã®Î∞î -->
 	<span class="d-flex justify-content-center" style="margin-top: 20px; color: lightgrey;">2022 DBP BAMANSAEJO</span>
 
 

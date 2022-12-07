@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<meta charset="EUC-KR">
+	<meta charset="UTF-8">
 	<title>task by member</title>
 	
 	<style>
@@ -21,16 +21,16 @@
 
 	<div class="p-2 bg-body rounded shadow-sm">
 
-		<!-- »ó´Ü¹Ù -->
+		<!-- ìƒë‹¨ë°” -->
 		<div style="float: left;">
 			<a href="#" class="btn"
-				style="width: 65px; background-color: #7c78c0; color: white;">¹öÆ°</a>&nbsp;
+				style="width: 65px; background-color: #7c78c0; color: white;">ë²„íŠ¼</a>&nbsp;
 		</div>
-		<!-- Á¤·Ä (±âÇÑ, ¸â¹ö, ÅÂ½ºÅ©) -->
+		<!-- ì •ë ¬ (ê¸°í•œ, ë©¤ë²„, íƒœìŠ¤í¬) -->
 		<div class="form-group d-flex flex-row-reverse">
 		  <select class="form-select" id="exampleSelect1" style="width: 100px;">
-		    <option selected>±âÇÑ¼ø</option>
-		    <option>ÁøÇà¼ø</option>
+		    <option selected>ê¸°í•œìˆœ</option>
+		    <option>ì§„í–‰ìˆœ</option>
 		  </select>
 		</div>
 		<hr />

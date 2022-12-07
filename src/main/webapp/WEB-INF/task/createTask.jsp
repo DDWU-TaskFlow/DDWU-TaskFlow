@@ -1,17 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
 <!doctype html>
 <html lang="en">
 
 <head>
-  <meta charset="EUC-KR">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Hugo 0.84.0">
 
-  <title>TASK »ı¼º</title>
+  <title>TASK ìƒì„±</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/offcanvas-navbar/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,13 +51,13 @@
 
 <body class="bg-light" >
 
-  <!-- »ó´Ü¹Ù, project.name º¯°æ ¿¹Á¤ (DB ¿¬°á) -->
+  <!-- ìƒë‹¨ë°”, project.name ë³€ê²½ ì˜ˆì • (DB ì—°ê²°) -->
   <!-- background-image: radial-gradient(circle at 15%, #A1A2D3 5%, #FFFFFF 20%, #A1A2D3); -->
   <nav class="navbar fixed-top navbar-dark border border-2 border-dark rounded mx-auto" aria-label="Main navigation" style="background-color: #A1A2D3; width: 90%; height: 120px; max-width: 1300px; margin-top: 50px;">
     <div class="container-fluid justify-content-between" style="margin-top: 10px;">
       <p style="text-shadow: 1px 1px 5px #000; margin-left: 10%;">
         <a class="navbar-brand fs-2" href="../index.jsp">Task Flow</a><br/>
-        <a class="fs-5 ms-1" href="projectView.jsp" style="color: rgba(255, 255, 255, 0.863); text-decoration: none;">µ¥º£ÇÁ ÆÀÇÃ</a>
+        <a class="fs-5 ms-1" href="projectView.jsp" style="color: rgba(255, 255, 255, 0.863); text-decoration: none;">ë°ë² í”„ íŒ€í”Œ</a>
       </p>
      </div>
   </nav>
@@ -66,40 +66,40 @@
 
   <div class="d-flex p-3 bg-body rounded mx-auto justify-content-center" style="margin-top: 200px; width: 100%; height: 510px;">
   
-	  <!-- task ¼öÁ¤ -->
-      <span class="p-4 mt-4" style="font-size: 20px; font-weight: bold;">TASK ¼öÁ¤</span>
+	  <!-- task ìˆ˜ì • -->
+      <span class="p-4 mt-4" style="font-size: 20px; font-weight: bold;">TASK ìˆ˜ì •</span>
 
       <form class="needs-validation m-4" novalidate>
           <div class="d-flex row mt-4 justify-content-center">
 	  
 			  <!-- Task Name -->
 			  <div class="col-12">
-		            <label for="task_name" class="form-label">Task¸í</label>
+		            <label for="task_name" class="form-label">Taskëª…</label>
 		            <input type="text" class="form-control" value="Task Name" style="width: 200px;">
 		            <div class="invalid-feedback">
 		                Please enter a valid email address for shipping updates.
 		            </div>
 		        </div>
 			  
-			  <!-- Task ¹èÁ¤ -->
+			  <!-- Task ë°°ì • -->
 			  <div class="col-12">
-		        <label for="task_name" class="form-label">¹èÁ¤</label>
+		        <label for="task_name" class="form-label">ë°°ì •</label>
 				<div class="input-group mb-3" style="width: 150px;">
-				  <label class="input-group-text " for="inputGroupSelect01">´ã´ç</label>
+				  <label class="input-group-text " for="inputGroupSelect01">ë‹´ë‹¹</label>
 				  <select class="form-select" id="inputGroupSelect01">
-				    <option value="0" selected>¹Ì¹èÁ¤</option>
-				    <option value="1">ÀÌ¼ÛÈñ</option>
-				    <option value="2">½ÉÀçÇö</option>
-				    <option value="3">Á¤À¯¿µ</option>
-				    <option value="4">¼­ÇÑ³ª</option>
+				    <option value="0" selected>ë¯¸ë°°ì •</option>
+				    <option value="1">ì´ì†¡í¬</option>
+				    <option value="2">ì‹¬ì¬í˜„</option>
+				    <option value="3">ì •ìœ ì˜</option>
+				    <option value="4">ì„œí•œë‚˜</option>
 				  </select>
 				</div>
 			   </div>
 				
 		
-			  <!-- Task ÁøÇà·ü -->
+			  <!-- Task ì§„í–‰ë¥  -->
 			  <div class="col-12">
-				  <label for="customRange2" class="form-label">ÁøÇà·ü</label>
+				  <label for="customRange2" class="form-label">ì§„í–‰ë¥ </label>
 				  <div>
 					  <input type="range" class="form-range" id="customRange2" style="width: 80%;"
 								min="0" max="100" step="1" value="0"  oninput="document.getElementById('progressValue').innerHTML=this.value;">
@@ -107,9 +107,9 @@
 				  </div>
 			  </div>
 		
-			  <!-- Task ±âÇÑ -->
+			  <!-- Task ê¸°í•œ -->
 			  <div class="col-12">
-				  <label for="address2" class="form-label">±âÇÑ</label>
+				  <label for="address2" class="form-label">ê¸°í•œ</label>
 				  <form>
 				      <p><input type="date"></p>
 			      </form>
@@ -134,7 +134,7 @@
   
   </div>
 	
-  	<!-- ÇÏ´Ü¹Ù -->
+  	<!-- í•˜ë‹¨ë°” -->
 	<span class="d-flex justify-content-center" style="margin-top: 20px; color: lightgrey;">2022 DBP BAMANSAEJO</span>
 
 
