@@ -100,8 +100,8 @@
 	
 <%!
 	/* Progress bar 색상 배열 선언 */
-	String[] colors = { "c6b0f8", "b3c7ff", "A1A2D3", "f5b6c4" };
-	int count = 0;
+	String[] colors = { "f5b6c4", "c6b0f8", "b3c7ff", "A1A2D3" };
+	int count = 1;
 %>
 
 	<c:set var="proId" value="${project.project_id}" />
