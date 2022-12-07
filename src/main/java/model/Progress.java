@@ -6,17 +6,17 @@ public class Progress {
 	private int progress_id;
 	private int progress;
 	private int task_id;
-	private Date recordeDate;
+	private Date recordedDate;
 	
 	public Progress() {
 		super();
 	}
-	public Progress(int progress_id, int progress, int taskId, Date recordeDate) {
+	public Progress(int progress_id, int progress, int taskId, Date recordedDate) {
 		super();
 		this.progress_id = progress_id;
 		this.progress = progress;
 		this.task_id = taskId;
-		this.recordeDate = recordeDate;
+		this.recordedDate = recordedDate;
 	}
 	
 	public int getProgressId() {
@@ -43,17 +43,17 @@ public class Progress {
 		this.task_id = taskId;
 	}
 
-	public Date getRecordeDate() {
-		return recordeDate;
+	public Date getRecordedDate() {
+		return recordedDate;
 	}
 
-	public void setRecordeDate(Date recordeDate) {
-		this.recordeDate = recordeDate;
+	public void setRecordedDate(Date recordedDate) {
+		this.recordedDate = recordedDate;
 	}
 
 	@Override
 	public String toString() {
 		return "Progress [progress_id=" + progress_id + ", progress=" + progress + ", task_id=" + task_id
-				+ ", recordeDate=" + recordeDate + "]";
+				+ ", recordedDate=" + recordedDate + "]";
 	}	
 }

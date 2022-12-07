@@ -18,7 +18,7 @@ public class HistoryDao {
     public int insertProgress(int taskId, int progress) {
     	int result = 0;
     	String insertQuery = "INSERT INTO PROGRESS (progress_id, progress, task_id, recordedDate) " +
-                				"VALUES (SEQUENCE_PROGRESS.nextval, ?, ?, to_date(SYSDATE, 'YYYY-MM-DD HH24:mi:SS')) ";
+                				"VALUES (SEQUENCE_PROGRESS.nextval, ?, ?, SYSDATE) ";
     	
     	Object[] param = new Object[] {progress, taskId};
     	
@@ -60,7 +60,7 @@ public class HistoryDao {
                   progress.setProgressId(rs.getInt("PROGRESS_ID"));
                   progress.setProgress(rs.getInt("PROGRESS"));
                   progress.setTaskId(rs.getInt("TASK_ID"));
-                  progress.setRecordeDate(rs.getDate("RECORDEDDATE"));
+                  progress.setRecordedDate(rs.getDate("RECORDEDDATE"));
                   list.add(progress);
             }
             return list;      
@@ -72,6 +72,37 @@ public class HistoryDao {
         }       
         return null;    
     }
+    
+    public List<Progress> findProgressByProjectId(int projectId) {
+    	String query = "SELECT progress_id, progress, task_id, recordedDate "
+    					+ "FROM PROGRESS JOIN TASK USING (task_id) "
+    					+ "WHERE project_id = ? ";
+    	
+    	Object[] param = new Object[] {projectId};
+        jdbcUtil.setSqlAndParameters(query, param);
+        
+        try { 
+            ResultSet rs = jdbcUtil.executeQuery();     // query 문 실행               
+            List<Progress> list = new ArrayList<Progress>();     
+            
+            while (rs.next()) { 
+                  Progress progress = new Progress();
+                  progress.setProgressId(rs.getInt("progress_id"));
+                  progress.setProgress(rs.getInt("progress"));
+                  progress.setTaskId(rs.getInt("task_id"));
+                  progress.setRecordedDate(rs.getDate("recordedDate"));
+                  list.add(progress);
+            }
+            return list;      
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            jdbcUtil.close(); 
+        }       
+        return null;    
+    }
+    
 }
 
 
