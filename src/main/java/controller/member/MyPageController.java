@@ -27,9 +27,18 @@ public class MyPageController implements Controller {
 			return "/member/myPage.jsp";			
 		}
 		
+		String password; // 비밀번호 변경을 하지 않을 경우 null 저장되는 것 방지하기 위하여 별도로 password 변수 선언
+		
+		// New password, Confirm New password 미입력시
+		if(request.getParameter("newPassword").equals("null") || request.getParameter("newPassword").equals("")) {
+			password = member.getPassword();
+		} else {
+			password = request.getParameter("newPassword");
+		}
+		
 		// POST request : 입력된 회원정보가 파라미터로 전달됨
 		Member updateMember = new Member( member.getMember_id(), 
-				request.getParameter("user_name"), request.getParameter("newPassword"),
+				request.getParameter("user_name"), password,
 				request.getParameter("name"), request.getParameter("email"),
 				request.getParameter("phone"), request.getParameter("birth"));
 
