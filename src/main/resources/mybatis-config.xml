@@ -6,6 +6,8 @@
 	<settings>
     	<setting name="cacheEnabled" value="false"/>
   	</settings>
+  	
+  	
   	<typeAliases>
 		<typeAlias type="model.Project" alias="Project" />
 		<typeAlias type="model.Member" alias="Member" />

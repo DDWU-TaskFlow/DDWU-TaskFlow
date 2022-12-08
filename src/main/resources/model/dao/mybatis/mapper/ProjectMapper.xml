@@ -3,6 +3,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="model.dao.mybatis.mapper.ProjectMapper">
 	<cache />
+	
 	<insert id="insertProject" parameterType="Project">
 		<selectKey keyProperty="project_id" resultType="int" order="BEFORE">
 			SELECT Sequence_project.nextval AS project_id FROM DUAL
@@ -17,17 +18,22 @@
 		WHERE project_id = #{project_id}
 	</update>
 	
-	<insert id="participateInProject" parameterType="Participation">
+<!-- 	<insert id="participateInProject" parameterType="Participation">
 		INSERT INTO PARTICIPATION {project_id, member_id}
 		VALUES (#{project_id}, #{member_id})
-	</insert>
+	</insert> -->
 	
 	<delete id="deleteProject" parameterType="int">
 		DELETE FROM Project
 		WHERE project_id = #{project_id}		
 	</delete>
 	
-	<delete id="outProject" parameterType="Participation">
+	<delete id="outProject" parameterType="int">
+		DELETE FROM PARTICIPATION
+		WHERE project_id = #{project_id}		
+	</delete>
+	
+	<delete id="outProjectForMember" parameterType="Participation">
 		DELETE FROM PARTICIPATION
 		WHERE project_id = #{project_id} AND member_id = #{member_id}		
 	</delete>
@@ -48,6 +54,23 @@
 		SELECT MEMBER.member_id AS member_id, MEMBER.user_name AS user_name, MEMBER.password AS password, MEMBER.name AS name, MEMBER.email AS email, MEMBER.phone AS phone, MEMBER.birth AS birth
 		FROM MEMBER LEFT JOIN PARTICIPATION ON MEMBER.member_id = PARTICIPATION.member_id JOIN PROJECT ON PROJECT.project_id = PARTICIPATION.project_id 
 		WHERE PROJECT.project_id = #{project_id}
+	</select>
+	
+	<insert id="participateInProject" parameterType="hashmap">
+		INSERT INTO PARTICIPATION (PROJECT_ID, MEMBER_ID) 
+		VALUES (#{pro_id}, #{leader_id})
+	</insert>
+	
+	<select id="getProjectIDByCode" parameterType="string" resultType="int">
+		SELECT PROJECT.project_id AS project_id 
+		FROM PROJECT 
+		WHERE CREATEDLINK = #{code}
+	</select>
+	
+	<select id="getProjectIDByName" parameterType="hashmap" resultType="int">
+		SELECT PROJECT.project_id AS project_id
+		FROM PROJECT
+		WHERE LEADER_ID = #{leader_id} AND NAME = #{name}
 	</select>
 	
 </mapper>

@@ -13,6 +13,7 @@ import model.Member;
 import model.Participation;
 import model.Project;
 import model.dao.mybatis.mapper.ProjectMapper;
+import model.service.ProjectManager;
 
 public class ProjectDao {
 	private SqlSessionFactory sqlSessionFactory;
@@ -28,14 +29,14 @@ public class ProjectDao {
 		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 	}
 	
-	public Project insertProject(Project pro) {
+	public int insertProject(Project pro) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
 			int result = sqlSession.getMapper(ProjectMapper.class).insertProject(pro);
 			if(result > 0) {
 				sqlSession.commit();
 			}
-			return pro;
+			return result;
 		} finally {
 			sqlSession.close();
 		}
@@ -54,18 +55,18 @@ public class ProjectDao {
 		}
 	}	
 	
-	public Participation participateInProject(Participation part) {
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		try {
-			int result = sqlSession.getMapper(ProjectMapper.class).participateInProject(part);
-			if(result > 0) {
-				sqlSession.commit();
-			}
-			return part;
-		} finally {
-			sqlSession.close();
-		}
-	}
+//	public Participation participateInProject(Participation part) {
+//		SqlSession sqlSession = sqlSessionFactory.openSession();
+//		try {
+//			int result = sqlSession.getMapper(ProjectMapper.class).participateInProject(part);
+//			if(result > 0) {
+//				sqlSession.commit();
+//			}
+//			return part;
+//		} finally {
+//			sqlSession.close();
+//		}
+//	}
 	
 	public int deleteProject(int project_id) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -80,10 +81,10 @@ public class ProjectDao {
 		}
 	}
 	
-	public int outProject(Participation part) {
+	public int outProjectForMember(Participation part) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			int result = sqlSession.getMapper(ProjectMapper.class).outProject(part);
+			int result = sqlSession.getMapper(ProjectMapper.class).outProjectForMember(part);
 			if (result > 0) {
 				sqlSession.commit();
 			} 
@@ -121,5 +122,45 @@ public class ProjectDao {
 		} finally {
 			sqlSession.close();
 		}	
+	}
+
+	public int participateInProject(int project_id, int leader_id) {
+		System.out.println("ProjectDao.java: participateInProject 호출 완료");
+
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			return sqlSession.getMapper(ProjectMapper.class).participateInProject(project_id, leader_id);
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		
+	}
+
+	public Integer getProjectID(String code) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			return sqlSession.getMapper(ProjectMapper.class).getProjectIDByCode(code);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public Integer getProjectID(Project pro) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			return sqlSession.getMapper(ProjectMapper.class).getProjectIDByName(pro.getLeader_id(), pro.getName());
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public int outProject(int project_id) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			return sqlSession.getMapper(ProjectMapper.class).outProject(project_id);
+		} finally {
+			sqlSession.close();
+		}
 	}
 }

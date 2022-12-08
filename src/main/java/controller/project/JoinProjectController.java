@@ -26,6 +26,8 @@ public class JoinProjectController implements Controller{
 		String code = request.getParameter("code");
 		int projectId = projectManager.getProjectID(code);
 		
+		System.out.println("JoinProjectController.java: 들어온 code 값은 " + code);
+		
 		Member member = memberManager.
 				getMember((String)request.getSession().getAttribute("user_name"));
 		int memeberId = member.getMember_id();
