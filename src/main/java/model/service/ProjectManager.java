@@ -6,16 +6,19 @@ import java.util.Random;
 import model.Member;
 import model.Participation;
 import model.Project;
-import model.dao.jdbc.ProjectDao;
+import model.dao.jdbc.MemberDao;
+import model.dao.mybatis.ProjectDao;
 
 public class ProjectManager {
 	private static ProjectManager projectManager = new ProjectManager();
 	private ProjectDao projectDAO;
+	private MemberDao memberDAO;
 
 	private ProjectManager() {
 		try {
 			projectDAO = new ProjectDao();
-			System.out.println("projectDAO 생성 완료");
+			memberDAO = new MemberDao();
+			System.out.println("projectDAO, memberDAO 생성 완료");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -60,7 +63,9 @@ public class ProjectManager {
 	public List<Project> findProjectsInMember(String user_name) {
 		//TEST
 		System.out.println("ProjectManager의 findProjectsInMember() 호출됨");
-		return projectDAO.findProjectsInMember(user_name);
+		int member_id = memberDAO.findMember(user_name).getMember_id();
+		
+		return projectDAO.findProjectsInMember(member_id);
 	}
 
 	public List<Member> findMembersInProject(int project_id){
@@ -120,6 +125,8 @@ public class ProjectManager {
 	}
 	
 	public int getProjectID(String code) {
+		System.out.println("ProjectManager.java: getProjectID에 들어온 파라미터는 " + code);
+		
 		return projectDAO.getProjectID(code);
 	}
 	
