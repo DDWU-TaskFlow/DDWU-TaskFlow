@@ -25,10 +25,19 @@ public class CommentSessionDao {
 		return new SqlSessionFactoryBuilder().build(inputStream);
 	}
 	
-	public List<Comment> findCommentByTaskId(int commentId) {
+	public Comment findCommentByCommentId(int commentId) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			return sqlSession.selectList(namespace + ".selectCommentByTaskId", commentId);
+			return sqlSession.selectOne(namespace + ".selectCommentByCommentId", commentId);
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public List<Comment> findCommentByTaskId(int taskId) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			return sqlSession.selectList(namespace + ".selectCommentByTaskId", taskId);
 		} finally {
 			sqlSession.close();
 		}

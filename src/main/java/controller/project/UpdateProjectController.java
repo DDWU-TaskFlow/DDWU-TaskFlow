@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
 import model.Member;
 import model.Project;
+import model.service.HistoryManager;
 import model.service.MemberManager;
 import model.service.ProjectManager;
 
@@ -42,12 +43,19 @@ public class UpdateProjectController implements Controller {
 		
 		project.setLeader_id(leaderMem.getMember_id());
 //		project.setNotice(request.getParameter("notice"));
-		
-		if (pManager.updateProject(project) != 0) {
+
+		// history 처리
+		if (pManager.updateProject(project) == 1) {
+			System.out.println("project update 성공");
+			HistoryManager hManager = HistoryManager.getInstance();
+			int sessionMember = (int)request.getSession().getAttribute("member_id");
 			
+			if(sessionMember == leaderMem.getMember_id()) {
+				String content = "Project : '" + project.getName() + "'";
+				content += " | 리더 위임 | " + mManager.getMember(sessionMember).getName() + " -> " + leader;
+				hManager.insertHistory(projectId, sessionMember, content);
+			}
 		}
-		
-		
 		
 		return "redirect:/project/view?step=2&&project_id="+projectId; //projectView 진입방법: step==2
 	}

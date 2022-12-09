@@ -46,22 +46,26 @@ public class UpdateTaskController implements Controller {
 		
 		Task task = new Task();
 		task = tManager.findTaskByTaskId(taskId);
-		
 		String oldName = task.getName();
-		String newName = request.getParameter("taskName");
 		int oldProgress = task.getTask_progress();
-		int newProgress = Integer.parseInt(request.getParameter("taskProgress"));
 		int oldMember = task.getMember_id();
-		int newMember = Integer.parseInt(request.getParameter("memberId"));
 		Date oldDeadline = task.getDeadline();
-		Date newDeadline = Date.valueOf(request.getParameter("deadline"));
+		
+		String newName = request.getParameter("taskName");
+		int newProgress = Integer.parseInt(request.getParameter("taskProgress"));
+		int newMember = Integer.parseInt(request.getParameter("memberId"));
+		Date newDeadline = null;
+		if (!request.getParameter("deadline").isEmpty()) {
+			newDeadline = Date.valueOf(request.getParameter("deadline"));
+			task.setDeadline(newDeadline);
+		}
 		
 		task.setName(newName);
 		task.setTask_progress(newProgress);
 		task.setMember_id(newMember);
 		task.setContent(request.getParameter("content"));
-		task.setDeadline(newDeadline);
 
+		// history 처리
 		if (tManager.updateTask(task) == 1) {
 			System.out.println("task update 성공");
 			
@@ -69,12 +73,12 @@ public class UpdateTaskController implements Controller {
 			int sessionMember = (int)request.getSession().getAttribute("member_id");
 			
 			if(!newName.equals(oldName)) {
-				String content = "Task : " + oldName;
+				String content = "Task : '" + oldName + "'";
 				content += " | 이름 변경 | " + oldName + " -> " + newName;
 				hManager.insertHistory(task.getProject_id(), sessionMember, content);
 			}
 			if (newProgress != oldProgress) {
-				String content = "Task : " + oldName;
+				String content = "Task : '" + oldName + "'";
 				int dist = newProgress - oldProgress;
 				content += " | 진행률 변경 | " + newProgress;
 				content += " (";
@@ -85,12 +89,16 @@ public class UpdateTaskController implements Controller {
 				hManager.insertHistory(task.getProject_id(), sessionMember, content);
 			}
 			if (oldMember != newMember) {
-				String content = "Task : " + oldName;
+				String content = "Task : '" + oldName + "'";
 				content += " | 담당 변경 | " + tManager.findMemberNameByTaskId(taskId);
 				hManager.insertHistory(task.getProject_id(), sessionMember, content);
 			}
-			if (oldDeadline.compareTo(newDeadline) != 0) {
-				String content = "Task : " + oldName;
+			if (oldDeadline == null && newDeadline != null) {
+				String content = "Task : '" + oldName + "'";
+				content += " | 기한 설정 | " + newDeadline;
+				hManager.insertHistory(task.getProject_id(), sessionMember, content);
+			}else if (newDeadline != null && (newDeadline.compareTo(oldDeadline) != 0)) {
+				String content = "Task : '" + oldName + "'";
 				content += " | 기한 변경 | " + oldDeadline + " -> " + newDeadline;
 				hManager.insertHistory(task.getProject_id(), sessionMember, content);
 			}

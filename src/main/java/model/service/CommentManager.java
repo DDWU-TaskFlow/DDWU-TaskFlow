@@ -25,6 +25,12 @@ public class CommentManager {
 	public static CommentManager getInstance() {
 		return commentManager;
 	}
+
+	public Comment findCommentByCommentId(int commentId) {
+		Comment comment = new Comment();
+		comment = commentSessionDao.findCommentByCommentId(commentId);
+		return comment;
+	}
 	
 	public List<Comment> findCommentByTaskId(int taskId) {
 		List<Comment> commentList = new ArrayList<Comment>();

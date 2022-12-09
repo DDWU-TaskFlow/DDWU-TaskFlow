@@ -55,7 +55,7 @@
 	        <span class="d-block rounded-pill text-center" style="background-color: rgb(233, 231, 231); width: 485px;">
 	        	<fmt:formatDate value="${history.recordedDate}" type="both" pattern="YYYY/MM/dd HH:mm" />
 	        </span>
-	        <span class="d-block rounded-pill pt-3"><strong>&nbsp;${historyManager.findMemberNameByHistoryId(hisId)}&nbsp;</strong></span>
+	        <span class="d-block rounded-pill ps-3 pt-3"><strong>&nbsp;${historyManager.findMemberNameByHistoryId(hisId)}&nbsp;</strong></span>
 	        <span class="d-block rounded-pill ps-3 pt-1">${history.content}</span>
 	      </p>
 	    </div>

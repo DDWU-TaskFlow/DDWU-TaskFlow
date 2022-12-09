@@ -74,6 +74,16 @@ h4.card-title {
 }
 </style>
 
+<!-- toggle tooltip -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+  });
+</script>
+  
 <script type="text/javascript">
 <%String strID = (String) session.getAttribute("user_name");
 if (strID != null) {
@@ -107,14 +117,13 @@ session.setAttribute("firstAccess", 0);
 				<!-- +버튼 생성 -->
 				<a style="float: left; width: 60px;"
 					href="<c:url value='/project/create'></c:url>">
-					<div class="d-flex justify-content-center align-items-center border border-secondary rounded-circle"
-						style="width: 40px; height: 40px; margin-right: 150px; margin-left: 20px; float: left;">
+					<div class="d-flex justify-content-center align-items-center border border-secondary rounded-circle" 
+						style="width: 40px; height: 40px; margin-right: 150px; margin-left: 20px; float: left;"
+						data-toggle="tooltip" data-bs-placement="top" title="프로젝트 생성">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 							fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
-  						<path
-								d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-  						<path
-								d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+  						<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+  						<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
 					</svg>
 					</div>
 				</a>
@@ -124,7 +133,8 @@ session.setAttribute("firstAccess", 0);
 				<a style="float: left; width: 60px;"
 					href="<c:url value='/project/join'></c:url>">
 					<div class="d-flex justify-content-center align-items-center border border-secondary rounded-circle"
-						style="width: 40px; height: 40px; margin-right: 150px; margin-left: 20px; float: left;">
+						style="width: 40px; height: 40px; margin-right: 150px; margin-left: 20px; float: left;"
+						data-toggle="tooltip" data-bs-placement="top" title="프로젝트 참여">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 							fill="currentColor" class="bi bi-box-arrow-in-left"
 							viewBox="0 0 16 16">
@@ -142,7 +152,8 @@ session.setAttribute("firstAccess", 0);
 					href="<c:url value='/member/logout'></c:url>">
 					<div
 						class="d-flex justify-content-center align-items-center border border-secondary rounded-circle"
-						style="width: 40px; height: 40px; margin-right: 20px; float: right;">
+						style="width: 40px; height: 40px; margin-right: 20px; float: right;"
+						data-toggle="tooltip" data-bs-placement="top" title="로그아웃">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 							fill="currentColor" class="bi bi-box-arrow-right"
 							viewBox="0 0 16 16">
@@ -161,7 +172,8 @@ session.setAttribute("firstAccess", 0);
 						</c:url>">
 
 					<div class="d-flex justify-content-center align-items-center border border-secondary rounded-circle"
-						style="width: 40px; height: 40px; margin-right: 20px; float: right;">
+						style="width: 40px; height: 40px; margin-right: 20px; float: right;"
+						data-toggle="tooltip" data-bs-placement="top" title="마이페이지">
 						<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
 							fill="currentColor" class="bi bi-person-circle"
 							viewBox="0 0 16 16">
