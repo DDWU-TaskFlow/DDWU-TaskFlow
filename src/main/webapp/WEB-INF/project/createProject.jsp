@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
   <head>
@@ -91,7 +92,13 @@
                                     Your project name is required.
                                 </div>
                             </div>
-
+						<div class="col-lg-12">
+							<c:if test="${createFailed}">
+								<h6 class="text-danger">
+									<c:out value="${exception.getMessage()}" />
+								</h6>
+							</c:if>
+						</div>
                         </div>
 
                         <!-- Notice -->

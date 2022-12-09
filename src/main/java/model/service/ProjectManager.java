@@ -31,7 +31,7 @@ public class ProjectManager {
 		return projectManager;
 	}
 
-	public int insertProject(Project pro) {
+	public int insertProject(Project pro) throws LongNameException {
 		if(projectDAO.insertProject(pro) != 1) {
 			System.out.println("project 생성 실패");
 			return 0;
