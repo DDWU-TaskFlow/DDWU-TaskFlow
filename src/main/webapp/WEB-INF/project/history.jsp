@@ -35,84 +35,45 @@
       </select>
     </div>
     <hr/>
-
+	
+	<c:set var="proId" value="${param.projectId}" />
+	<c:set var="historyList" value="${historyManager.findHistoryByProjectId(proId)}" />
+	
+	<!-- 히스토리가 없을 경우 -->
+	<c:if test="${empty historyList}">
+		<div class="d-flex p-1 align-items-center justify-content-center" style="height: 70px;">
+			<span class="d-block text-center">
+				 히스토리가 없습니다. 활동을 시작해보세요.
+			</span>
+		</div>
+	</c:if>
+	
 	<c:forEach var="history" items="${historyList}">
+		<c:set var="hisId" value="${history.historyId}" />
 	    <div class="d-flex pt-3">
 	      <p>
 	        <span class="d-block rounded-pill text-center" style="background-color: rgb(233, 231, 231); width: 485px;">
 	        	<fmt:formatDate value="${history.recordedDate}" type="both" pattern="YYYY/MM/dd HH:mm" />
 	        </span>
-	        <span class="d-block rounded-pill pt-3"><strong>&nbsp;정유영&nbsp;</strong></span>
-	        <span class="d-block rounded-pill ps-3 pt-1">${history.taskId} | thread 작성 | "아 왜 나만 일해 ~~"</span>
+	        <span class="d-block rounded-pill pt-3"><strong>&nbsp;${historyManager.findMemberNameByHistoryId(hisId)}&nbsp;</strong></span>
+	        <span class="d-block rounded-pill ps-3 pt-1">${history.content}</span>
 	      </p>
 	    </div>
 	    <hr/>
 	</c:forEach>
-
-    <div class="d-flex pt-3">
-      <p>
-        <span class="d-block rounded-pill text-center" style="background-color: rgb(233, 231, 231); width: 485px;">2022/09/10 10:00</span>
-        <span class="d-block rounded-pill pt-3"><strong>&nbsp;이송희&nbsp;</strong></span>
-        <span class="d-block rounded-pill ps-3 pt-1">task_수행계획서 | 수행률 입력 | 75% (+15%)</span>
-      </p>
-    </div>
-    <hr/>
-
-    <div class="d-flex pt-3">
-      <p>
-        <span class="d-block rounded-pill text-center" style="background-color: rgb(233, 231, 231); width: 485px;">2022/09/08 13:10</span>
-        <span class="d-block rounded-pill pt-3"><strong>&nbsp;서한나&nbsp;</strong></span>
-        <span class="d-block rounded-pill ps-3 pt-1">task_요구사항 | task 업로드 | task_MVC 설계</span>
-      </p>
-    </div>
-    <hr/>
-
-    <div class="d-flex pt-3">
-      <p>
-        <span class="d-block rounded-pill text-center" style="background-color: rgb(233, 231, 231); width: 485px;">2022/09/01 10:00</span>
-        <span class="d-block rounded-pill pt-3"><strong>&nbsp;심재현&nbsp;</strong></span>
-        <span class="d-block rounded-pill ps-3 pt-1">task_UI 설계 | 업무 분담 | task_</span>
-      </p>
-    </div>
-    <hr/>
-
-    <div class="d-flex pt-3">
-      <p>
-        <span class="d-block rounded-pill text-center" style="background-color: rgb(233, 231, 231); width: 485px;">2022/09/11 23:37</span>
-        <span class="d-block rounded-pill pt-3"><strong>&nbsp;정유영&nbsp;</strong></span>
-        <span class="d-block rounded-pill ps-3 pt-1">task_수행계획서 | thread 작성 | "아 왜 나만 일해 ~~"</span>
-      </p>
-    </div>
-    <hr/>
-
-    <div class="d-flex pt-3">
-      <p>
-        <span class="d-block rounded-pill text-center" style="background-color: rgb(233, 231, 231); width: 485px;">2022/09/10 10:00</span>
-        <span class="d-block rounded-pill pt-3"><strong>&nbsp;이송희&nbsp;</strong></span>
-        <span class="d-block rounded-pill ps-3 pt-1">task_수행계획서 | 수행률 입력 | 75% (+15%)</span>
-      </p>
-    </div>
-    <hr/>
-
-    <div class="d-flex pt-3">
-      <p>
-        <span class="d-block rounded-pill text-center" style="background-color: rgb(233, 231, 231); width: 485px;">2022/09/08 13:10</span>
-        <span class="d-block rounded-pill pt-3"><strong>&nbsp;서한나&nbsp;</strong></span>
-        <span class="d-block rounded-pill ps-3 pt-1">task_요구사항 | task 업로드 | task_MVC 설계</span>
-      </p>
-    </div>
-    <hr/>
-
-    <div class="d-flex pt-3">
-      <p>
-        <span class="d-block rounded-pill text-center" style="background-color: rgb(233, 231, 231); width: 485px;">2022/09/01 10:00</span>
-        <span class="d-block rounded-pill pt-3"><strong>&nbsp;심재현&nbsp;</strong></span>
-        <span class="d-block rounded-pill ps-3 pt-1">task_UI 설계 | 업무 분담 | task_</span>
-      </p>
-    </div>
-    <hr/>
     
+	<div style="height: 20px;"></div>
+	
    </div>
+   
+	<div style="height: 70px;"></div>
+	
+	<nav class="navbar fixed-bottom navbar-light bg-light"
+		style="width: 549px; margin-left: auto;">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">Fixed bottom</a>
+		</div>
+	</nav>
   
 </body>
 </html>

@@ -5,8 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Progress;
-import model.dao.jdbc.JDBCUtil;
+import model.History;
 
 public class HistoryDao {
     private JDBCUtil jdbcUtil = null;    // JDBCUtil 객체를 참조하기 위한 변수
@@ -15,83 +14,74 @@ public class HistoryDao {
         jdbcUtil = new JDBCUtil();      // JDBCUtil 객체 생성
     }
     
-    public int insertProgress(int taskId, int progress) {
+    public int insertHistory(int projectId, int memberId, String content) {
     	int result = 0;
-    	String insertQuery = "INSERT INTO PROGRESS (progress_id, progress, task_id, recordedDate) " +
-                				"VALUES (SEQUENCE_PROGRESS.nextval, ?, ?, SYSDATE) ";
+    	String insertQuery = "INSERT INTO History (history_id, project_id, member_id, content, recordedDate) " +
+                				"VALUES (SEQUENCE_HISTORY.nextval, ?, ?, ?, SYSDATE) ";
     	
-    	Object[] param = new Object[] {progress, taskId};
-    	
+    	Object[] param = new Object[] { projectId, memberId, content };
         jdbcUtil.setSqlAndParameters(insertQuery, param);
-        
-        System.out.println("쿼리 생성 완료");
     	
         try {               
             result = jdbcUtil.executeUpdate();     // insert 문 실행
-            System.out.println(taskId + "번 태스크의 진행률 변경이 progress에 추가 되었습니다.");
         } catch (SQLException ex) {
-            System.out.println("프로그래스 삽입 실패!!!");
+            System.out.println("히스토리 삽입 실패!!!");
             System.out.println(ex.getMessage());
         } catch (Exception ex) {
             jdbcUtil.rollback();
             ex.printStackTrace();
         } finally {     
             jdbcUtil.commit();
-            jdbcUtil.close();     
+            jdbcUtil.close();
         }      
         
-        System.out.println("insert 결과: " + result);
-        return result;      // insert 에 의해 반영된 레코드 수 반환 
+        return result;
     }
     
-    public List<Progress> getProgressList(int taskId) {
-    	String allQuery = "SELECT * FROM PROGRESS "
-    					+ "WHERE TASK_ID = ? ";
-    	Object[] param = new Object[] {taskId};
+    public int deleteHistoryByProjectId(int projectId) {
+    	int result = 0;
+    	String query = "DELETE FROM History "
+    				+ "WHERE project_id = ? ";
     	
-        jdbcUtil.setSqlAndParameters(allQuery, param);
-        
-        try { 
-            ResultSet rs = jdbcUtil.executeQuery();     // query 문 실행               
-            List<Progress> list = new ArrayList<Progress>();     
-            
-            while (rs.next()) { 
-                  Progress progress = new Progress();
-                  progress.setProgressId(rs.getInt("PROGRESS_ID"));
-                  progress.setProgress(rs.getInt("PROGRESS"));
-                  progress.setTaskId(rs.getInt("TASK_ID"));
-                  progress.setRecordedDate(rs.getDate("RECORDEDDATE"));
-                  list.add(progress);
-            }
-            return list;      
-            
+    	Object[] param = new Object[] { projectId };
+        jdbcUtil.setSqlAndParameters(query, param);
+    	
+        try {               
+            result = jdbcUtil.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         } catch (Exception ex) {
+            jdbcUtil.rollback();
             ex.printStackTrace();
-        } finally {
-            jdbcUtil.close(); 
-        }       
-        return null;    
+        } finally {     
+            jdbcUtil.commit();
+            jdbcUtil.close();
+        }      
+        
+        return result;
     }
     
-    public List<Progress> findProgressByProjectId(int projectId) {
-    	String query = "SELECT progress_id, progress, task_id, recordedDate "
-    					+ "FROM PROGRESS JOIN TASK USING (task_id) "
-    					+ "WHERE project_id = ? ";
+    public List<History> findHistoryByProjectId(int projectId) {
+    	String query = "SELECT * "
+    					+ "FROM History "
+    					+ "WHERE project_id = ? "
+    					+ "ORDER BY recordedDate DESC";
     	
-    	Object[] param = new Object[] {projectId};
+    	Object[] param = new Object[] { projectId };
         jdbcUtil.setSqlAndParameters(query, param);
         
         try { 
             ResultSet rs = jdbcUtil.executeQuery();     // query 문 실행               
-            List<Progress> list = new ArrayList<Progress>();     
+            List<History> list = new ArrayList<History>();     
             
             while (rs.next()) { 
-                  Progress progress = new Progress();
-                  progress.setProgressId(rs.getInt("progress_id"));
-                  progress.setProgress(rs.getInt("progress"));
-                  progress.setTaskId(rs.getInt("task_id"));
-                  progress.setRecordedDate(rs.getDate("recordedDate"));
-                  list.add(progress);
+            	  History history = new History();
+            	  history.setProjectId(projectId);
+            	  history.setHistoryId(rs.getInt("history_id"));
+            	  history.setMemberId(rs.getInt("member_id"));
+            	  history.setContent(rs.getString("content"));
+            	  history.setRecordedDate(rs.getTimestamp("recordedDate"));
+                  list.add(history);
             }
             return list;      
             
@@ -102,6 +92,59 @@ public class HistoryDao {
         }       
         return null;    
     }
+    
+    public List<History> findHistoryByMemberId(int projectId, int member_id) {
+    	String query = "SELECT * "
+    					+ "FROM History "
+    					+ "WHERE project_id = ? "
+    					+ "ORDER BY recordedDate DESC";
+    	
+    	Object[] param = new Object[] { projectId };
+        jdbcUtil.setSqlAndParameters(query, param);
+        
+        try { 
+            ResultSet rs = jdbcUtil.executeQuery();     // query 문 실행               
+            List<History> list = new ArrayList<History>();     
+            
+            while (rs.next()) { 
+            	  History history = new History();
+            	  history.setProjectId(projectId);
+            	  history.setHistoryId(rs.getInt("history_id"));
+            	  history.setMemberId(rs.getInt("member_id"));
+            	  history.setContent(rs.getString("content"));
+            	  history.setRecordedDate(rs.getTimestamp("recordedDate"));
+                  list.add(history);
+            }
+            return list;      
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            jdbcUtil.close(); 
+        }       
+        return null;    
+    }
+    
+    public String findMemberNameByHistoryId(int historyId) {
+		String query = "SELECT MEMBER.name AS mName "
+				+ "FROM HISTORY JOIN MEMBER USING (member_id) "
+				+ "WHERE history_id = ? ";
+		
+		jdbcUtil.setSqlAndParameters(query, new Object[] {historyId});
+		String memberName = null;
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();	
+			
+			if (rs.next()) {		
+				memberName = rs.getString("mName");
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();	
+		}
+		return memberName;
+	}
     
 }
 

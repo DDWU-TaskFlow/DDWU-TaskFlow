@@ -2,7 +2,7 @@ package model.dao.test;
 
 import java.util.List;
 
-import model.Progress;
+import model.History;
 import model.dao.jdbc.HistoryDao;
 
 
@@ -12,12 +12,15 @@ public class HistoryDaoTest {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("HistoryDaoMybatisTest");
-
-		List<Progress> prgList = historyDao.findProgressByProjectId(100);
-		System.out.println(prgList);
+		System.out.println("HistoryDaoTest");
 		
-		System.out.println(historyDao.getProgressList(1001));
+//		System.out.println(historyDao.insertHistory(100, 10001, "Task"));
+		System.out.println(historyDao.deleteHistoryByProjectId(102));
+
+		List<History> hList = historyDao.findHistoryByProjectId(102);
+		System.out.println(hList);
+		
+		System.out.println(historyDao.findHistoryByMemberId(100, 10001));
 
 	}
 

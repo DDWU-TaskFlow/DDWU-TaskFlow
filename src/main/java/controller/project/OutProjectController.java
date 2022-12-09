@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import model.Participation;
+import model.service.HistoryManager;
 import model.service.MemberManager;
 import model.service.ProjectManager;
 
@@ -20,6 +21,10 @@ public class OutProjectController implements Controller{
 		
 		Participation part = new Participation(projectId, userId);
 		pManager.outProjectByMember(part);
+		
+		HistoryManager hManager = HistoryManager.getInstance();
+		String content = "프로젝트 나가기";
+		hManager.insertHistory(projectId, userId, content);
 		
 		return "redirect:/project/list";
 	}
