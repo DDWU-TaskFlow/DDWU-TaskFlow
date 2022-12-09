@@ -216,7 +216,7 @@ session.setAttribute("firstAccess", 0);
 									<div class="progress" style="height: 25px;">
 										<div class="progress-bar progress-bar-striped"
 											role="progressbar"
-											style="width: ${project.avg}%; height: 25px; background-color: #b3c7ff;"
+											style="width: ${project.avg}%; height: 25px; background-color: ${project.color};"
 											aria-valuenow="${project.avg}" aria-valuemin="0" aria-valuemax="100">
 										</div>
 									</div>

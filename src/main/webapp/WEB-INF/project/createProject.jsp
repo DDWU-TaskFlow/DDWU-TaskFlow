@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    <title>га╥на╖ф╝ ╩Щ╪╨</title>
+    <title>М■└К║°Л═²М┼╦ Л┐²Л└╠</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
