@@ -197,5 +197,27 @@ public class TaskDao {
 		return memberName;
 	}
 	
+	public int getProjectAvg(int project_id) {
+		String query = "SELECT AVG(TASK_PROGRESS) AS avg "
+				+ "FROM TASK "
+				+ "GROUP BY PROJECT_ID "
+				+ "HAVING PROJECT_ID = ? ";
+		
+		jdbcUtil.setSqlAndParameters(query, new Object[] {project_id});
+		int avg = 0;
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();	
+			if (rs.next()) {		
+				avg = rs.getInt("avg");
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();	
+		}
+		
+		return avg;
+	}
 }
 
