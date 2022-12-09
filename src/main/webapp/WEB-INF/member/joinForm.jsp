@@ -180,7 +180,7 @@ function memberCreate() {
 							<button class="btn btn-primary btn-lg px-4 gap-3" onClick="memberCreate()"
 								style="background-color: rgb(161, 162, 207); border: 0; outline: 0;">Join</button>
 							<button class="btn btn-outline-secondary btn-lg px-4"
-								type="reset" onClick="history.back();">Cancel</button>
+								type="reset" onClick="history.back()">Cancel</button>
 						</div>
 					</form>
 				</div>

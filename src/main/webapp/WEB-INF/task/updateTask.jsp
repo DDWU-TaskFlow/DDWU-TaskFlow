@@ -88,7 +88,7 @@
 				<div class="input-group mb-3" style="width: 150px;">
 				  <label class="input-group-text " for="inputGroupSelect01">담당</label>
 				  <select class="form-select" name="memberId" id="inputGroupSelect01">
-				  
+				    <option value="-1" selected>미배정</option>
 					<c:forEach var="member" items="${memberList}">
 				        <option value="${member.member_id}"
 		        		<c:if test="${member.member_id == task.member_id}">
