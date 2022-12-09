@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
   <head>
@@ -8,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    <title>га╥на╖ф╝ ╩Щ╪╨</title>
+    <title>О©╫О©╫О©╫О©╫О©╫О©╫ф╝ О©╫О©╫О©╫О©╫</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -94,7 +95,13 @@
                                     Your project name is required.
                                 </div>
                             </div>
-
+						<div class="col-lg-12">
+							<c:if test="${createFailed}">
+								<h6 class="text-danger">
+									<c:out value="${exception.getMessage()}" />
+								</h6>
+							</c:if>
+						</div>
                         </div>
 
                         <!-- Notice -->
