@@ -74,4 +74,8 @@ public class TaskManager {
 	public int deleteTask(int taskId) {
 		return taskDao.deleteTask(taskId);
 	}
+	
+	public int getProjectAvg(int project_id) {
+		return taskDao.getProjectAvg(project_id);
+	}
 }

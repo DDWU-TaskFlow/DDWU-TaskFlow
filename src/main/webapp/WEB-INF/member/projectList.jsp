@@ -207,17 +207,17 @@ session.setAttribute("firstAccess", 0);
 														<c:param name='step' value='1'/> 
 						      							<c:param name='projectId' value='${project.project_id}'/>
 						   					</c:url>">
-											<!-- projectView 진입방법1 --> ${project.name}
+											<!-- projectView 진입방법1 --> ${project.name}  
 										</a>
 									</h4>
 									<p></p>
-									<p class="card-text" text-align="right">20%</p>
+									<p class="card-text" text-align="right">${project.avg}%</p>
 									<p></p>
 									<div class="progress" style="height: 25px;">
 										<div class="progress-bar progress-bar-striped"
 											role="progressbar"
-											style="width: 20%; height: 25px; background-color: #b3c7ff;"
-											aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+											style="width: ${project.avg}%; height: 25px; background-color: #b3c7ff;"
+											aria-valuenow="${project.avg}" aria-valuemin="0" aria-valuemax="100">
 										</div>
 									</div>
 								</div>

@@ -8,9 +8,11 @@ public class TaskDaoTest {
 		// TODO Auto-generated method stub
 		TaskDao taskDao = new TaskDao();
 		
-		
 		// findMemberNameByTaskId 테스트
-		System.out.println(taskDao.findMemberNameByTaskId(1001));
+//		System.out.println(taskDao.findMemberNameByTaskId(1001));
+		
+		// getProjectAvg 테스트
+		System.out.println(taskDao.getProjectAvg(101));
 	}
 
 }
