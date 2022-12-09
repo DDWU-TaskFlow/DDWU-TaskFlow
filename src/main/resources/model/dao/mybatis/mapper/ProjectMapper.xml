@@ -73,4 +73,9 @@
 		WHERE LEADER_ID = #{leader_id} AND NAME = #{name}
 	</select>
 	
+	<select id="updateProjectType" parameterType="int">
+		UPDATE PROJECT
+		SET TYPE = 1
+		WHERE PROJECT_ID = #{pro_id}
+	</select>
 </mapper>

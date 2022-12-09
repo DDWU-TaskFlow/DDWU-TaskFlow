@@ -163,4 +163,13 @@ public class ProjectDao {
 			sqlSession.close();
 		}
 	}
+	
+	public Integer updateProjectType(int project_id) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			return sqlSession.getMapper(ProjectMapper.class).updateProjectType(project_id);
+		} finally {
+			sqlSession.close();
+		} 
+	}
 }
