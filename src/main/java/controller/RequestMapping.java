@@ -5,6 +5,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import controller.member.DeleteMemberController;
 import controller.member.EnterMemberController;
 import controller.member.JoinController;
 import controller.member.ListTeamMemberController;
@@ -43,6 +44,7 @@ public class RequestMapping {
         mappings.put("/member/team", new ListTeamMemberController());
         mappings.put("/member/entrance", new EnterMemberController());
         mappings.put("/member/mypage", new MyPageController());
+        mappings.put("/member/delete", new DeleteMemberController());
         
         // project
         mappings.put("/project/create", new CreateProjectController());	// get, post
