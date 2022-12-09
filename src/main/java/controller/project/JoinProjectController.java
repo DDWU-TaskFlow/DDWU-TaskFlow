@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
 import controller.member.UserSessionUtils;
 import model.Member;
+import model.service.HistoryManager;
 import model.service.MemberManager;
 import model.service.ProjectManager;
 
@@ -32,9 +33,15 @@ public class JoinProjectController implements Controller{
 			
 			Member member = memberManager.
 					getMember((String)request.getSession().getAttribute("user_name"));
-			int memeberId = member.getMember_id();
+			int memberId = member.getMember_id();
 			
-			projectManager.participate(projectId, memeberId);
+			projectManager.participate(projectId, memberId);
+
+			// history 처리
+			HistoryManager hManager = HistoryManager.getInstance();
+			String content = "Project : '" + projectManager.getProject(projectId).getName() + "'";
+			content += " | 프로젝트 참가";
+			hManager.insertHistory(projectId, memberId, content);
 			
 			return "redirect:/project/list";
 		} catch (Exception e) {

@@ -12,6 +12,16 @@
 		content
 	</sql>
 	
+	<select id="selectCommentByCommentId" parameterType="int" resultType="Comment">
+		SELECT <include refid="BaseColumns" />
+		FROM Comments
+		<where>
+			<if test="comment_id != null">
+				comment_id = #{commentId}
+			</if>
+		</where>
+	</select>
+	
 	<select id="selectCommentByTaskId" parameterType="int" resultType="Comment">
 		SELECT <include refid="BaseColumns" />
 		FROM Comments

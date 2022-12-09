@@ -86,6 +86,28 @@ public class TaskDao {
 		return result;
     }
 	
+	public int updateTaskByOutMember(int projectId, int memberId) {
+		String updateQuery = "UPDATE TASK SET member_id = -1 "
+					+ "WHERE project_id = ? AND member_id = ? ";
+
+        int result = 0;
+		Object[] params = new Object[] { projectId, memberId };
+		jdbcUtil.setSqlAndParameters(updateQuery,  params);
+		
+		try {
+			result = jdbcUtil.executeUpdate();
+		} catch (Exception e) {
+            System.out.println("태스크 수정에서 오류 발생!!!");
+            jdbcUtil.rollback();
+			e.printStackTrace();
+		} finally {
+			jdbcUtil.commit();
+			jdbcUtil.close();
+		}
+		
+		return result;
+    }
+	
 	// project별로 Task 출력
 	public List<Task> getTaskList(int projectId) {
 		String query = "SELECT TASK.task_id, task_progress, project_id, member_id, TASK.name, content, deadline "

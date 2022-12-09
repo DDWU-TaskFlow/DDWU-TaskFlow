@@ -25,16 +25,12 @@ public class TaskManager {
 	public List<Task> getTaskList(int projectId) {
 		List<Task> taskList = null;
 		taskList = taskDao.getTaskList(projectId);
-		
-		System.out.println("getTaskList");
 		return taskList;
 	}
 	
 	public List<Task> getTaskList(int projectId, int memberId) {
 		List<Task> taskList = null;
 		taskList = taskDao.getTaskList(projectId, memberId);
-		
-		System.out.println("getTaskList");
 		return taskList;
 	}
 	
@@ -69,6 +65,10 @@ public class TaskManager {
 	
 	public int updateTask(Task task) {
 		return taskDao.updateTask(task);
+	}
+	
+	public int updateTaskByOutMember(int projectId, int memberId) {
+		return taskDao.updateTaskByOutMember(projectId, memberId);
 	}
 	
 	public int deleteTask(int taskId) {

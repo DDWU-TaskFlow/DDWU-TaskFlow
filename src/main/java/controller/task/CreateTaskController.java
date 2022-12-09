@@ -69,12 +69,13 @@ public class CreateTaskController implements Controller {
 		
 		System.out.println(task);
 //		log.debug("Create Task: {}", task);
-		
+
+		// history 처리
 		if (tManager.insertTask(task) == 1) { 
 			System.out.println("task insert 성공");
 			HistoryManager hManager = HistoryManager.getInstance();
 			int sessionMember = (int)request.getSession().getAttribute("member_id");
-			String content = "Task : " + task.getName() + " | 생성";
+			String content = "Task : '" + task.getName() + "' | 생성";
 			hManager.insertHistory(task.getProject_id(), sessionMember, content);
 		}
 

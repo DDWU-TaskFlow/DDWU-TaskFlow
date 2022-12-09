@@ -5,6 +5,9 @@ import java.util.List;
 import model.Comment;
 
 public interface CommentMapper {
+	
+	Comment selectCommentByCommentId(int commentId);
+	
 	List<Comment> selectCommentByTaskId(int taskId);
 	
 	String selectMemberNameByCommentId(int commentId);

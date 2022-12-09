@@ -8,6 +8,7 @@ import model.Participation;
 import model.service.HistoryManager;
 import model.service.MemberManager;
 import model.service.ProjectManager;
+import model.service.TaskManager;
 
 public class OutProjectController implements Controller{
 
@@ -22,8 +23,14 @@ public class OutProjectController implements Controller{
 		Participation part = new Participation(projectId, userId);
 		pManager.outProjectByMember(part);
 		
+		// task 처리
+		TaskManager tManager = TaskManager.getInstance();
+		tManager.updateTaskByOutMember(projectId, userId);
+		
+		// history 처리
 		HistoryManager hManager = HistoryManager.getInstance();
-		String content = "프로젝트 나가기";
+		String content = "Project : '" + pManager.getProject(projectId).getName() + "'";
+		content += " | 프로젝트 참여 종료";
 		hManager.insertHistory(projectId, userId, content);
 		
 		return "redirect:/project/list";

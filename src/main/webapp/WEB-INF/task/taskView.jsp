@@ -35,7 +35,7 @@
 		</div>
 		<hr />
 		
-	<c:set var="proId" value="${param.projectId}" />
+	<c:set var="proId" value="${project.project_id}" />
 	<c:set var="memId" value="${param.memberId}" />
 	
 	<div class="accordion" id="accordion${memId}">
@@ -66,7 +66,7 @@
 				${task.content} (${task.task_progress}%)
 			</span>
 			<c:choose>
-			  <c:when test="${sessionScope.member_id == task.member_id}">
+			  <c:when test="${(sessionScope.member_id == task.member_id) || (sessionScope.member_id == project.leader_id)}">
 			    <span class="d-flex justify-content-center" style="width: 80px;">
 					<button class="d-flex btn btn-outline-warning"
 						onclick="location.href='<c:url value='/task/update'>
