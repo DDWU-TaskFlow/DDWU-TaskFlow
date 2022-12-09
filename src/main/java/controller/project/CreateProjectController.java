@@ -20,30 +20,39 @@ public class CreateProjectController implements Controller{
 			return "/project/createProject.jsp";
 		} 
 		
-		// POST request
-		ProjectManager manager = ProjectManager.getInstance();
-		
-		// session에 저장되어있는 값 통해 리더 아이디 가져오기
-		String userName = (String)request.getSession().getAttribute("user_name");
-		System.out.println("CreateProjectController: 가져온 userName은 " + userName);
-		
-		model.Member member = MemberManager.getInstance().getMember(userName);
-		
-		Project project = new Project(
-				member.getMember_id(),
-				request.getParameter("name"),
-				0,
-				new Date(0),
-				manager.getRandomString(),
-				request.getParameter("notice"),
-				request.getParameter("color")
-				);
-		
-		
-		manager.insertProject(project);
-		System.out.println(project + "생성 완료");
+		try {
+			// POST request
+			ProjectManager manager = ProjectManager.getInstance();
+			
+			// session에 저장되어있는 값 통해 리더 아이디 가져오기
+			String userName = (String)request.getSession().getAttribute("user_name");
+			System.out.println("CreateProjectController: 가져온 userName은 " + userName);
+			
+			model.Member member = MemberManager.getInstance().getMember(userName);
+			
+			Project project = new Project(
+					member.getMember_id(),
+					request.getParameter("name"),
+					0,
+					new Date(0),
+					manager.getRandomString(),
+					request.getParameter("notice"),
+					""
+					);
+			
+			
+			manager.insertProject(project);
+			System.out.println(project + "생성 완료");
+			
+			return "redirect:/project/list";
+		} catch (Exception e) {
+			/* request.getParameter("name") 예외처리*/
+      request.setAttribute("createFailed", true);
+			request.setAttribute("exception", e);
+			
+			return "/project/createProject.jsp";
+		}
 
-		return "redirect:/project/list";
 	}
 
 }

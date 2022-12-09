@@ -25,13 +25,16 @@ public class JoinController implements Controller {
        		return "/member/joinForm.jsp";
        	}
     	// POST request (회원정보가 parameter로 전송됨)
+       	
        	Member member = new Member(
 			request.getParameter("user_name"),
 			request.getParameter("password"),
 			request.getParameter("name"),
 			request.getParameter("email"),
 			request.getParameter("phone"),
-			Date.valueOf(request.getParameter("brith")));
+			Date.valueOf(request.getParameter("birth")));
+       	
+       	System.out.println(member);
 		
         log.debug("Create Member: {}", member);
 

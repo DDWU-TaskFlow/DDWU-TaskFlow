@@ -24,35 +24,44 @@ public class SendMessageController implements Controller{
 
 		ProjectManager pManager = ProjectManager.getInstance();
 		int project_id = Integer.parseInt(request.getParameter("project_id"));
+		int leader_id = Integer.parseInt(request.getParameter("leader_id"));
 		
 		Project pro = pManager.getProject(project_id);
 		memberList = pManager.findMembersInProject(project_id);	
 		
 		request.setAttribute("memberList", memberList);
-		request.setAttribute("project", pro);		
+		
 		System.out.println(memberList);
 		DefaultMessageService messageService =  NurigoApp.INSTANCE.initialize("NCSPUG3RCJPOKFDP", "PZMFWVTPUE8RMMSHMT6MRFTWMDLBGGMG", "https://api.solapi.com");
-		// Message 패키지가 중복될 경우 net.nurigo.sdk.message.model.Message로 치환하여 주세요
+
 		Message message = new Message();
 		message.setFrom("01020107204");
+		int success = 0;
+		
 		for(int i=0; i<memberList.size(); i++) {
-			String phone = memberList.get(i).getPhone();
-			phone = phone.replaceAll("[^0-9]", "");
-			System.out.println("수신자 전화번호"+phone);
-			message.setTo(phone);
-			message.setText(notice);
-
-			try {
-			  // send 메소드로 ArrayList<Message> 객체를 넣어도 동작합니다!
-			  messageService.send(message);
-			} catch (NurigoMessageNotReceivedException exception) {
-			  // 발송에 실패한 메시지 목록을 확인할 수 있습니다!
-			  System.out.println(exception.getFailedMessageList());
-			  System.out.println(exception.getMessage());
-			} catch (Exception exception) {
-			  System.out.println(exception.getMessage());
+			Member mem = memberList.get(i);
+			if(mem.getMember_id() != leader_id) 
+			{
+				String phone = mem.getPhone();
+				phone = phone.replaceAll("[^0-9]", "");
+				System.out.println("수신자 전화번호"+phone);
+				message.setTo(phone);
+				message.setText(notice);
+				
+				try {
+				  messageService.send(message);
+				  success = 1;
+				  pro.setNotice(notice);	
+				  pManager.updateProject(pro);			
+				  request.setAttribute("project", pro);		  
+				} catch (NurigoMessageNotReceivedException exception) {				  
+				  System.out.println(exception.getFailedMessageList());
+				  System.out.println(exception.getMessage());
+				} catch (Exception exception) {
+				  System.out.println(exception.getMessage());
+				}
 			}
 		}		
-		return "/project/setting.jsp";
+		return "/project/setting.jsp?success="+success;
 	}
 }

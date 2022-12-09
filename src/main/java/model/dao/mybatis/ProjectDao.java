@@ -13,6 +13,7 @@ import model.Member;
 import model.Participation;
 import model.Project;
 import model.dao.mybatis.mapper.ProjectMapper;
+import model.service.LongNameException;
 import model.service.ProjectManager;
 
 public class ProjectDao {
@@ -29,9 +30,12 @@ public class ProjectDao {
 		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 	}
 	
-	public int insertProject(Project pro) {
+	public int insertProject(Project pro) throws LongNameException {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
+			if(pro.getName().getBytes().length >= 40) {
+				throw new LongNameException("이름이 너무 깁니다.");
+			}
 			int result = sqlSession.getMapper(ProjectMapper.class).insertProject(pro);
 			if(result > 0) {
 				sqlSession.commit();

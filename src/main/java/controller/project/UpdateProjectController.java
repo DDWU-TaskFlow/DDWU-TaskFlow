@@ -41,7 +41,7 @@ public class UpdateProjectController implements Controller {
 		Member leaderMem = mManager.getMemberByName(leader);
 		
 		project.setLeader_id(leaderMem.getMember_id());
-		project.setNotice(request.getParameter("notice"));
+//		project.setNotice(request.getParameter("notice"));
 		
 		pManager.updateProject(project);
 		

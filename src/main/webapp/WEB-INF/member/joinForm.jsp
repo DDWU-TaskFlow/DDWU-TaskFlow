@@ -52,8 +52,6 @@
 	}
 }
 </style>
-<!-- Custom styles for this template -->
-<link href="form-validation.css" rel="stylesheet">
 <script>
 <%
 Member member = (Member)request.getAttribute("member");
@@ -115,7 +113,7 @@ function memberCreate() {
 					<!-- 상단 바 Join -->
 					<div class="pt-5 text-center">
 						<header class="d-flex flex-wrap justify-content-center pt-3 mb-4">
-							<a href="/taskflow/member/joinForm.jsp" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+							<a href="#" onClick="location.reload()" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
 								<svg class="bi me-2" width="5" height="32">
                                 <use xlink:href="#bootstrap" />
                             </svg> <span class="fs-4">
@@ -182,15 +180,12 @@ function memberCreate() {
 							<button class="btn btn-primary btn-lg px-4 gap-3" onClick="memberCreate()"
 								style="background-color: rgb(161, 162, 207); border: 0; outline: 0;">Join</button>
 							<button class="btn btn-outline-secondary btn-lg px-4"
-								type="reset">Cancel</button>
+								type="reset" onClick="history.back();">Cancel</button>
 						</div>
 					</form>
 				</div>
 			</div>
 		</main>
 	</div>
-	<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-
-	<script src="form-validation.js"></script>
 </body>
 </html>

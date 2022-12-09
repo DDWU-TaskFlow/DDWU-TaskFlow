@@ -52,14 +52,27 @@
 
 <body class="bg-light" >
 
-  <!-- 상단바, project.name 변경 예정 (DB 연결) -->
+  <!-- 상단바(DB 연결) -->
   <!-- background-image: radial-gradient(circle at 15%, #A1A2D3 5%, #FFFFFF 20%, #A1A2D3); -->
   <nav class="navbar fixed-top navbar-dark border border-2 border-dark rounded mx-auto" aria-label="Main navigation" style="background-color: #A1A2D3; width: 90%; height: 120px; max-width: 1300px; margin-top: 50px;">
     <div class="container-fluid justify-content-between" style="margin-top: 10px;">
+      
       <p style="text-shadow: 1px 1px 5px #000; margin-left: 10%;">
         <a class="navbar-brand fs-2" href="../index.jsp">Task Flow</a><br/>
-        <a class="fs-5 ms-1" href="projectView.jsp" style="color: rgba(255, 255, 255, 0.863); text-decoration: none;">데베프 팀플</a>
+        <a class="fs-5 ms-1" href="#" onclick="location.reload()" style="color: rgba(255, 255, 255, 0.863); text-decoration: none;">${project.name}</a>
       </p>
+       <c:if test="${userId == project.leader_id}">
+	      <a href="<c:url value='/project/update'>
+		      		 <c:param name="userId" value="${userId}" />
+		      		 <c:param name="projectId" value="${project.project_id}"/>
+	      		   </c:url>" style="float: right;">
+	        <div class="d-flex justify-content-center align-items-center border border-secondary rounded-circle" style="width: 40px; height: 40px; margin-top: -10px; margin-right: 100px; float: right;">
+	          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="rgb(255, 255, 255)" class="bi bi-gear-fill" viewBox="0 0 16 16">
+	            <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+	          </svg>
+	        </div>
+	      </a>
+      </c:if>
      </div>
   </nav>
 
@@ -123,18 +136,12 @@
 		
 			</div>
 		</form>
-
-
 	    <div style="height: 70px;"></div>
-	    
-  
   </div>
 	
   	<!-- 하단바 -->
 	<span class="d-flex justify-content-center" style="margin-top: 20px; color: lightgrey;">2022 DBP BAMANSAEJO</span>
 
-
 </main>
-
 </body>
 </html>
