@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="EUC-KR"%>
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
 <meta name="author"
 	content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 <meta name="generator" content="Hugo 0.84.0">
-<title>������Ʈ ����</title>
+<title>프로젝트 입장</title>
 
 <link rel="canonical"
 	href="https://getbootstrap.com/docs/5.0/examples/album/">
@@ -59,7 +60,7 @@
 			<div class="row g-5">
 				<div class="col-md-7 col-lg-8">
 
-					<!-- ��� �� Create Project-->
+					<!-- 상단 바 Create Project-->
 					<div class="pt-5 text-center">
 						<header class="d-flex flex-wrap justify-content-center pt-3 mb-4">
 							<a href="createProject.jsp"
@@ -105,9 +106,20 @@
 							<div class="col-sm-9">
 								<label for="notice" class="form-label">Join Code</label> <input
 									type="notice" name="code" class="form-control" id="notice"
-									placeholder="�ʴ� �ڵ带 �Է����ּ���.">
+									placeholder="초대 코드를 입력해주세요.">
 							</div>
 						</div>
+
+						<!-- Join 실패한 경우 메시지를 출력 -->
+						<c:if test="${joinFailed}">
+							<div class="col-lg-12">
+								<h6 class="text-danger" style="height: 20px;">
+									<p></p>
+									<p> 초대 코드를 다시 입력해주세요.</p>
+								</h6>
+							</div>
+						</c:if>
+
 
 						<hr class="my-4" style="width: 75%;">
 
