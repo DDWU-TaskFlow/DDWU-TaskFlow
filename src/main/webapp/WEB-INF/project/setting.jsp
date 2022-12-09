@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="model.*"%>
 
 <!doctype html>
 <html lang="en">
@@ -46,12 +47,13 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!-- JavaScript Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+ 
   <script>
 	function clip() {
 		var url = '';
 		var textarea = document.createElement("textarea");
 		document.body.appendChild(textarea);
-		url = ''//window.document.location.href;
+		url = '${project.createdLink}';//window.document.location.href;
 		textarea.value = url;
 		textarea.select();
 		document.execCommand("copy");
@@ -59,10 +61,9 @@
 		alert("초대링크가 복사되었습니다.")
 	}
 
-
 	  <%String success = request.getParameter("success");
 	  if (success != null) {
-		  if(success.equals("0")) {%>
+		  if(success.equals("0")) { %>
 			    alert("전송 실패했습니다.");
 		  <%}
 		  else {%>
