@@ -3,7 +3,7 @@ package model.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Progress;
+import model.History;
 import model.dao.jdbc.HistoryDao;
 
 public class HistoryManager {
@@ -24,20 +24,29 @@ public class HistoryManager {
 		return historyManager;
 	}
 	
-	public List<Progress> getProgressList(int taskId) {
-		List<Progress> progressList = new ArrayList<Progress>();
-		progressList = historyDao.getProgressList(taskId);
-		return progressList;
+	public List<History> findHistoryByProjectId(int projectId) {
+		List<History> historyList = new ArrayList<History>();
+		historyList = historyDao.findHistoryByProjectId(projectId);
+		return historyList;
+	}
+
+	public List<History> findHistoryByMemberId(int projectId, int memberId) {
+		List<History> historyList = new ArrayList<History>();
+		historyList = historyDao.findHistoryByMemberId(projectId, memberId);
+		return historyList;
+	}
+
+	public String findMemberNameByHistoryId(int historyId) {
+		String memberName = historyDao.findMemberNameByHistoryId(historyId);
+		return memberName;
 	}
 	
-	public List<Progress> findProgressByProjectId(int projectId) {
-		List<Progress> progressList = new ArrayList<Progress>();
-		progressList = historyDao.findProgressByProjectId(projectId);
-		return progressList;
+	public int insertHistory(int projectId, int memberId, String content) {
+		return historyDao.insertHistory(projectId, memberId, content);
 	}
 	
-	public int insertProgress(int taskId, int progress) {
-		return historyDao.insertProgress(taskId, progress);
+	public int deleteHistory(int projectId) {
+		return historyDao.deleteHistoryByProjectId(projectId);
 	}
 	
 }
