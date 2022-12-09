@@ -77,7 +77,7 @@
 <body class="bg-light" style="overflow-y: hidden;">
   <!-- 상단바(DB 연결) -->
   <!-- background-image: radial-gradient(circle at 15%, #A1A2D3 5%, #FFFFFF 20%, #A1A2D3); -->
-  <nav class="navbar fixed-top navbar-dark border border-2 border-dark rounded mx-auto" aria-label="Main navigation" style="background-color: ${project.color}; width: 90%; height: 120px; max-width: 1300px; margin-top: 50px;">
+  <nav class="navbar fixed-top navbar-dark border border-1 border-dark rounded mx-auto" aria-label="Main navigation" style="background-color: ${project.color}; width: 90%; height: 120px; max-width: 1300px; margin-top: 50px;">
       	<div class="container-fluid justify-content-between" style="margin-top: 10px;">
 
       <p style="text-shadow: 1px 1px 5px #000; margin-left: 10%;">
@@ -226,7 +226,9 @@
     <div class="offcanvas-body" id="history">
       <!-- import history.jsp -->
        <c:import url="./history.jsp">
-      	<c:param name="historyList" value="${historyList}" />
+       	 <c:param name="projectId" value="${proId}" />
+      	 <c:param name="memberList" value="${memberList}" />
+      	 <c:param name="historyManager" value="${historyManager}" />
       </c:import>
     </div>
   </div>

@@ -78,7 +78,7 @@
                         <div class="col-sm-2">
                             <label for="exampleColorInput" class="form-label">Team Color</label>
                             <input type="color" name="color" class="form-control form-control-color" id="exampleColorInput"
-                                value="#563d7c" title="Choose your color">
+                                value="#A1A2D3" title="Choose your color">
                         </div>
 
                         <!-- Project Name -->

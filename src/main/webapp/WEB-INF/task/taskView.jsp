@@ -41,6 +41,16 @@
 	<div class="accordion" id="accordion${memId}">
 
 	<c:set var="taskList" value="${taskManager.getTaskList(proId, memId)}" />
+	
+	<!-- 테스크가 없을 경우 -->
+	<c:if test="${empty taskList}">
+		<div class="d-flex p-1 align-items-center justify-content-center" style="height: 70px;">
+			<span class="d-block text-center">
+				 태스크를 추가하세요.
+			</span>
+		</div>
+	</c:if>
+	
 	<c:forEach var="task" items="${taskList}">
 		
 		<div class="accordion-item border">
