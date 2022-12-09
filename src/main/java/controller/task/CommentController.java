@@ -1,7 +1,5 @@
 package controller.task;
 
-import java.io.PrintWriter;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,13 +12,14 @@ public class CommentController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+		response.setCharacterEncoding("utf-8");
 		if(!UserSessionUtils.hasLogined(request.getSession())) {
 			return "/member/loginForm.jsp";
 		}
 		
 		CommentManager cManager = CommentManager.getInstance();
-		
+		int msg_success = 0;
+		int is_insert = 0;
 		if (request.getServletPath().equals("/comment/create")) { // 추가
 			
 			int memberId = (int) request.getSession().getAttribute("member_id");
@@ -32,7 +31,8 @@ public class CommentController implements Controller {
 			System.out.println(comment);
 			if (cManager.insertComment(comment) == 1) {
 				System.out.println("comment insert 성공");
-//				request.setAttribute("msg", "comment insert 성공");
+				msg_success = 1;
+				is_insert = 1;
 			}
 		}
 		else if(request.getServletPath().equals("/comment/delete")) { // 삭제
@@ -40,22 +40,10 @@ public class CommentController implements Controller {
 			System.out.println("삭제할 태스크" + commentId);
 			if (cManager.deleteComment(commentId) == 1) {
 				System.out.println("comment delete 성공");
-//				request.setAttribute("msg", "comment delete 성공");
+				msg_success = 1;
+				is_insert = 0;
 			}
 		}
-		
-//		response.setCharacterEncoding("utf-8");
-//		PrintWriter writer = response.getWriter();
-//		writer.println("<script type='text/javascript'>");
-//		writer.println("alert('성공했습니다.');");
-//		writer.println("history.back();");
-//		writer.println("</script>");
-//		writer.flush();
-
-//		request.setAttribute("url", "/project/view?step=1&&projectId="+request.getParameter("projectId"));
-//		
-		return "redirect:/project/view?step=1&&projectId="+request.getParameter("projectId");
-//		return "/task/commentAlert.jsp";
-		
+		return "redirect:/project/view?step=1&&projectId="+request.getParameter("projectId")+"&&msg="+msg_success+"&&is_insert="+is_insert;		
 	}
 }

@@ -6,11 +6,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 
 import controller.Controller;
-import controller.member.RegisterUserController;
 import model.Member;
 import model.Project;
 import model.Task;
@@ -18,7 +17,7 @@ import model.service.ProjectManager;
 import model.service.TaskManager;
 
 public class CreateTaskController implements Controller {
-	private static final Logger log = LoggerFactory.getLogger(RegisterUserController.class);
+//	private static final Logger log = LoggerFactory.getLogger(RegisterUserController.class);
 	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -66,7 +65,7 @@ public class CreateTaskController implements Controller {
 		task.setContent(request.getParameter("content"));
 		
 		System.out.println(task);
-		log.debug("Create Task: {}", task);
+//		log.debug("Create Task: {}", task);
 		
 		if (tManager.insertTask(task) == 1) { 
 			System.out.println("task insert 성공"); 

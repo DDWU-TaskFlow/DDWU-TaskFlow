@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<% request.setCharacterEncoding("utf-8"); %>
 <!doctype html>
 <html lang="en">
 
@@ -53,7 +53,24 @@
       $('[data-toggle="tooltip"]').tooltip();   
     });
   </script>
-  
+  <script>
+  <%String msg_success = request.getParameter("msg");
+  	String is_insert = request.getParameter("is_insert");
+   	if(msg_success != null && is_insert != null) {
+   		int msg = Integer.parseInt(msg_success);
+   		int insert = Integer.parseInt(is_insert);%>
+		const params = new URL(location.href).searchParams;
+		const project_id = params.get('projectId');
+		const url = location.pathname + "?step=1&&projectId="+project_id;
+		<%if (msg == 1 && insert == 1) {%>
+   	   		alert("메세지가 추가됐습니다.");
+   		<%}
+   		else if (msg == 1 && insert == 0) {%>
+   			alert("메세지가 삭제됐습니다.");
+   		<%}%>
+		history.replaceState({}, '', url);
+	<%}%>
+  </script>
 </head>
 
 
