@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    <title>������Ʈ ����</title>
+    <title>Create Project</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,9 +44,6 @@
         }
       }
     </style>
-
-    <!-- Custom styles for this template -->
-    <link href="form-validation.css" rel="stylesheet">
   </head>
   <body class="bg-light">
     
@@ -58,7 +55,7 @@
                 <!-- 상단 바 Create Project-->
                 <div class="pt-5 text-center">
                     <header class="d-flex flex-wrap justify-content-center pt-3 mb-4">
-                        <a href="createProject.jsp"
+                        <a href="#" onClick="location.reload()"
                             class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
                             <svg class="bi me-2" width="5" height="32">
                                 <use xlink:href="#bootstrap" />
@@ -123,8 +120,5 @@
         </div>
     </main>
 </div>
-    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-
-      <script src="form-validation.js"></script>
   </body>
 </html>

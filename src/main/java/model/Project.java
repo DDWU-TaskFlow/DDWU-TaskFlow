@@ -13,6 +13,7 @@ public class Project implements Serializable {
     private String createdLink;
     private String notice;
     private String color;
+    private int avg;
     
     public Project() {
         name = "홍길동";
@@ -109,6 +110,12 @@ public class Project implements Serializable {
 	}
 	public void setColor(String color) {
 		this.color = color;
+	}
+	public int getAvg() {
+		return avg;
+	}
+	public void setAvg(int avg) {
+		this.avg = avg;
 	}
 
 	@Override

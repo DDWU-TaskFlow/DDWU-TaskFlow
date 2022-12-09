@@ -52,19 +52,6 @@
     </style>
     
 <script>
-
-function update() {
-	if(checkSpace(document.form.newPassword.value) == true) {
-		alert("비밀번호에 공백은 사용할 수 없습니다.");
-		return false;
-	}
-	if(validatePassword() == false) {
-		return false;
-	}
-	
-	return true;
-}
-
 function goToProjectList() {
 	document.location.href="/taskflow/project/list";
 }
@@ -78,11 +65,18 @@ function checkSpace(str) {
 	}
 }
 
-// 비밀번호 재확인
+// 비밀번호 유효성 검사
 function validatePassword() {
 	var newPw = document.getElementById("newPassword");
 	var confirmPw = document.getElementById("confirmPassword");
 	
+	// 비밀번호 공백 체크
+	if((checkSpace(newPw.value) == true) || (checkSpace(confirmPw.value) == true)) {
+		alert("비밀번호에 공백은 사용할 수 없습니다.");
+		return false;
+	}
+	
+	// 비밀번호 재확인 일치 여부 체크
 	if(newPw.value != confirmPw.value) {
 		confirmPw.setCustomValidity("비밀번호가 일치하지 않습니다.");
 		confirmPw.reportValidity();
@@ -96,7 +90,7 @@ function validatePassword() {
 </script>
   </head>
   <body class="bg-light">
-    <form name="form" method="POST" action="/taskflow/member/mypage" onsubmit="return update();">
+	<form name="form" method="POST" onsubmit="return validatePassword()">
 
 <div class="container">
     <main>
@@ -115,7 +109,9 @@ function validatePassword() {
                         
                         <!-- 회원 탈퇴 버튼 -->
                         <div class="danger-btn">
-                     	   <button class="btn btn-outline-danger" onClick="">회원 탈퇴</button>  
+                     	    <button class="btn btn-outline-danger" 
+                     	    onClick="javascript: form.action='/taskflow/member/delete?user_name=${member.user_name}';"
+                     	  id="btn">회원 탈퇴</button> 
                         </div>  
                     </header>                                           
                 </div>
@@ -127,7 +123,7 @@ function validatePassword() {
                         <!-- Member Id 확인(읽기 전용) -->
                         <div class="col-12">
                             <label for="member_id" class="form-label">Member Id <span class="text-muted">(Read Only)</span></label>
-                            <input type="text" class="form-control" name="user_name" value="${member.user_name}" readonly="readonly">
+                            <input type="text" class="form-control" id="user_name" name="user_name" value="${member.user_name}" readonly="readonly">
                         </div>
 
                         <!-- New Password -->

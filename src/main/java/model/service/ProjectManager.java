@@ -7,17 +7,20 @@ import model.Member;
 import model.Participation;
 import model.Project;
 import model.dao.jdbc.MemberDao;
+import model.dao.jdbc.TaskDao;
 import model.dao.mybatis.ProjectDao;
 
 public class ProjectManager {
 	private static ProjectManager projectManager = new ProjectManager();
 	private ProjectDao projectDAO;
 	private MemberDao memberDAO;
+	private TaskDao taskDAO;
 
 	private ProjectManager() {
 		try {
 			projectDAO = new ProjectDao();
 			memberDAO = new MemberDao();
+			taskDAO = new TaskDao();
 			System.out.println("projectDAO, memberDAO 생성 완료");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -57,7 +60,9 @@ public class ProjectManager {
 	public List<Project> findProjectsInMember(int member_id) {
 		//TEST
 		System.out.println("ProjectManager의 findProjectsInMember() 호출됨");
-		return projectDAO.findProjectsInMember(member_id);
+		List<Project> projectList = projectDAO.findProjectsInMember(member_id);
+		
+		return projectList;
 	}
 
 	public List<Project> findProjectsInMember(String user_name) {
@@ -65,7 +70,13 @@ public class ProjectManager {
 		System.out.println("ProjectManager의 findProjectsInMember() 호출됨");
 		int member_id = memberDAO.findMember(user_name).getMember_id();
 		
-		return projectDAO.findProjectsInMember(member_id);
+		List<Project> projectList = projectDAO.findProjectsInMember(member_id);
+		for (Project project : projectList) {
+			int projcetAvg = taskDAO.getProjectAvg(project.getProject_id());
+			project.setAvg(projcetAvg);
+		}
+		
+		return projectList;
 	}
 
 	public List<Member> findMembersInProject(int project_id){

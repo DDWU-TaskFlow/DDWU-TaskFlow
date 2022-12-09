@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import controller.Controller;
 import controller.member.RegisterUserController;
 import model.Member;
+import model.Project;
 import model.Task;
 import model.service.ProjectManager;
 import model.service.TaskManager;
@@ -27,12 +28,14 @@ public class CreateTaskController implements Controller {
 		
 		if (request.getMethod().equals("GET")) {	
 			int projectId = Integer.parseInt(request.getParameter("projectId"));
+			Project project = pManager.getProject(projectId);
+			
 			List<Member> memberList = pManager.findMembersInProject(projectId);
 			System.out.println(memberList);
 			
 			request.setAttribute("memberList", memberList);
 			request.setAttribute("projectId", projectId);
-			request.setAttribute("memberList", memberList);
+			request.setAttribute("project", project);
 			
 			return "/task/createTask.jsp";
 		}
