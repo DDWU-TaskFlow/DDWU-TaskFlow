@@ -30,7 +30,7 @@ public class SendMessageController implements Controller{
 		memberList = pManager.findMembersInProject(project_id);	
 		
 		request.setAttribute("memberList", memberList);
-		request.setAttribute("project", pro);		
+		
 		System.out.println(memberList);
 		DefaultMessageService messageService =  NurigoApp.INSTANCE.initialize("NCSPUG3RCJPOKFDP", "PZMFWVTPUE8RMMSHMT6MRFTWMDLBGGMG", "https://api.solapi.com");
 
@@ -51,7 +51,9 @@ public class SendMessageController implements Controller{
 				try {
 				  messageService.send(message);
 				  success = 1;
-				  request.setAttribute("notice", notice);
+				  pro.setNotice(notice);	
+				  pManager.updateProject(pro);			
+				  request.setAttribute("project", pro);		  
 				} catch (NurigoMessageNotReceivedException exception) {				  
 				  System.out.println(exception.getFailedMessageList());
 				  System.out.println(exception.getMessage());
