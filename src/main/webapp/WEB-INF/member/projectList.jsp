@@ -79,7 +79,8 @@ h4.card-title {
 if (strID != null) {
 	int firstAccess = (int) session.getAttribute("firstAccess");
 	if (firstAccess == 1) {%> 
-var strName="<%=strID%>";
+var strName="<%=strID%>
+	";
 	alert(strName + "님 방가방가");
 <%}
 session.setAttribute("firstAccess", 0);
@@ -105,7 +106,9 @@ session.setAttribute("firstAccess", 0);
 				style="margin-top: 10px; width: 400px; height: 100px;">
 				<a href="index.jsp"
 					style="color: rgb(192, 86, 224); display: block;">
-					<p style="font-size: 70px; text-shadow: 1px 1px 5px rgb(197, 135, 226); font-weight: bold;">Task Flow</p>
+					<p
+						style="font-size: 70px; text-shadow: 1px 1px 5px rgb(197, 135, 226); font-weight: bold;">Task
+						Flow</p>
 				</a>
 			</div>
 
@@ -116,14 +119,17 @@ session.setAttribute("firstAccess", 0);
 					<div
 						class="d-flex justify-content-center align-items-center border border-secondary rounded-circle"
 						style="width: 40px; height: 40px; margin-right: 150px; margin-left: 20px; float: left;">
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
-  						<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-  						<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+							fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+  						<path
+								d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+  						<path
+								d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
 					</svg>
 					</div>
 				</a>
-				
-		<!-- 		<div class="d-flex"
+
+				<!-- 		<div class="d-flex"
 					style="width: 50px; height: 50px; margin-left: 120px; float: left;">
 					<button type="button"
 						onclick="location.href='/taskflow/project/create';"
@@ -137,23 +143,31 @@ session.setAttribute("firstAccess", 0);
 					<div
 						class="d-flex justify-content-center align-items-center border border-secondary rounded-circle"
 						style="width: 40px; height: 40px; margin-right: 150px; margin-left: 20px; float: left;">
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
-  						<path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
-  						<path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+							fill="currentColor" class="bi bi-box-arrow-in-left"
+							viewBox="0 0 16 16">
+  						<path fill-rule="evenodd"
+								d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z" />
+  						<path fill-rule="evenodd"
+								d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
 					</svg>
 					</div>
 				</a>
-		
-				
+
+
 				<!-- 로그아웃 -->
 				<a style="float: right; width: 60px;"
 					href="<c:url value='/member/logout'></c:url>">
 					<div
 						class="d-flex justify-content-center align-items-center border border-secondary rounded-circle"
 						style="width: 40px; height: 40px; margin-right: 20px; float: right;">
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
-  						<path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
-  						<path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+							fill="currentColor" class="bi bi-box-arrow-right"
+							viewBox="0 0 16 16">
+  						<path fill-rule="evenodd"
+								d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+  						<path fill-rule="evenodd"
+								d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
 					</svg>
 					</div>
 				</a>
@@ -178,7 +192,7 @@ session.setAttribute("firstAccess", 0);
 				</a>
 
 
-				
+
 			</c:if>
 		</section>
 
@@ -195,19 +209,25 @@ session.setAttribute("firstAccess", 0);
 							<div class="card border-dark mb-3"
 								style="width: 350px; height: 200px;">
 								<div class="card-body">
-									<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35"
-										fill="currentColor" class="bi bi-people-fill"
-										viewBox="0 0 16 16">
-        						<path
-											d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
-      						</svg>
+									<c:if test="${project.type == 0}">
+										<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+  											<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+										</svg>
+      								</c:if>
+      								<c:if test="${project.type == 1}">
+										<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35"
+											fill="currentColor" class="bi bi-people-fill"
+											viewBox="0 0 16 16">
+	        								<path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
+	      								</svg>
+      								</c:if>
 									<h4 class="card-title">
 										<a class="card-title"
 											href="<c:url value='/project/view'>
 														<c:param name='step' value='1'/> 
 						      							<c:param name='projectId' value='${project.project_id}'/>
 						   					</c:url>">
-											<!-- projectView 진입방법1 --> ${project.name}  
+											<!-- projectView 진입방법1 --> ${project.name}
 										</a>
 									</h4>
 									<p></p>
@@ -216,9 +236,9 @@ session.setAttribute("firstAccess", 0);
 									<div class="progress" style="height: 25px;">
 										<div class="progress-bar progress-bar-striped"
 											role="progressbar"
-											style="width: ${project.avg}%; height: 25px; background-color: #b3c7ff;"
-											aria-valuenow="${project.avg}" aria-valuemin="0" aria-valuemax="100">
-										</div>
+											style="width: ${project.avg}%; height: 25px; background-color: ${project.color};"
+											aria-valuenow="${project.avg}" aria-valuemin="0"
+											aria-valuemax="100"></div>
 									</div>
 								</div>
 							</div>

@@ -33,4 +33,6 @@ public interface ProjectMapper {
 	
 	public int outProject(int project_id);
 	
+	public Integer updateProjectType(int pro_id);
+	
 }

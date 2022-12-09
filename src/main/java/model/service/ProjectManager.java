@@ -145,6 +145,8 @@ public class ProjectManager {
 		if(projectDAO.participateInProject(projectId, memberId) < 1) {
 			return false;
 		} else {
+			projectDAO.updateProjectType(projectId);
+			System.out.println("ProjectManager.java: updateProjectType 실행됨");
 			return true;
 		}
 		

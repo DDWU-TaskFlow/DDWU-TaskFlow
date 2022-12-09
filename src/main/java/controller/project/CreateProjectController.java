@@ -1,15 +1,11 @@
 package controller.project;
 
-import java.lang.reflect.Member;
 import java.sql.Date;
-import java.time.LocalDate;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-import controller.member.UserSessionUtils;
-import model.Participation;
 import model.Project;
 import model.service.MemberManager;
 import model.service.ProjectManager;
@@ -51,11 +47,12 @@ public class CreateProjectController implements Controller{
 			return "redirect:/project/list";
 		} catch (Exception e) {
 			/* request.getParameter("name") 예외처리*/
-            request.setAttribute("createFailed", true);
+      request.setAttribute("createFailed", true);
 			request.setAttribute("exception", e);
 			
 			return "/project/createProject.jsp";
 		}
+
 	}
 
 }
