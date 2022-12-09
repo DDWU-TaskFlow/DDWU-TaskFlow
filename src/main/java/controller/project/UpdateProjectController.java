@@ -43,7 +43,11 @@ public class UpdateProjectController implements Controller {
 		project.setLeader_id(leaderMem.getMember_id());
 //		project.setNotice(request.getParameter("notice"));
 		
-		pManager.updateProject(project);
+		if (pManager.updateProject(project) != 0) {
+			
+		}
+		
+		
 		
 		return "redirect:/project/view?step=2&&project_id="+projectId; //projectView 진입방법: step==2
 	}
