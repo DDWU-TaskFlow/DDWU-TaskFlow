@@ -29,6 +29,10 @@
 	font-family: 'Gowun Dodum', sans-serif;
 }
 
+a {
+	text-decoration-line: none !important;
+}
+
 .bd-placeholder-img {
 	font-size: 1.125rem;
 	text-anchor: middle;
@@ -82,7 +86,7 @@ function goToJoin(targetUri) {
 		<section class="container py-5" style="height: 250px;">
 			<div class="container-fluid text-center"
 				style="margin-top: 10px; width: 400px; height: 100px;">
-				<a href="/index.jsp"
+				<a href="#" onClick="location.reload()"
 					style="color: rgb(192, 86, 224); display: block;">
 					<p style="font-size: 70px; text-shadow: 1px 1px 5px rgb(197, 135, 226); font-weight: bold;">Task Flow</p>
 				</a>
