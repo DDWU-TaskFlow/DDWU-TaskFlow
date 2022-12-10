@@ -17,38 +17,26 @@
 	
 </head>
 
-<body class="bg-light">
+<body>
 
-	<div class="p-2 bg-body rounded shadow-sm">
-
-		<!-- 상단바 -->
-		<div style="float: left;">
-			<a href="#" class="btn rounded-pill"
-				style="width: 80px; background-color: #b3c7ff;">배정</a>&nbsp; <a
-				href="#" class="btn rounded-pill"
-				style="width: 80px; background-color: #b3c7ff;">미배정</a>
-		</div>
-		<!-- 정렬 (기한, 멤버, 태스크) -->
-		<!-- <div class="form-group d-flex flex-row-reverse">
-  <select class="form-select" id="exampleSelect1" style="width: 100px;">
-    <option selected>전체</option>
-    <option>이송희</option>
-    <option>심재현</option>
-    <option>정유영</option>
-    <option>서한나</option>
-  </select>
-</div> -->
+<div class="p-2 bg-body rounded shadow-sm" style="margin-top: -10px;">
 
 	<c:set var="proId" value="${param.projectId}" />
 	
-		<div class="d-flex flex-row-reverse">
-			<a href="<c:url value="/task/create" >
-						<c:param name="projectId" value="${proId}" />
-					</c:url>" class="btn" style="width: 65px; background-color: #7c78c0; color: white;">추가</a>&nbsp;
-		</div>
-		<hr />
-
-	<c:set var="taskList" value="${taskManager.getTaskList(proId)}" />
+	<c:choose>
+	  <c:when test="${option eq 'mem'}">
+		<c:set var="taskList" value="${taskManager.orderTaskListByMember(proId)}" />
+	  </c:when>
+	  <c:when test="${option eq 'prog'}">
+		<c:set var="taskList" value="${taskManager.orderTaskListByProgress(proId)}" />
+	  </c:when>
+	  <c:when test="${option eq 'dead'}">
+		<c:set var="taskList" value="${taskManager.getTaskList(proId)}" />
+	  </c:when>
+	  <c:otherwise>
+		<c:set var="taskList" value="${taskManager.orderTaskListByName(proId)}" />
+	  </c:otherwise>
+	</c:choose>
 	
 	<!-- 테스크가 없을 경우 -->
 	<c:if test="${empty taskList}">
@@ -78,7 +66,7 @@
 					<c:if test="${not empty task.content}">
 						<span class="p-2 rounded-3"
 							style="width: 190px; height: 65px; background-color: black; color: white; margin-left: 80px; margin-top: -40px; overflow-y: scroll;">
-							${task.content}
+							${task.content} : ${task.task_progress}% 진행됨
 						</span>
 					</c:if>
 				</details>
@@ -111,11 +99,9 @@
 
 	<div style="height: 70px;"></div>
 
-	<nav class="navbar fixed-bottom navbar-light bg-light"
-		style="width: 549px; margin-left: auto;">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="#">Fixed bottom</a>
-		</div>
+	<nav class="fixed-bottom navbar-light bg-light"
+		style="width: 549px; height: 45px; margin-left: auto;">
+		<span class="d-flex pt-2 justify-content-center align-items-center">Task List</span>
 	</nav>
 
 </body>

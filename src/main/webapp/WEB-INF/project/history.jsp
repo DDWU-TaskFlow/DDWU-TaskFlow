@@ -18,26 +18,19 @@
 
 <body class="bg-light">
 
-	<div class="ps-2 bg-body rounded shadow-sm">
-
-    <!-- 상단바 -->
-    <div style="float: left;">
-      <a href="#" class="btn rounded-pill" style="width: 80px; background-color: #b3c7ff;">진행률</a>&nbsp;
-      <a href="#" class="btn rounded-pill" style="width: 80px; background-color: #b3c7ff;">스레드</a>
-    </div>
-    <div class="form-group d-flex flex-row-reverse">
-      <select class="form-select" id="exampleSelect1" style="width: 100px;">
-        <option selected>전체</option>
-        <option>이송희</option>
-        <option>심재현</option>
-        <option>정유영</option>
-        <option>서한나</option>
-      </select>
-    </div>
-    <hr/>
+	<div class="p-2 bg-body rounded shadow-sm" style="margin-top: -20px;">
 	
-	<c:set var="proId" value="${param.projectId}" />
-	<c:set var="historyList" value="${historyManager.findHistoryByProjectId(proId)}" />
+	<c:set var="proId" value="${projectId}" />
+	
+	<c:choose>
+	  <c:when test="${option eq 'all'}">
+		<c:set var="historyList" value="${historyManager.findHistoryByProjectId(proId)}" />
+	  </c:when>
+	  <c:otherwise>
+		<fmt:parseNumber var="i" type="number" value="${option}" />
+		<c:set var="historyList" value="${historyManager.findHistoryByMemberId(proId, option)}" />
+	  </c:otherwise>
+	</c:choose>
 	
 	<!-- 히스토리가 없을 경우 -->
 	<c:if test="${empty historyList}">
@@ -68,12 +61,11 @@
    
 	<div style="height: 70px;"></div>
 	
-	<nav class="navbar fixed-bottom navbar-light bg-light"
-		style="width: 549px; margin-left: auto;">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="#">Fixed bottom</a>
-		</div>
+	<nav class="fixed-bottom navbar-light bg-light"
+		style="width: 549px; height: 45px; margin-left: auto;">
+		<span class="d-flex pt-2 justify-content-center align-items-center">History</span>
 	</nav>
+
   
 </body>
 </html>

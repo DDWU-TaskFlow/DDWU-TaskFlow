@@ -30,6 +30,7 @@
 				task_id = #{taskId}
 			</if>
 		</where>
+		ORDER BY writtenDate
 	</select>
 	
 	<select id="selectMemberNameByCommentId" parameterType="int" resultType="String">

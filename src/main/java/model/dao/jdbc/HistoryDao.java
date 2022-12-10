@@ -93,13 +93,13 @@ public class HistoryDao {
         return null;    
     }
     
-    public List<History> findHistoryByMemberId(int projectId, int member_id) {
+    public List<History> findHistoryByMemberId(int projectId, int memberId) {
     	String query = "SELECT * "
     					+ "FROM History "
-    					+ "WHERE project_id = ? "
+    					+ "WHERE project_id = ? AND member_id = ? "
     					+ "ORDER BY recordedDate DESC";
     	
-    	Object[] param = new Object[] { projectId };
+    	Object[] param = new Object[] { projectId, memberId };
         jdbcUtil.setSqlAndParameters(query, param);
         
         try { 
@@ -110,7 +110,7 @@ public class HistoryDao {
             	  History history = new History();
             	  history.setProjectId(projectId);
             	  history.setHistoryId(rs.getInt("history_id"));
-            	  history.setMemberId(rs.getInt("member_id"));
+            	  history.setMemberId(memberId);
             	  history.setContent(rs.getString("content"));
             	  history.setRecordedDate(rs.getTimestamp("recordedDate"));
                   list.add(history);

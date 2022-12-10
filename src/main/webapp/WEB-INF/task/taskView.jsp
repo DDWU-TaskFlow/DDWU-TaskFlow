@@ -21,10 +21,14 @@
 
 	<div class="p-2 bg-body rounded shadow-sm">
 
+	<c:set var="proId" value="${project.project_id}" />
+	<c:set var="memId" value="${param.memberId}" />
+	
 		<!-- 상단바 -->
 		<div style="float: left;">
-			<a href="#" class="btn"
-				style="width: 65px; background-color: #7c78c0; color: white;">버튼</a>&nbsp;
+			<a href="<c:url value="/task/create" >
+						<c:param name="projectId" value="${proId}" />
+					</c:url>" class="btn" style="width: 65px; background-color: #7c78c0; color: white;">추가</a>&nbsp;
 		</div>
 		<!-- 정렬 (기한, 멤버, 태스크) -->
 		<div class="form-group d-flex flex-row-reverse">
@@ -35,13 +39,10 @@
 		</div>
 		<hr />
 		
-	<c:set var="proId" value="${project.project_id}" />
-	<c:set var="memId" value="${param.memberId}" />
-	
 	<div class="accordion" id="accordion${memId}">
-
-	<c:set var="taskList" value="${taskManager.getTaskList(proId, memId)}" />
 	
+	<c:set var="taskList" value="${taskManager.getTaskList(proId, memId)}" />
+
 	<!-- 테스크가 없을 경우 -->
 	<c:if test="${empty taskList}">
 		<div class="d-flex p-1 align-items-center justify-content-center" style="height: 70px;">
@@ -58,8 +59,11 @@
 			<span class="d-flex justify-content-center" style="width: 160px;">
 				<span class="d-block ps-3 pe-3 rounded-pill text-center"
 					style="background-color: #fffacc;">
-					<strong style="text-decoration: underline;">${task.name}</strong><br>by
-					${task.deadline}
+					<strong style="text-decoration: underline;">${task.name}</strong><br>
+					<c:choose>
+					  <c:when test="${empty task.deadline}">무기한</c:when>
+					  <c:otherwise>by ${task.deadline}</c:otherwise>
+					</c:choose>
 				</span>
 			</span>
 			<span class="d-flex accordion-button collapsed p-2" style="width: 270px; height: 90px;" data-bs-toggle="collapse" data-bs-target="#collapse${task.task_id}">
@@ -107,11 +111,9 @@
 
 	<div style="height: 70px;"></div>
 
-	<nav class="navbar fixed-bottom navbar-light bg-light"
-		style="width: 549px; margin-left: auto;">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="#">Fixed bottom</a>
-		</div>
+	<nav class="fixed-bottom navbar-light bg-light"
+		style="width: 549px; height: 45px; margin-left: auto;">
+		<span class="d-flex pt-2 justify-content-center align-items-center">Task View & Comment</span>
 	</nav>
 
 </body>

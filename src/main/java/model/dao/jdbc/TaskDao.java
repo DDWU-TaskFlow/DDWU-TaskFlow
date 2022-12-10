@@ -2,13 +2,10 @@ package model.dao.jdbc;
 
 import java.sql.Date;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Member;
 import model.Task;
-import model.dao.jdbc.JDBCUtil;
 
 public class TaskDao {
 	
@@ -112,8 +109,8 @@ public class TaskDao {
 	public List<Task> getTaskList(int projectId) {
 		String query = "SELECT TASK.task_id, task_progress, project_id, member_id, TASK.name, content, deadline "
 				+ "FROM TASK JOIN PROJECT USING (project_id) "
-				+ "WHERE project_id = ? ";
-//				+ "GROUP BY member_id";
+				+ "WHERE project_id = ? "
+				+ "ORDER BY deadline ";
 	
 		List<Task> taskList = new ArrayList<Task>();
 		Object[] params = new Object[] { projectId };
@@ -144,7 +141,8 @@ public class TaskDao {
 	public List<Task> getTaskList(int projectId, int memberId) {
 		String query = "SELECT TASK.task_id, task_progress, project_id, member_id, TASK.name, content, deadline "
 				+ "FROM TASK JOIN PROJECT USING (project_id) "
-				+ "WHERE project_id = ? AND member_id = ? ";
+				+ "WHERE project_id = ? AND member_id = ? "
+				+ "ORDER BY deadline ";
 	
 		List<Task> taskList = new ArrayList<Task>();
 		Object[] params = new Object[] { projectId, memberId };
@@ -241,5 +239,104 @@ public class TaskDao {
 		
 		return avg;
 	}
+	
+	
+	
+	// taskList 멤버별 정렬
+	public List<Task> orderTaskListByMember(int projectId) {
+		String query = "SELECT TASK.task_id, task_progress, project_id, member_id, TASK.name, content, deadline "
+				+ "FROM TASK JOIN PROJECT USING (project_id) "
+				+ "WHERE project_id = ? "
+				+ "ORDER BY member_id ";
+	
+		List<Task> taskList = new ArrayList<Task>();
+		Object[] params = new Object[] { projectId };
+		jdbcUtil.setSqlAndParameters(query, params);
+		
+		try { 
+			ResultSet rs = jdbcUtil.executeQuery();
+			
+			while (rs.next()) {
+				int taskId = rs.getInt("task_id");
+				int task_progress = rs.getInt("task_progress");				
+				int member_id = rs.getInt("member_id");
+				String name = rs.getString("name");
+				String content = rs.getString("content");
+				Date deadline = rs.getDate("deadline");
+				taskList.add(new Task(taskId, task_progress, projectId, member_id, name, content, deadline));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			jdbcUtil.close();
+		}
+		
+    	return taskList;
+	}
+	
+	// taskList 진행순 정렬
+	public List<Task> orderTaskListByProgress(int projectId) {
+		String query = "SELECT TASK.task_id, task_progress, project_id, member_id, TASK.name, content, deadline "
+				+ "FROM TASK JOIN PROJECT USING (project_id) "
+				+ "WHERE project_id = ? "
+				+ "ORDER BY task_progress ";
+	
+		List<Task> taskList = new ArrayList<Task>();
+		Object[] params = new Object[] { projectId };
+		jdbcUtil.setSqlAndParameters(query, params);
+		
+		try { 
+			ResultSet rs = jdbcUtil.executeQuery();
+			
+			while (rs.next()) {
+				int taskId = rs.getInt("task_id");
+				int task_progress = rs.getInt("task_progress");				
+				int member_id = rs.getInt("member_id");
+				String name = rs.getString("name");
+				String content = rs.getString("content");
+				Date deadline = rs.getDate("deadline");
+				taskList.add(new Task(taskId, task_progress, projectId, member_id, name, content, deadline));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			jdbcUtil.close();
+		}
+		
+    	return taskList;
+	}
+	
+	// taskList 이름순 정렬
+	public List<Task> orderTaskListByName(int projectId) {
+		String query = "SELECT TASK.task_id, task_progress, project_id, member_id, TASK.name, content, deadline "
+				+ "FROM TASK JOIN PROJECT USING (project_id) "
+				+ "WHERE project_id = ? "
+				+ "ORDER BY TASK.name ";
+	
+		List<Task> taskList = new ArrayList<Task>();
+		Object[] params = new Object[] { projectId };
+		jdbcUtil.setSqlAndParameters(query, params);
+		
+		try { 
+			ResultSet rs = jdbcUtil.executeQuery();
+			
+			while (rs.next()) {
+				int taskId = rs.getInt("task_id");
+				int task_progress = rs.getInt("task_progress");				
+				int member_id = rs.getInt("member_id");
+				String name = rs.getString("name");
+				String content = rs.getString("content");
+				Date deadline = rs.getDate("deadline");
+				taskList.add(new Task(taskId, task_progress, projectId, member_id, name, content, deadline));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			jdbcUtil.close();
+		}
+		
+    	return taskList;
+	}
+	
 }
 

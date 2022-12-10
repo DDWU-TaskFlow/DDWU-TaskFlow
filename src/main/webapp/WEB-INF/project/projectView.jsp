@@ -53,6 +53,7 @@
       $('[data-toggle="tooltip"]').tooltip();   
     });
   </script>
+  
   <script>
   <%String msg_success = request.getParameter("msg");
   	String is_insert = request.getParameter("is_insert");
@@ -71,6 +72,78 @@
 		history.replaceState({}, '', url);
 	<%}%>
   </script>
+  
+  <script>
+	function getParameter(name) {
+	    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+	    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+	        results = regex.exec(location.search);
+	    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
+	
+ var projectId = getParameter("projectId");
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $.ajax({
+            type : "post",
+            url : "/taskflow/history/list?option=all",
+            dataType : "html",
+            data : { "projectId" : projectId },
+            error : function(){
+                alert("history 불러오기 실패");
+            },
+            success : function(Parse_data){
+                $("#history").html(Parse_data);
+            }
+        });
+        $.ajax({
+            type : "post",
+            url : "/taskflow/task/list?option=nam",
+            dataType : "html",
+            data : { "projectId" : projectId },
+            error : function(){
+                alert("taskList 불러오기 실패");
+            },
+            success : function(Parse_data){
+                $("#task").html(Parse_data);
+            }
+        });
+    });
+    
+    $(document).on('change', "#sortListSelect", function() {
+    	 var opt = $("#sortListSelect option:selected").val();
+    	 $.ajax({
+             type : "post",
+             url : "/taskflow/task/list?option="+opt,
+             dataType : "html",
+             data : { "projectId" : projectId },
+             error : function(){
+                 alert("taskList 불러오기 실패");
+             },
+             success : function(Parse_data){
+                 $("#task").html(Parse_data);
+             }
+         });
+	});
+    
+    $(document).on('change', "#sortHistorySelect", function() {
+    	 var opt = $("#sortHistorySelect option:selected").val();
+    	 $.ajax({
+             type : "post",
+             url : "/taskflow/history/list?option="+opt,
+             dataType : "html",
+             data : { "projectId" : projectId },
+             error : function(){
+                 alert("history 불러오기 실패");
+             },
+             success : function(Parse_data){
+                 $("#history").html(Parse_data);
+             }
+         });
+	});
+ </script>
+
 </head>
 
 
@@ -132,7 +205,8 @@
 	        <p class="pb-4 mb-0 fs-5 border-bottom">
 	          <strong class="d-block">
 	          <c:if test="${member.member_id == project.leader_id}">
-	          	<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="rgb(240,150,0)" class="bi bi-star" viewBox="0 1 16 16" style="margin-left: -25px; margin-top: -20px" data-toggle="tooltip" data-bs-placement="left" title="팀장">
+	          	<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="rgb(240,150,0)" class="bi bi-star" viewBox="0 1 16 16" style="margin-left: -25px; margin-top: -20px" 
+	          		data-toggle="tooltip" data-bs-placement="left" title="팀장<c:if test="${not empty project.notice}">의 공지 : ${project.notice}</c:if>">
 	              <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
 	            </svg>&nbsp;</c:if>${member.name}</strong>
 	        </p>
@@ -207,12 +281,32 @@
       <div class="d-flex justify-content-center"><p class="my-4 fs-5">TASK</p></div>
       <div></div>
     </div>
+		<!-- 상단바 -->
+		<div class="ps-4 pe-4 pt-2">
+			<div style="float: left;">
+				<a href="<c:url value="/task/create" >
+							<c:param name="projectId" value="${proId}" />
+						</c:url>" class="btn" style="width: 65px; background-color: #7c78c0; color: white;">추가</a>&nbsp;
+			</div>
+			<!-- 정렬 (기한, 멤버, 태스크) -->
+			<div class="form-group d-flex flex-row-reverse">
+			  <select class="form-select" id="sortListSelect" style="width: 100px;">
+			    <option value="nam" selected>이름순</option>
+			    <option value="dead">기한순</option>
+			    <option value="mem">팀원별</option>
+			    <option value="prog">진행순</option>
+			  </select>
+			</div>
+		</div>
+		
+		<hr />
     <div class="offcanvas-body" id="task">
-      <!-- import taskList.jsp -->
-      <c:import url="../task/taskList.jsp">
+    
+      <!-- import taskList.jsp -> AJAX로 처리!! -->
+      <%-- <c:import url="../task/taskList.jsp">
       	<c:param name="projectId" value="${proId}" />
       	<c:param name="taskManager" value="${taskManager}" />
-      </c:import>
+      </c:import> --%>
     </div>
   </div>
 	
@@ -223,13 +317,29 @@
       <div class="d-flex justify-content-center"><p class="my-4 fs-5">HISTORY</p></div>
       <div></div>
     </div>
+    <!-- 상단바 -->
+	<div class="ps-4 pe-4 pt-2">
+	    <div style="float: left;">
+	     <!--  <a href="#" class="btn rounded-pill" style="width: 80px; background-color: #b3c7ff;">진행률</a>&nbsp;
+	      <a href="#" class="btn rounded-pill" style="width: 80px; background-color: #b3c7ff;">스레드</a> -->
+	    </div>
+	    <div class="form-group d-flex flex-row-reverse">
+	      <select class="form-select" id="sortHistorySelect" style="width: 100px;">
+	        <option value="all" selected>전체</option>
+			<c:forEach var="member" items="${memberList}">
+		        <option value="${member.member_id}">${member.name}</option>
+		    </c:forEach>
+	      </select>
+	    </div>
+    </div>
+    <hr/>
     <div class="offcanvas-body" id="history">
-      <!-- import history.jsp -->
-       <c:import url="./history.jsp">
+      <!-- import history.jsp -> AJAX로 처리!! -->
+     <%--   <c:import url="./history.jsp">
        	 <c:param name="projectId" value="${proId}" />
       	 <c:param name="memberList" value="${memberList}" />
       	 <c:param name="historyManager" value="${historyManager}" />
-      </c:import>
+      </c:import> --%>
     </div>
   </div>
 	

@@ -14,6 +14,7 @@ import controller.member.LogoutController;
 import controller.member.MyPageController;
 import controller.project.CreateProjectController;
 import controller.project.DeleteProjectController;
+import controller.project.HistoryController;
 import controller.project.JoinProjectController;
 import controller.project.ListProjectController;
 import controller.project.OutProjectController;
@@ -23,6 +24,7 @@ import controller.project.ViewProjectController;
 import controller.task.CommentController;
 import controller.task.CreateTaskController;
 import controller.task.DeleteTaskController;
+import controller.task.ListTaskController;
 import controller.task.UpdateTaskController;
 
 public class RequestMapping {
@@ -61,12 +63,14 @@ public class RequestMapping {
         mappings.put("/task/create", new CreateTaskController()); // get, post
         mappings.put("/task/update", new UpdateTaskController()); // get, post
         mappings.put("/task/delete", new DeleteTaskController());
+        mappings.put("/task/list", new ListTaskController());
         
         // comment
         mappings.put("/comment/create", new CommentController());
         mappings.put("/comment/delete", new CommentController());
         
         // history
+        mappings.put("/history/list", new HistoryController());
         
         
         logger.info("Initialized Request Mapping!");
