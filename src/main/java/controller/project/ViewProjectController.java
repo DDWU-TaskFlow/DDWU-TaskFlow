@@ -46,10 +46,11 @@ public class ViewProjectController implements Controller{
 				
 			TaskManager tManager = TaskManager.getInstance();
 			request.setAttribute("taskManager", tManager);
+			
+			CommentManager cManager = CommentManager.getInstance();
+			request.setAttribute("commentManager", cManager);
 		}
 		
-		CommentManager cManager = CommentManager.getInstance();
-		request.setAttribute("commentManager", cManager);
 		
 		
 		return "/project/projectView.jsp";				// 프로젝트 보기 화면으로 이동

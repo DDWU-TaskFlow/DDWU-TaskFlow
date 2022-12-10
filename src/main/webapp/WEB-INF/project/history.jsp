@@ -27,8 +27,8 @@
 		<c:set var="historyList" value="${historyManager.findHistoryByProjectId(proId)}" />
 	  </c:when>
 	  <c:otherwise>
-		<fmt:parseNumber var="i" type="number" value="${option}" />
-		<c:set var="historyList" value="${historyManager.findHistoryByMemberId(proId, option)}" />
+		<fmt:parseNumber var="memId" type="number" value="${option}" />
+		<c:set var="historyList" value="${historyManager.findHistoryByMemberId(proId, memId)}" />
 	  </c:otherwise>
 	</c:choose>
 	
