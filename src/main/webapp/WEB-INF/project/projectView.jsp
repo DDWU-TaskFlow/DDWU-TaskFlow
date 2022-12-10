@@ -73,51 +73,47 @@
 	<%}%>
   </script>
   
-  <script>
-	function getParameter(name) {
-	    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-	    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-	        results = regex.exec(location.search);
-	    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-	}
-	
- var projectId = getParameter("projectId");
-  </script>
   <script type="text/javascript">
-    $(document).ready(function(){
-        $.ajax({
-            type : "post",
-            url : "/taskflow/history/list?option=all",
-            dataType : "html",
-            data : { "projectId" : projectId },
-            error : function(){
-                alert("history 불러오기 실패");
-            },
-            success : function(Parse_data){
-                $("#history").html(Parse_data);
-            }
-        });
-        $.ajax({
-            type : "post",
-            url : "/taskflow/task/list?option=nam",
-            dataType : "html",
-            data : { "projectId" : projectId },
-            error : function(){
-                alert("taskList 불러오기 실패");
-            },
-            success : function(Parse_data){
-                $("#task").html(Parse_data);
-            }
-        });
-    });
-    
+  $(document).on('click', "#taskListBtn", function(){
+	  var proId = $("#taskListBtn").val();
+      $.ajax({
+          type : "get",
+          url : "/taskflow/task/list?option=nam",
+          dataType : "html",
+          data : { "projectId" : proId },
+          error : function(){
+              alert("taskList 불러오기 실패");
+          },
+          success : function(Parse_data){
+              $("#task").html(Parse_data);
+          }
+      });
+  });
+
+  $(document).on('click', "#historyBtn", function(){
+	  var proId = $("#taskListBtn").val();
+      $.ajax({
+          type : "get",
+          url : "/taskflow/history/list?option=all",
+          dataType : "html",
+          data : { "projectId" : proId },
+          error : function(){
+              alert("history 불러오기 실패");
+          },
+          success : function(Parse_data){
+              $("#history").html(Parse_data);
+          }
+      });
+  });
+
     $(document).on('change', "#sortListSelect", function() {
     	 var opt = $("#sortListSelect option:selected").val();
+   	 	 var proId = $("#taskListBtn").val();
     	 $.ajax({
-             type : "post",
+             type : "get",
              url : "/taskflow/task/list?option="+opt,
              dataType : "html",
-             data : { "projectId" : projectId },
+             data : { "projectId" : proId },
              error : function(){
                  alert("taskList 불러오기 실패");
              },
@@ -129,11 +125,12 @@
     
     $(document).on('change', "#sortHistorySelect", function() {
     	 var opt = $("#sortHistorySelect option:selected").val();
+   	 	 var proId = $("#taskListBtn").val();
     	 $.ajax({
-             type : "post",
+             type : "get",
              url : "/taskflow/history/list?option="+opt,
              dataType : "html",
-             data : { "projectId" : projectId },
+             data : { "projectId" : proId },
              error : function(){
                  alert("history 불러오기 실패");
              },
@@ -173,15 +170,16 @@
   </nav>
 <main class="container align-items-center">
 
+
   <div class="p-3 bg-body rounded mx-auto" style="margin-top: 200px; width: 100%; height: 510px; overflow-y: auto;">
   
   	  <!-- task/history buttons -->
 	  <div class="d-flex my-4 ms-5 justify-content-center">
 	    <button class="btn btn-outline-warning rounded-pill" style="width: 150px; height: 40px; color: black; font-size: large;" data-bs-toggle="offcanvas"
-	            data-bs-target="#offcanvasTaskList" aria-controls="offcanvasRight">Task</button>
+	            id="taskListBtn" value="${project.project_id}" data-bs-target="#offcanvasTaskList" aria-controls="offcanvasRight">Task</button>
 	    <span style="width: 5px; margin-left: 30px;"></span>
 	    <button class="btn btn-outline-warning rounded-pill" style="width: 150px; height: 40px; color: black; font-size: large;" data-bs-toggle="offcanvas"
-	            data-bs-target="#offcanvasHistory" aria-controls="offcanvasRight">History</button>
+	            id="historyBtn" data-bs-target="#offcanvasHistory" aria-controls="offcanvasRight">History</button>
 	  </div>
 	  
 	  
@@ -212,12 +210,12 @@
 	        </p>
 	      </div>
 	      <div class="col-lg-8 align-self-center">
-	        <a class="btn" href="#" style="width: 100%;" data-bs-toggle="offcanvas" data-bs-target="#offcanvas<%=count%>" >
+	        <button class="btn" style="width: 100%;" data-bs-toggle="offcanvas" data-bs-target="#offcanvas<%=count%>">
 	          <div class="progress" style="height: 35px; border: solid 1px #<%=colors[count % colors.length] %>;">
 	            <div class="progress-bar progress-bar-striped" role="progressbar" style="width: ${memProgress}%; height: 35px; background-color: #<%=colors[count % 4] %>;"
 	                aria-valuenow="${memProgress}" aria-valuemin="0" aria-valuemax="100">${memProgress}%</div>
 	          </div>
-	        </a>
+	        </button>
 	      </div>
 	    </div>
 	
@@ -225,9 +223,25 @@
 		  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas<%=count%>" aria-labelledby="offcanvasRightLabel" style="width: 550px;" data-bs-backdrop="false">
 		    <div class="offcanvas-header" style="height: 70px;">
 		      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-		      <div class="d-flex justify-content-center"><p class="my-4 fs-5">${member.name}</p></div>
+		      <div class="d-flex justify-content-center"><p class="my-4 fs-5">TASK with COMMENTs</p></div>
 		      <div></div>
 		    </div>
+			<!-- 상단바 -->
+			<div class="ps-4 pe-4 pt-2">
+				<div style="float: left;">
+					<a href="<c:url value="/task/create" >
+								<c:param name="projectId" value="${proId}" />
+							</c:url>" class="btn" style="width: 65px; background-color: #7c78c0; color: white;">추가</a>&nbsp;
+				</div>
+				<!-- 정렬 -->
+				<div class="form-group d-flex flex-row-reverse">
+				  <select class="form-select" style="width: 100px;">
+				        <option value="${member.member_id}" selected>${member.name}</option>
+			      </select>
+				</div>
+			</div>
+			
+			<hr />
 		    <div class="offcanvas-body" id="task_member">
 		      <!-- import taskView.jsp -->
 		      <c:import url="../task/taskView.jsp">
@@ -288,7 +302,7 @@
 							<c:param name="projectId" value="${proId}" />
 						</c:url>" class="btn" style="width: 65px; background-color: #7c78c0; color: white;">추가</a>&nbsp;
 			</div>
-			<!-- 정렬 (기한, 멤버, 태스크) -->
+			<!-- 정렬 -->
 			<div class="form-group d-flex flex-row-reverse">
 			  <select class="form-select" id="sortListSelect" style="width: 100px;">
 			    <option value="nam" selected>이름순</option>
@@ -347,4 +361,5 @@
 </main>
 
 </body>
+
 </html>

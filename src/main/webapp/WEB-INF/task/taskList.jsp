@@ -21,7 +21,7 @@
 
 <div class="p-2 bg-body rounded shadow-sm" style="margin-top: -10px;">
 
-	<c:set var="proId" value="${param.projectId}" />
+	<c:set var="proId" value="${projectId}" />
 	
 	<c:choose>
 	  <c:when test="${option eq 'mem'}">

@@ -21,13 +21,12 @@ public class ViewTaskController implements Controller {
 
 		Map<String, String[]> map = request.getParameterMap();
 		int projectId = Integer.parseInt(map.get("projectId")[0]);
-		int sessionMember = (int)request.getSession().getAttribute("member_id");
 		
 		TaskManager tManager = TaskManager.getInstance();
 		CommentManager cManager = CommentManager.getInstance();
 		request.setAttribute("projectId", projectId);
-		request.setAttribute("memberId", sessionMember);
-		request.setAttribute("taskList", tManager.getTaskList(projectId, sessionMember));
+     	request.setAttribute("option", request.getParameter("option"));
+		request.setAttribute("taskManager", tManager);
 		request.setAttribute("commentManager", cManager);
 
 			

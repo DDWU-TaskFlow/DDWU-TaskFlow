@@ -24,21 +24,6 @@
 	<c:set var="proId" value="${project.project_id}" />
 	<c:set var="memId" value="${param.memberId}" />
 	
-		<!-- 상단바 -->
-		<div style="float: left;">
-			<a href="<c:url value="/task/create" >
-						<c:param name="projectId" value="${proId}" />
-					</c:url>" class="btn" style="width: 65px; background-color: #7c78c0; color: white;">추가</a>&nbsp;
-		</div>
-		<!-- 정렬 (기한, 멤버, 태스크) -->
-		<div class="form-group d-flex flex-row-reverse">
-		  <select class="form-select" id="exampleSelect1" style="width: 100px;">
-		    <option selected>기한순</option>
-		    <option>진행순</option>
-		  </select>
-		</div>
-		<hr />
-		
 	<div class="accordion" id="accordion${memId}">
 	
 	<c:set var="taskList" value="${taskManager.getTaskList(proId, memId)}" />
