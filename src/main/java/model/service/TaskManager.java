@@ -78,4 +78,19 @@ public class TaskManager {
 	public int getProjectAvg(int project_id) {
 		return taskDao.getProjectAvg(project_id);
 	}
+	
+	
+	// 정렬 관련
+	public List<Task> orderTaskListByMember(int projectId) {
+		return taskDao.orderTaskListByMember(projectId);
+	}
+
+	public List<Task> orderTaskListByName(int projectId) {
+		return taskDao.orderTaskListByName(projectId);
+	}
+
+	public List<Task> orderTaskListByProgress(int projectId) {
+		return taskDao.orderTaskListByProgress(projectId);
+	}
+	
 }

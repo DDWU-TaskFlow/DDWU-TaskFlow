@@ -37,7 +37,7 @@ public class CreateProjectController implements Controller{
 					new Date(0),
 					manager.getRandomString(),
 					request.getParameter("notice"),
-					""
+					request.getParameter("color")
 					);
 			
 			

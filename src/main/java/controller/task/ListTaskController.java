@@ -7,31 +7,26 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import controller.member.UserSessionUtils;
-import model.service.CommentManager;
 import model.service.TaskManager;
 
-public class ViewTaskController implements Controller {
-
+public class ListTaskController implements Controller {
+    
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+		
 		if(!UserSessionUtils.hasLogined(request.getSession())) {
 			return "/member/loginForm.jsp";
 		}
 
 		Map<String, String[]> map = request.getParameterMap();
 		int projectId = Integer.parseInt(map.get("projectId")[0]);
-		int sessionMember = (int)request.getSession().getAttribute("member_id");
 		
 		TaskManager tManager = TaskManager.getInstance();
-		CommentManager cManager = CommentManager.getInstance();
-		request.setAttribute("projectId", projectId);
-		request.setAttribute("memberId", sessionMember);
-		request.setAttribute("taskList", tManager.getTaskList(projectId, sessionMember));
-		request.setAttribute("commentManager", cManager);
-
-			
-		return "/task/taskView.jsp";
+     	request.setAttribute("projectId", projectId);
+     	request.setAttribute("taskManager", tManager);
+     	request.setAttribute("option", request.getParameter("option"));
+		
+		return "/task/taskList.jsp";
 	}
 
 }
