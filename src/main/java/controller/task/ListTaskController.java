@@ -1,5 +1,6 @@
 package controller.task;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import controller.member.UserSessionUtils;
+import model.Task;
 import model.service.TaskManager;
 
 public class ListTaskController implements Controller {
@@ -24,7 +26,24 @@ public class ListTaskController implements Controller {
 		TaskManager tManager = TaskManager.getInstance();
      	request.setAttribute("projectId", projectId);
      	request.setAttribute("taskManager", tManager);
-     	request.setAttribute("option", request.getParameter("option"));
+     	
+     	String option = request.getParameter("option");
+     	List<Task> taskList = null;
+     	switch (option) {
+     		case "mem":
+     			taskList = tManager.orderTaskListByMember(projectId);
+     			break;
+     		case "prog":
+     			taskList = tManager.orderTaskListByProgress(projectId);
+     			break;
+     		case "dead":
+     			taskList = tManager.getTaskList(projectId);
+     			break;
+     		default:
+     			taskList = tManager.orderTaskListByName(projectId);
+     			break;
+     	}
+     	request.setAttribute("taskList", taskList);
 		
 		return "/task/taskList.jsp";
 	}

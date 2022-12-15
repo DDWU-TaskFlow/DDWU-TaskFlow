@@ -55,6 +55,22 @@
   </script>
   
   <script>
+  function searchMem() {
+  	$('[id^=key]').css(
+			{'background-color':'rgba(161,162,211,0.0)', 'transition':'0.5s'}
+  	);
+  	var memName = document.getElementById("keyword").value;
+	$('[id*='+memName+']').css(
+			{'background-color':'rgba(161,162,211,0.5)', 'transition':'0.3s'}
+  	);
+	
+  	if (document.getElementById("key" + memName) != null) {
+  		document.getElementById("searchBtn").href="#key"+memName;
+  	}
+  }
+  </script>
+  
+  <script>
   <%String msg_success = request.getParameter("msg");
   	String is_insert = request.getParameter("is_insert");
    	if(msg_success != null && is_insert != null) {
@@ -72,74 +88,6 @@
 		history.replaceState({}, '', url);
 	<%}%>
   </script>
-  
-  <script type="text/javascript">
-  $(document).on('click', "#taskListBtn", function(){
-	  var proId = $("#taskListBtn").val();
-      $.ajax({
-          type : "get",
-          url : "/taskflow/task/list?option=nam",
-          dataType : "html",
-          data : { "projectId" : proId },
-          error : function(){
-              alert("taskList 불러오기 실패");
-          },
-          success : function(Parse_data){
-              $("#task").html(Parse_data);
-          }
-      });
-  });
-
-  $(document).on('click', "#historyBtn", function(){
-	  var proId = $("#taskListBtn").val();
-      $.ajax({
-          type : "get",
-          url : "/taskflow/history/list?option=all",
-          dataType : "html",
-          data : { "projectId" : proId },
-          error : function(){
-              alert("history 불러오기 실패");
-          },
-          success : function(Parse_data){
-              $("#history").html(Parse_data);
-          }
-      });
-  });
-
-    $(document).on('change', "#sortListSelect", function() {
-    	 var opt = $("#sortListSelect option:selected").val();
-   	 	 var proId = $("#taskListBtn").val();
-    	 $.ajax({
-             type : "get",
-             url : "/taskflow/task/list?option="+opt,
-             dataType : "html",
-             data : { "projectId" : proId },
-             error : function(){
-                 alert("taskList 불러오기 실패");
-             },
-             success : function(Parse_data){
-                 $("#task").html(Parse_data);
-             }
-         });
-	});
-    
-    $(document).on('change', "#sortHistorySelect", function() {
-    	 var opt = $("#sortHistorySelect option:selected").val();
-   	 	 var proId = $("#taskListBtn").val();
-    	 $.ajax({
-             type : "get",
-             url : "/taskflow/history/list?option="+opt,
-             dataType : "html",
-             data : { "projectId" : proId },
-             error : function(){
-                 alert("history 불러오기 실패");
-             },
-             success : function(Parse_data){
-                 $("#history").html(Parse_data);
-             }
-         });
-	});
- </script>
 
 </head>
 
@@ -201,7 +149,7 @@
 	    <div class="container row justify-content-center" style="vertical-align: middle;">
 	      <div class="d-flex pt-4" style="width: 120px;">
 	        <p class="pb-4 mb-0 fs-5 border-bottom">
-	          <strong class="d-block">
+	          <strong class="d-block" id="key${member.name}">
 	          <c:if test="${member.member_id == project.leader_id}">
 	          	<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="rgb(240,150,0)" class="bi bi-star" viewBox="0 1 16 16" style="margin-left: -25px; margin-top: -20px" 
 	          		data-toggle="tooltip" data-bs-placement="left" title="팀장<c:if test="${not empty project.notice}">의 공지 : ${project.notice}</c:if>">
@@ -240,7 +188,6 @@
 			      </select>
 				</div>
 			</div>
-			
 			<hr />
 		    <div class="offcanvas-body" id="task_member">
 		      <!-- import taskView.jsp -->
@@ -253,7 +200,7 @@
 		    </div>
 		  </div>
 	    
-</c:forEach> 
+</c:forEach>
 
 	    <div style="height: 70px;"></div> 
   
@@ -279,10 +226,9 @@
 			</a>
 	       </li>
 	     </ul>
-	     <form class="d-flex">
-	       	<!-- scroll link? 로 구현 -->
-	       <input class="form-control me-2" type="search" placeholder="팀원 검색" aria-label="Search" style="width: 150px;">
-	       <button class="btn btn-outline-success" type="submit">Search</button>
+	     <form class="d-flex" onsubmit="return false;">
+	       <input class="me-2" id="keyword" type="text" placeholder=" 팀원 검색 " style="width: 150px;">
+	       <a class="btn btn-outline-success" id="searchBtn" onClick="searchMem();">Search</a>
 	     </form>
 		</div>
 	</nav>
@@ -312,10 +258,14 @@
 			  </select>
 			</div>
 		</div>
-		
 		<hr />
+		<!-- 로딩중 -->
+		<div class="d-flex justify-content-center" style="display: none;">
+		  <div class="spinner-border m-5" role="status" id="spinnerTask">
+		    <span></span>
+		  </div>
+		</div>
     <div class="offcanvas-body" id="task">
-    
       <!-- import taskList.jsp -> AJAX로 처리!! -->
       <%-- <c:import url="../task/taskList.jsp">
       	<c:param name="projectId" value="${proId}" />
@@ -347,6 +297,11 @@
 	    </div>
     </div>
     <hr/>
+	<!-- 로딩중 -->
+	<div class="d-flex justify-content-center" style="display: none;">
+	  <div class="spinner-border m-5" role="status" id="spinnerHistory">
+	  </div>
+	</div>
     <div class="offcanvas-body" id="history">
       <!-- import history.jsp -> AJAX로 처리!! -->
      <%--   <c:import url="./history.jsp">
@@ -356,9 +311,88 @@
       </c:import> --%>
     </div>
   </div>
-	
 
 </main>
+
+<script type="text/javascript">
+  $(document).on('click', "#taskListBtn", function(){
+	  var proId = $("#taskListBtn").val();
+      $.ajax({
+          type : "get",
+          url : "/taskflow/task/list?option=nam",
+          dataType : "html",
+          data : { "projectId" : proId },
+          error : function(){
+              alert("taskList 불러오기를 실패했습니다.");
+          },
+          complete : function(){
+        	  $("#spinnerTask").css("display", "none");  
+          },
+          success : function(Parse_data){
+              $("#task").html(Parse_data);
+          }
+      });
+  });
+
+  $(document).on('click', "#historyBtn", function(){
+	  var proId = $("#taskListBtn").val();
+      $.ajax({
+          type : "get",
+          url : "/taskflow/history/list?option=all",
+          dataType : "html",
+          data : { "projectId" : proId },
+          error : function(){
+              alert("history 불러오기를 실패했습니다.");
+          },
+          complete : function(){
+        	  $("#spinnerHistory").css("display", "none");  
+          },
+          success : function(Parse_data){
+              $("#history").html(Parse_data);
+          }
+      });
+  });
+
+   $(document).on('change', "#sortListSelect", function() {
+   	 var opt = $("#sortListSelect option:selected").val();
+  	 	 var proId = $("#taskListBtn").val();
+   	 $.ajax({
+            type : "get",
+            url : "/taskflow/task/list?option="+opt,
+            dataType : "html",
+            data : { "projectId" : proId },
+            error : function(){
+                alert("taskList 불러오기를 실패했습니다.");
+            },
+            complete : function(){
+          	  $("#spinnerTask").css("display", "none");  
+            },
+            success : function(Parse_data){
+                $("#task").html(Parse_data);
+            }
+        });
+	});
+   
+   $(document).on('change', "#sortHistorySelect", function() {
+   	 var opt = $("#sortHistorySelect option:selected").val();
+  	 	 var proId = $("#taskListBtn").val();
+   	 $.ajax({
+            type : "get",
+            url : "/taskflow/history/list?option="+opt,
+            dataType : "html",
+            data : { "projectId" : proId },
+            error : function(){
+                alert("history 불러오기를 실패했습니다.");
+            },
+            complete : function(){
+          	  $("#spinnerHistory").css("display", "none");  
+            },
+            success : function(Parse_data){
+                $("#history").html(Parse_data);
+            }
+        });
+	});
+</script>
 
 </body>
 

@@ -23,21 +23,6 @@
 
 	<c:set var="proId" value="${projectId}" />
 	
-	<c:choose>
-	  <c:when test="${option eq 'mem'}">
-		<c:set var="taskList" value="${taskManager.orderTaskListByMember(proId)}" />
-	  </c:when>
-	  <c:when test="${option eq 'prog'}">
-		<c:set var="taskList" value="${taskManager.orderTaskListByProgress(proId)}" />
-	  </c:when>
-	  <c:when test="${option eq 'dead'}">
-		<c:set var="taskList" value="${taskManager.getTaskList(proId)}" />
-	  </c:when>
-	  <c:otherwise>
-		<c:set var="taskList" value="${taskManager.orderTaskListByName(proId)}" />
-	  </c:otherwise>
-	</c:choose>
-	
 	<!-- 테스크가 없을 경우 -->
 	<c:if test="${empty taskList}">
 		<div class="d-flex p-1 align-items-center justify-content-center" style="height: 70px;">

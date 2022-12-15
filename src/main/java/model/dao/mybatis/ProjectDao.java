@@ -14,7 +14,6 @@ import model.Participation;
 import model.Project;
 import model.dao.mybatis.mapper.ProjectMapper;
 import model.service.LongNameException;
-import model.service.ProjectManager;
 
 public class ProjectDao {
 	private SqlSessionFactory sqlSessionFactory;

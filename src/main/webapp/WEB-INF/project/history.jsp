@@ -15,22 +15,11 @@
 
 </head>
 
-
 <body class="bg-light">
 
 	<div class="p-2 bg-body rounded shadow-sm" style="margin-top: -20px;">
 	
 	<c:set var="proId" value="${projectId}" />
-	
-	<c:choose>
-	  <c:when test="${option eq 'all'}">
-		<c:set var="historyList" value="${historyManager.findHistoryByProjectId(proId)}" />
-	  </c:when>
-	  <c:otherwise>
-		<fmt:parseNumber var="memId" type="number" value="${option}" />
-		<c:set var="historyList" value="${historyManager.findHistoryByMemberId(proId, memId)}" />
-	  </c:otherwise>
-	</c:choose>
 	
 	<!-- 히스토리가 없을 경우 -->
 	<c:if test="${empty historyList}">
