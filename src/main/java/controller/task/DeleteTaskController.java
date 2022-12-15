@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
 import model.Task;
 import model.service.HistoryManager;
-import model.service.MemberManager;
 import model.service.TaskManager;
 
 public class DeleteTaskController implements Controller{

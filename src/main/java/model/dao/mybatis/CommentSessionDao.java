@@ -7,7 +7,6 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.*;
 
 import model.Comment;
-import model.dao.mybatis.mapper.CommentMapper;
 
 public class CommentSessionDao {
 	private final String namespace = "model.dao.mybatis.mapper.CommentMapper";

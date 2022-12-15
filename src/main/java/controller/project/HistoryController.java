@@ -1,5 +1,6 @@
 package controller.project;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import controller.member.UserSessionUtils;
+import model.History;
 import model.service.HistoryManager;
 
 public class HistoryController implements Controller {
@@ -24,7 +26,18 @@ public class HistoryController implements Controller {
      	HistoryManager hManager = HistoryManager.getInstance();
      	request.setAttribute("projectId", projectId);
      	request.setAttribute("historyManager", hManager);
-     	request.setAttribute("option", request.getParameter("option"));
+     	
+     	String option = request.getParameter("option");
+     	List<History> historyList = null;
+     	switch (option) {
+     		case "all":
+     			historyList = hManager.findHistoryByProjectId(projectId);
+     			break;
+     		default:
+     			historyList = hManager.findHistoryByMemberId(projectId, Integer.parseInt(option));
+     			break;
+     	}
+     	request.setAttribute("historyList", historyList);
 
 		
 		return "/project/history.jsp";

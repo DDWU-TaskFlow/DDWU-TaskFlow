@@ -75,6 +75,7 @@ public class CommentController implements Controller {
 				hManager.insertHistory(Integer.parseInt(request.getParameter("projectId")), memberId, content);
 			}
 		}
+		
 		return "redirect:/project/view?step=1&&projectId="+request.getParameter("projectId")+"&&msg="+msg_success+"&&is_insert="+is_insert;		
 	}
 }

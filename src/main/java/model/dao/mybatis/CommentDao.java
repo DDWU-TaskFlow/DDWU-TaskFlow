@@ -25,6 +25,15 @@ public class CommentDao {
 		}
 		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 	}
+
+	public Comment findCommentByCommentId(int commentId) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			return sqlSession.getMapper(CommentMapper.class).selectCommentByCommentId(commentId);			
+		} finally {
+			sqlSession.close();
+		}
+	}
 	
 	public List<Comment> findCommentByTaskId(int taskId) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -47,7 +56,11 @@ public class CommentDao {
 	public int insertComment(Comment comment) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			return sqlSession.getMapper(CommentMapper.class).insertComment(comment);			
+			int result = sqlSession.getMapper(CommentMapper.class).insertComment(comment);
+			if (result > 0) {
+				sqlSession.commit();
+			}
+			return result;
 		} finally {
 			sqlSession.close();
 		}
@@ -56,7 +69,11 @@ public class CommentDao {
 	public int updateComment(Comment comment) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			return sqlSession.getMapper(CommentMapper.class).updateComment(comment);			
+			int result = sqlSession.getMapper(CommentMapper.class).updateComment(comment);	
+			if (result > 0) {
+				sqlSession.commit();
+			}
+			return result;		
 		} finally {
 			sqlSession.close();
 		}
@@ -65,7 +82,11 @@ public class CommentDao {
 	public int deleteComment(int commentId) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			return sqlSession.getMapper(CommentMapper.class).deleteComment(commentId);			
+			int result = sqlSession.getMapper(CommentMapper.class).deleteComment(commentId);		
+			if (result > 0) {
+				sqlSession.commit();
+			}
+			return result;	
 		} finally {
 			sqlSession.close();
 		}
