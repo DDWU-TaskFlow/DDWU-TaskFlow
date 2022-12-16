@@ -13,8 +13,8 @@ import model.Member;
 import model.service.ExistingUserException;
 import model.service.MemberManager;
 
-public class JoinController implements Controller {
-    private static final Logger log = LoggerFactory.getLogger(JoinController.class);
+public class RegisterMemberController implements Controller {
+    private static final Logger log = LoggerFactory.getLogger(RegisterMemberController.class);
     
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

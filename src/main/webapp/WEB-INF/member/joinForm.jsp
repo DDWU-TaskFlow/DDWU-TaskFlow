@@ -65,6 +65,37 @@ if(member != null){
 	member = null;}
 }
 %>
+//공백 확인
+function checkSpace(str) {
+	if(str.search(/\s/) != -1) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function validatePassword() {
+	var pw = document.getElementById("password");
+	var confirmPw = document.getElementById("confirmPassword");
+	
+	// 비밀번호 공백 체크
+	if((checkSpace(pw.value) == true) || (checkSpace(confirmPw.value) == true)) {
+		alert("비밀번호에 공백은 사용할 수 없습니다.");
+		return false;
+	}
+	
+	// 비밀번호 재확인 일치 여부 체크
+	if(pw.value != confirmPw.value) {
+		confirmPw.setCustomValidity("비밀번호가 일치하지 않습니다.");
+		confirmPw.reportValidity();
+		return false;
+	} else {
+		confirmPw.setCustomValidity("");
+	}
+	return true;
+	
+}
+
 function memberCreate() {
 	if (form.user_name.value == "") {
 		alert("사용자 ID를 입력하십시오.");
@@ -98,9 +129,10 @@ function memberCreate() {
 		form.phone.focus();
 		return false;
 	}
-	
+	validatePassword();
 	form.submit();
 }
+
 </script>
 </head>
 <body class="bg-light">
@@ -136,14 +168,14 @@ function memberCreate() {
 
 							<!-- password -->
 							<div class="col-sm-6">
-								<label for="password" class="form-label">Password</label>
-								<input type="text" class="form-control" name="password" placeholder="" value="">
+								<label for="password" class="form-label" >Password</label>
+								<input type="password" class="form-control" name="password" placeholder="" value="" id="password">
 							</div>
 
 							<!-- Confirm New Password -->
 							<div class="col-sm-6">
-								<label for="confirmPassword" class="form-label">Confirm Password</label> <input type="text" class="form-control"
-									name="confirmPassword" placeholder="" value="">
+								<label for="confirmPassword" class="form-label">Confirm Password</label> <input type="password" class="form-control"
+									name="confirmPassword" placeholder="" value="" onchange="validatePassword()" id="confirmPassword">
 							</div>
 
 							<!-- name -->
