@@ -40,9 +40,11 @@ public class UpdateProjectController implements Controller {
 		
 		String leader = request.getParameter("leader"); 
 		Member leaderMem = mManager.getMemberByName(leader);
+		String color = request.getParameter("color");
 		
 		project.setLeader_id(leaderMem.getMember_id());
 //		project.setNotice(request.getParameter("notice"));
+		project.setColor(color);
 
 		// history 처리
 		if (pManager.updateProject(project) == 1) {

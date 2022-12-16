@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
 import model.Member;
 import model.Project;
-import model.service.MemberManager;
 import model.service.ProjectManager;
 import net.nurigo.sdk.NurigoApp;
 import net.nurigo.sdk.message.exception.NurigoMessageNotReceivedException;

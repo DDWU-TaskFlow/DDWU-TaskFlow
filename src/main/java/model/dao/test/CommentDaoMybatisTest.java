@@ -3,10 +3,10 @@ package model.dao.test;
 import java.util.List;
 
 import model.Comment;
-import model.dao.mybatis.CommentSessionDao;
+import model.dao.mybatis.CommentDao;
 
 class CommentDaoMybatisTest {
-	private static CommentSessionDao commentDao = new CommentSessionDao();
+	private static CommentDao commentDao = new CommentDao();
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

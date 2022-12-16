@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
 import model.Participation;
 import model.service.HistoryManager;
-import model.service.MemberManager;
 import model.service.ProjectManager;
 import model.service.TaskManager;
 

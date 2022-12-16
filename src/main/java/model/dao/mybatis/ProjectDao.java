@@ -56,20 +56,7 @@ public class ProjectDao {
 		} finally {
 			sqlSession.close();
 		}
-	}	
-	
-//	public Participation participateInProject(Participation part) {
-//		SqlSession sqlSession = sqlSessionFactory.openSession();
-//		try {
-//			int result = sqlSession.getMapper(ProjectMapper.class).participateInProject(part);
-//			if(result > 0) {
-//				sqlSession.commit();
-//			}
-//			return part;
-//		} finally {
-//			sqlSession.close();
-//		}
-//	}
+	}
 	
 	public int deleteProject(int project_id) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -109,8 +96,7 @@ public class ProjectDao {
 	public List<Project> findProjectsInMember(int member_id) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			List<Project> result = sqlSession.getMapper(ProjectMapper.class).findProjectsInMember(member_id);			
-//			List<Project> result = sqlSession.selectList("model.dao.mybatis.mapper.ProjectMapper.findProjectsInMember", member_id);
+			List<Project> result = sqlSession.getMapper(ProjectMapper.class).findProjectsInMember(member_id);
 			System.out.println("test"+result);
 			return result;			
 		} finally {

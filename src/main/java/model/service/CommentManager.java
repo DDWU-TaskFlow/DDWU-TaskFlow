@@ -8,7 +8,6 @@ import model.dao.mybatis.CommentDao;
 
 public class CommentManager {
 	private static CommentManager commentManager = new CommentManager();
-//	private CommentDao commentDao;
 	private CommentDao commentDao;
 	
 	private CommentManager() {

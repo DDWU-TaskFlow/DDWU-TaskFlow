@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.Member;
-import model.dao.jdbc.JDBCUtil;
 
 public class MemberDao {
 
