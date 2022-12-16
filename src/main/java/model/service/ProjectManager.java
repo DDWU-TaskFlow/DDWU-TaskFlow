@@ -40,22 +40,11 @@ public class ProjectManager {
 			return 1;
 		}
 	}
-
-
-
-	//	
-	//	public int updateProject(Project pro) {
-	//		return projectDAO.updateProject(pro);
-	//	}
-	//	
-
-
 	
 	public int updateProject(Project pro) {
 		System.out.println("ProjectManager의 updateProject() 호출됨");
 		return projectDAO.updateProject(pro);
 	}
-	
 
 	public List<Project> findProjectsInMember(int member_id) {
 		//TEST
@@ -93,21 +82,10 @@ public class ProjectManager {
 		return projectDAO.findProject(project_id);
 	}
 
-	/*public Participation participateInProject(Participation part) {
-		return projectDAO.participateInProject(part);
-	}*/
-
 	public int deleteProject(int project_id) {
 		return projectDAO.deleteProject(project_id);	
 	}
 
-
-	/*public int outProject(Participation part) {
-		return projectDAO.outProject(part);
-	}*/
-
-
-	
 	public int outProject(int project_id) {
 		return projectDAO.outProject(project_id);
 	}

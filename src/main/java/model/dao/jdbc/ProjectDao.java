@@ -7,7 +7,6 @@ import java.util.List;
 import model.Project;
 import model.Member;
 import model.Participation;
-import model.dao.jdbc.JDBCUtil;
 
 public class ProjectDao {
 

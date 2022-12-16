@@ -1,6 +1,5 @@
 package model.dao.test;
 
-import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 

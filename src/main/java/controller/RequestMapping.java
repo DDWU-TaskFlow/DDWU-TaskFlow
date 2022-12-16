@@ -6,9 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.member.DeleteMemberController;
-import controller.member.EnterMemberController;
 import controller.member.RegisterMemberController;
-import controller.member.ListTeamMemberController;
 import controller.member.LoginController;
 import controller.member.LogoutController;
 import controller.member.MyPageController;
@@ -42,9 +40,6 @@ public class RequestMapping {
         mappings.put("/member/login", new LoginController());
         mappings.put("/member/logout", new LogoutController());
         mappings.put("/member/join", new RegisterMemberController());	// get, post
-        
-        mappings.put("/member/team", new ListTeamMemberController());
-        mappings.put("/member/entrance", new EnterMemberController());
         mappings.put("/member/mypage", new MyPageController());
         mappings.put("/member/delete", new DeleteMemberController());
         
