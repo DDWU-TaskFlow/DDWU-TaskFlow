@@ -45,7 +45,7 @@ public class HistoryManager {
 		return historyDao.insertHistory(projectId, memberId, content);
 	}
 	
-	public int deleteHistory(int projectId) {
+	public int deleteHistoryByProjectId(int projectId) {
 		return historyDao.deleteHistoryByProjectId(projectId);
 	}
 	
