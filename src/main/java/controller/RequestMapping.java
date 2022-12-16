@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import controller.member.DeleteMemberController;
 import controller.member.EnterMemberController;
-import controller.member.JoinController;
+import controller.member.RegisterMemberController;
 import controller.member.ListTeamMemberController;
 import controller.member.LoginController;
 import controller.member.LogoutController;
@@ -41,7 +41,7 @@ public class RequestMapping {
         mappings.put("/member/login/form", new ForwardController("/member/loginForm.jsp")); //테스트용
         mappings.put("/member/login", new LoginController());
         mappings.put("/member/logout", new LogoutController());
-        mappings.put("/member/join", new JoinController());	// get, post
+        mappings.put("/member/join", new RegisterMemberController());	// get, post
         
         mappings.put("/member/team", new ListTeamMemberController());
         mappings.put("/member/entrance", new EnterMemberController());

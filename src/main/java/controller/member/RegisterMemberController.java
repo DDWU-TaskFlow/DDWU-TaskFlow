@@ -13,8 +13,8 @@ import model.Member;
 import model.service.ExistingUserException;
 import model.service.MemberManager;
 
-public class JoinController implements Controller {
-    private static final Logger log = LoggerFactory.getLogger(JoinController.class);
+public class RegisterMemberController implements Controller {
+    private static final Logger log = LoggerFactory.getLogger(RegisterMemberController.class);
     
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -26,13 +26,20 @@ public class JoinController implements Controller {
        	}
     	// POST request (회원정보가 parameter로 전송됨)
        	
+       	Date bDate = null;
+       	String birth = request.getParameter("birth");
+       	if (!birth.isEmpty()) {
+       		bDate = Date.valueOf(birth);
+       	}
+       	
        	Member member = new Member(
 			request.getParameter("user_name"),
 			request.getParameter("password"),
 			request.getParameter("name"),
 			request.getParameter("email"),
 			request.getParameter("phone"),
-			Date.valueOf(request.getParameter("birth")));
+			bDate
+			);
        	
        	System.out.println(member);
 		

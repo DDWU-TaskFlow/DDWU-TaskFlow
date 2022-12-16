@@ -129,13 +129,13 @@ function validatePassword() {
                         <!-- New Password -->
                         <div class="col-sm-6">
                             <label for="newPassword" class="form-label">New Password</label>
-                            <input type="text" class="form-control" id="newPassword" name="newPassword" placeholder="" value="">
+                            <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="" value="">
                         </div>
     
                         <!-- Confirm New Password -->
                         <div class="col-sm-6">
                             <label for="confirmPassword" class="form-label">Confirm New Password</label>
-                            <input type="text" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="" value=""
+                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="" value=""
                             		onchange="validatePassword()">
                         </div>
     
