@@ -125,7 +125,7 @@ function memberCreate() {
 
 					<hr class="my-4">
 
-					<form class="needs-validation" novalidate name="form" method="POST" action="<c:url value='/member/join' />">
+					<form class="needs-validation" novalidate name="form" method="POST" onsubmit="return memberCreate()">
 						<div class="row g-3">
 
 							<!-- user_name -->
@@ -177,7 +177,7 @@ function memberCreate() {
 						<hr class="my-4">
 
 						<div class="find-btn">
-							<button class="btn btn-primary btn-lg px-4 gap-3" onClick="memberCreate()"
+							<button class="btn btn-primary btn-lg px-4 gap-3"
 								style="background-color: rgb(161, 162, 207); border: 0; outline: 0;">Join</button>
 							<button class="btn btn-outline-secondary btn-lg px-4"
 								type="reset" onClick="history.back()">Cancel</button>
